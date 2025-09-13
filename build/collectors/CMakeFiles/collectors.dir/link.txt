@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcollectors.a CMakeFiles/collectors.dir/machine.cpp.o
+/usr/bin/ranlib libcollectors.a
