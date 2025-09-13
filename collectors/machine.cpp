@@ -12,12 +12,14 @@
 
 machine::machine() {
 	// run setters
+	set_os();
+	os.system = "linux";
 }
 
-void machine::set_os() {
-	OS os;
-
+//Define member functions for Windows
 #if defined(_WIN32) || defined(_WIN64)
+
+void machine::set_os() {
 	OSVERSIONINFOEXA version;
 	ZeroMemory(&version, sizeof(OSVERSIONINFOEXA));
 	version.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEXA);
@@ -32,7 +34,12 @@ void machine::set_os() {
 		os.version = "unknown";
 		os.kernel = "unknown";
 	}
+}
+
+// Define member functions for Unix
 #elif defined(__linux__) || defined(__APPLE__) || defined(__unix__)
+
+void machine::set_os() {
 	struct utsname buffer;
 	if(uname(&buffer) == 0) {
 		os.system = buffer.sysname;
@@ -44,9 +51,16 @@ void machine::set_os() {
 		os.version = "unknown";
 		os.kernel = "unknown";
 	}
+}
+
+// Define functions for unknown OS
 #else
+
+void machine::set_os() {
 	os.system = "Unknown OS";
 	os.version = "unknown";
 	os.kernel = "unknown";
-#endif
 }
+
+#endif
+

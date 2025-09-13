@@ -61,7 +61,6 @@ class machine {
 
 	public:
 		machine();
-		~machine();
 
 		// getters to access computer information
 		CPU *get_cpu() {return cpu;}
