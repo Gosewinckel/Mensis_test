@@ -172,30 +172,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Mensis_test
+# Target rules for targets named main_exe
 
 # Build rule for target.
-Mensis_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Mensis_test
-.PHONY : Mensis_test
+main_exe: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main_exe
+.PHONY : main_exe
 
 # fast build rule for target.
-Mensis_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mensis_test.dir/build.make CMakeFiles/Mensis_test.dir/build
-.PHONY : Mensis_test/fast
-
-#=============================================================================
-# Target rules for targets named collectors
-
-# Build rule for target.
-collectors: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 collectors
-.PHONY : collectors
-
-# fast build rule for target.
-collectors/fast:
-	$(MAKE) $(MAKESILENT) -f collectors/CMakeFiles/collectors.dir/build.make collectors/CMakeFiles/collectors.dir/build
-.PHONY : collectors/fast
+main_exe/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_exe.dir/build.make CMakeFiles/main_exe.dir/build
+.PHONY : main_exe/fast
 
 #=============================================================================
 # Target rules for targets named test_machine
@@ -262,12 +249,25 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+#=============================================================================
+# Target rules for targets named collectors
+
+# Build rule for target.
+collectors: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 collectors
+.PHONY : collectors
+
+# fast build rule for target.
+collectors/fast:
+	$(MAKE) $(MAKESILENT) -f collectors/CMakeFiles/collectors.dir/build.make collectors/CMakeFiles/collectors.dir/build
+.PHONY : collectors/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mensis_test.dir/build.make CMakeFiles/Mensis_test.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_exe.dir/build.make CMakeFiles/main_exe.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -275,7 +275,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mensis_test.dir/build.make CMakeFiles/Mensis_test.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_exe.dir/build.make CMakeFiles/main_exe.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -283,7 +283,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mensis_test.dir/build.make CMakeFiles/Mensis_test.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_exe.dir/build.make CMakeFiles/main_exe.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -299,12 +299,12 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... Mensis_test"
 	@echo "... collectors"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... main_exe"
 	@echo "... test_machine"
 	@echo "... main.o"
 	@echo "... main.i"

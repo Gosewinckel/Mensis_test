@@ -10,15 +10,20 @@
  ****************************************************/ 
 #pragma once
 #include <string>
+#include <vector>
 
 class machine {
 	// Struct definitions for hardware components
 	struct CPU {
-		std::string model;
-		int core_count;
-		int clocks;
-		bool AVX_support;
-		int cache_sizes;
+		std::string model;		// Model of CPU (brand, number)
+		int core_count;			// Number of cores
+		float clocks;			// Clock speed
+		bool AVX_support;		
+		struct cache {
+			int level;
+			int memory;
+		};
+		std::vector<cache> caches;
 	};
 	
 	struct GPU {
@@ -63,8 +68,9 @@ class machine {
 		machine();
 
 		// getters to access computer information
-		CPU *get_cpu() {return cpu;}
-		GPU *get_gpu() {return gpu;}
+		int get_cpu_count() {return cpu_count;}
+		const std::vector<CPU>& get_cpu() const {return cpu;}
+		const std::vector<GPU>& get_gpu() const {return gpu;}
 		Memory get_memory() {return memory;}
 		Storage get_storage() {return storage;}
 		Network get_network() {return network;}
@@ -73,8 +79,10 @@ class machine {
 		int get_power_limit() {return power_limit;}
 
 	private:
-		CPU *cpu = nullptr;		// array of CPU's in computer
-		GPU *gpu = nullptr;		// array of GPU's in computer
+		int cpu_count;				//number of CPU's in machine
+		std::vector<CPU> cpu;		// array of CPU's in computer
+		int gpu_count;				//number of GPU's in machine
+		std::vector<GPU> gpu;		// array of GPU's in computer
 		Memory memory;			//RAM
 		Storage storage;		// Long term storage
 		Network network;
@@ -82,7 +90,9 @@ class machine {
 		tech_stack software;
 		int power_limit;
 
+		void set_cpu_count();
 		void set_cpu();
+		void set_gpu_count();
 		void set_gpu();
 		void set_memory();
 		void set_storage();

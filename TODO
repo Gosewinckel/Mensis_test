@@ -1,0 +1,9 @@
+TODO defined by sectorn
+
+/**************************************************** 
+* Collectors
+****************************************************/ 
+~ Write member functions for macOS
+~ Write member functions for Window
+
+~ Make set_cpu check for multiple CPU's
