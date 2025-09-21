@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <filesystem>
 #include <set>
+#include <map>
 
 #if defined(_WIN32) || defined(_WIN64)
 	#include <windows.h>
@@ -61,52 +62,68 @@ void machine::set_os() {
 	}
 }
 
-// CPU count setter
-void machine::set_cpu_count() {
-	std::set<int> packages;
+
+// CPU setter
+void machine::set_cpu() {
+	CPU cpuInfo;
+	// Find number of CPU's
+	std::set<int> physicalPackages;			// set of physical CPU's
+	std::map<int, std::string> packageMap;		// Maps CPU to a cpu file
 	for(const auto& entry : std::filesystem::directory_iterator("/sys/devices/system/cpu")) {
 		if(entry.path().filename().string().rfind("cpu", 0) == 0 && isdigit(entry.path().filename().string()[3])) {
 			std::ifstream f(entry.path()/"topology/physical_package_id");
 			int id;
-			if(f >> id) {
-				packages.insert(id);
+			if(f >> id && physicalPackages.find(id) == physicalPackages.end()) {
+				physicalPackages.insert(id);
+				packageMap[id] = entry.path().string();
 			}
 		}
 	}
-	cpu_count = packages.size();
-}
-
-// CPU setter
-void machine::set_cpu() {
-	// Loop through CPU's
-	for(int i = 0; i < cpu_count; i++) {
-		// set CPU model
+	// set number of CPU's
+	cpu_count = physicalPackages.size();
+	
+	// loop through CPU's
+	for(const auto& [pkgId, cpuDir] : packageMap) {
 		std::ifstream cpuinfo("/proc/cpuinfo");
 		std::string line;
 		while(std::getline(cpuinfo, line)) {
+			//Skip other CPU's
+			if(line.find("physical id") != std::string::npos) {
+				int physId = std::stoi(line.substr(line.find(":") + 1));
+				if(physId != pkgId) {
+					continue;
+				}
+			}
+			// find CPU model
 			if(line.find("model name") != std::string::npos) {
-				cpu[i].model = line.substr(line.find(":") + 2);
+				cpuInfo.model = line.substr(line.find(":") + 2);
 			}
-		}
-
-		// find core count
-		cpu[i].core_count = sysconf(_SC_NPROCESSORS_ONLN);
-
-		// find clock speed
-		cpuinfo.seekg(0, std::ios::beg);
-		line.clear();
-		while(std::getline(cpuinfo, line)) {
+			// find clock speed
 			if(line.find("cpu MHz") != std::string::npos) {
-				cpu[i].clocks = std::stod(line.substr(line.find(":") + 2));
+				cpuInfo.clocks = std::stod(line.substr(line.find(":") + 2));
+			}
+			// AVX support
+			if(line.find("flags") != std::string::npos) {
+				cpuInfo.AVX_support = (line.find("avx") != std::string::npos);
 			}
 		}
-		// if clock speed not found set to -1
-		if(cpu[i].clocks <=0.0) {
-			cpu[i].clocks = -1.0;
-		}
 
-		// AVX support
-	}
+		// Core count for current CPU
+		int coreCount;
+		for(const auto& entry: std::filesystem::directory_iterator("/sys/devices/system/cpu")) {
+			if(entry.path().filename().string().rfind("cpu", 0) == 0 && isdigit(entry.path().filename().string()[3])) {
+				std::ifstream f(entry.path()/"topology/physical_package_id");
+				int physId;
+				if(f >> physId && physId == pkgId) {
+					++coreCount;
+				}
+			}
+		}
+		cpuInfo.core_count = coreCount;
+
+		// Cache sizes
+
+	}	
 }
 
 // Define member functions for macOS
