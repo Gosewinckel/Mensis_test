@@ -21,7 +21,7 @@ class machine {
 		bool AVX_support;		
 		struct cache {
 			int level;
-			int memory;
+			size_t memory;
 		};
 		std::vector<cache> caches;
 	};

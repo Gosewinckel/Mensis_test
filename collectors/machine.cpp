@@ -122,8 +122,24 @@ void machine::set_cpu() {
 		cpuInfo.core_count = coreCount;
 
 		// Cache sizes
+		for(const auto& cache_i: std::filesystem::directory_iterator(cpuDir + "/cache")) {
+			if(cache_i.path().filename().string().rfind("index", 0) == 0 && isdigit(cache_i.path().filename().string()[5])) {
+				// Find cache level
+				std::ifstream f(cache_i.path()/"level");
+				int level = 0;
+				f >> level;
 
+				// find cache size
+				std::ifstream s(cache_i.path()/"size");
+				size_t size;
+				s >> size;
+				
+				// add to caches
+				cpuInfo.caches.push_back({level, size});
+			}
+		}
 	}	
+	cpu.push_back(cpuInfo);
 }
 
 // Define member functions for macOS

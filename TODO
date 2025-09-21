@@ -6,4 +6,7 @@ TODO defined by sectorn
 ~ Write member functions for macOS
 ~ Write member functions for Window
 
-~ Make set_cpu check for multiple CPU's
+~ ensure all parts of get_cpu work as intended by writing test cases.
+	In particular make sure that sache size works as size_t and if not 
+	correct it.
+
