@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <set>
 #include <map>
+#include <algorithm>
 
 #if defined(_WIN32) || defined(_WIN64)
 	#include <windows.h>
@@ -135,7 +136,9 @@ void machine::set_cpu() {
 				s >> size;
 				
 				// add to caches
-				cpuInfo.caches.push_back({level, size});
+				if(std::find(cpuInfo.caches.begin(), cpuInfo.caches.end(), {level, size}) != cpuInfo.caches.end()) {
+					cpuInfo.caches.push_back({level, size});
+				}
 			}
 		}
 	}	
