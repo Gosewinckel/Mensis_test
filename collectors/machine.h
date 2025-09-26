@@ -36,7 +36,6 @@ class machine {
 
 	struct Memory {
 		int size;
-		int speed;
 	};
 
 	struct Storage {
@@ -90,7 +89,6 @@ class machine {
 		tech_stack software;
 		int power_limit;
 
-		void set_cpu_count();
 		void set_cpu();
 		void set_gpu_count();
 		void set_gpu();

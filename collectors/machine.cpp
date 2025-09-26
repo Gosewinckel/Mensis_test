@@ -20,7 +20,8 @@
 machine::machine() {
 	// run setters
 	set_os();
-	set_cpu_count();
+	set_cpu();
+	set_memory();
 }
 
 //Define member functions for Windows
@@ -136,13 +137,38 @@ void machine::set_cpu() {
 				s >> size;
 				
 				// add to caches
-				if(std::find(cpuInfo.caches.begin(), cpuInfo.caches.end(), {level, size}) != cpuInfo.caches.end()) {
-					cpuInfo.caches.push_back({level, size});
-				}
+				cpuInfo.caches.push_back({level, size});
 			}
 		}
 	}	
 	cpu.push_back(cpuInfo);
+}
+
+/**************************************************** 
+ * set memory fuction
+ *
+ * used in machine constructor
+ *
+ ****************************************************/ 
+void machine::set_memory() {
+	std::ifstream m("/proc/meminfo");
+	std::string line;
+	while(getline(m, line)) {
+		if(line.find("MemTotal") != std::string::npos) {
+			memory.size = std::stoi(line.substr(line.find(":") + 7));
+			return;
+		}
+	}
+}
+
+/**************************************************** 
+ * set Storage
+ *
+ * used in machine constructor to set storage type
+ * and read/write throughput
+ ****************************************************/ 
+void machine::set_storage() {
+
 }
 
 // Define member functions for macOS
