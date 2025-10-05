@@ -168,7 +168,18 @@ void machine::set_memory() {
  * and read/write throughput
  ****************************************************/ 
 void machine::set_storage() {
-
+	for(const auto& entry : std::filesystem::directory_iterator("/sys/block")) {
+		std::ifstream m("queue/rotational");
+		std::string line;
+		while(getline(m, line)) {
+			if(std::stoi(line) == 0) {
+				storage.push_back({"SSD/NVMe"});
+			}
+			else if(std::stoi(line) == 1) {
+				storage.push_back({"HDD"});
+			}
+		}
+	}
 }
 
 // Define member functions for macOS

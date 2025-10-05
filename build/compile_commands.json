@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build",
-  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors  -o CMakeFiles/main_exe.dir/main.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/main.cpp",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks  -o CMakeFiles/main_exe.dir/main.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/main.cpp",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/main.cpp",
   "output": "CMakeFiles/main_exe.dir/main.cpp.o"
 },
@@ -10,6 +10,12 @@
   "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest  -o CMakeFiles/test_machine.dir/test_machine.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_machine.cpp",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_machine.cpp",
   "output": "tests/CMakeFiles/test_machine.dir/test_machine.cpp.o"
+},
+{
+  "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest  -o CMakeFiles/test_CPU.dir/test_CPU.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_CPU.cpp",
+  "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_CPU.cpp",
+  "output": "tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o"
 },
 {
   "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-build/googlemock",
@@ -40,5 +46,11 @@
   "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors  -o CMakeFiles/collectors.dir/machine.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors/machine.cpp",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors/machine.cpp",
   "output": "collectors/CMakeFiles/collectors.dir/machine.cpp.o"
+},
+{
+  "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks  -o CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
+  "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
+  "output": "microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o"
 }
 ]

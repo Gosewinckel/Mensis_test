@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmicrobenchmarks.a CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o
+/usr/bin/ranlib libmicrobenchmarks.a

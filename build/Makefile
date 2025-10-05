@@ -198,6 +198,19 @@ test_machine/fast:
 .PHONY : test_machine/fast
 
 #=============================================================================
+# Target rules for targets named test_CPU
+
+# Build rule for target.
+test_CPU: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_CPU
+.PHONY : test_CPU
+
+# fast build rule for target.
+test_CPU/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_CPU.dir/build.make tests/CMakeFiles/test_CPU.dir/build
+.PHONY : test_CPU/fast
+
+#=============================================================================
 # Target rules for targets named gmock
 
 # Build rule for target.
@@ -262,6 +275,19 @@ collectors/fast:
 	$(MAKE) $(MAKESILENT) -f collectors/CMakeFiles/collectors.dir/build.make collectors/CMakeFiles/collectors.dir/build
 .PHONY : collectors/fast
 
+#=============================================================================
+# Target rules for targets named microbenchmarks
+
+# Build rule for target.
+microbenchmarks: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 microbenchmarks
+.PHONY : microbenchmarks
+
+# fast build rule for target.
+microbenchmarks/fast:
+	$(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/build
+.PHONY : microbenchmarks/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -305,6 +331,8 @@ help:
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... main_exe"
+	@echo "... microbenchmarks"
+	@echo "... test_CPU"
 	@echo "... test_machine"
 	@echo "... main.o"
 	@echo "... main.i"

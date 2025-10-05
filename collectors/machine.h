@@ -35,7 +35,8 @@ class machine {
 	};
 
 	struct Memory {
-		int size;
+		size_t size;
+		int speed;
 	};
 
 	struct Storage {
@@ -71,7 +72,7 @@ class machine {
 		const std::vector<CPU>& get_cpu() const {return cpu;}
 		const std::vector<GPU>& get_gpu() const {return gpu;}
 		Memory get_memory() {return memory;}
-		Storage get_storage() {return storage;}
+		const std::vector<Storage> get_storage() {return storage;}
 		Network get_network() {return network;}
 		OS get_os() {return os;}
 		tech_stack get_software() {return software;}
@@ -83,7 +84,7 @@ class machine {
 		int gpu_count;				//number of GPU's in machine
 		std::vector<GPU> gpu;		// array of GPU's in computer
 		Memory memory;			//RAM
-		Storage storage;		// Long term storage
+		std::vector<Storage> storage;	//list of storage devices
 		Network network;
 		OS os;
 		tech_stack software;

@@ -5,11 +5,21 @@ project(Mensis_test LANGUAGES CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
+find_package(BLAS REQUIRED)
+
+if (NOT TARGET BLAS::BLAS)
+	add_library(BLAS::BLAS INTERFACE IMPORTED)
+	set_target_properties(BLAS::BLAS PROPERTIES INTERFACE_LINK_LIBRARIES "${BLAS_LIBRARIES}")
+endif()
 
 add_subdirectory(tests)
 add_subdirectory(collectors)
+add_subdirectory(microbenchmarks)
 
+# Executables
 add_executable(main_exe main.cpp)
 
-target_link_libraries(main_exe PRIVATE collectors)
 
+# Link libraries
+target_link_libraries(main_exe PRIVATE collectors)
+target_link_libraries(main_exe PRIVATE microbenchmarks)

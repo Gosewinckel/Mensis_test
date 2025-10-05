@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/CMakeLists.txt"
-  "CMakeFiles/4.1.1/CMakeCCompiler.cmake"
-  "CMakeFiles/4.1.1/CMakeCXXCompiler.cmake"
-  "CMakeFiles/4.1.1/CMakeSystem.cmake"
+  "CMakeFiles/4.1.2/CMakeCCompiler.cmake"
+  "CMakeFiles/4.1.2/CMakeCXXCompiler.cmake"
+  "CMakeFiles/4.1.2/CMakeSystem.cmake"
   "_deps/googletest-src/CMakeLists.txt"
   "_deps/googletest-src/googlemock/CMakeLists.txt"
   "_deps/googletest-src/googlemock/cmake/gmock.pc.in"
@@ -21,6 +21,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "_deps/googletest-src/googletest/cmake/gtest_main.pc.in"
   "_deps/googletest-src/googletest/cmake/internal_utils.cmake"
   "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors/CMakeLists.txt"
+  "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/CMakeLists.txt"
   "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/CMakeLists.txt"
   "/usr/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in"
   "/usr/share/cmake/Modules/CMakeCInformation.cmake"
@@ -34,7 +35,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake"
   "/usr/share/cmake/Modules/CheckCSourceCompiles.cmake"
+  "/usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake"
+  "/usr/share/cmake/Modules/CheckFunctionExists.cmake"
   "/usr/share/cmake/Modules/CheckIncludeFile.cmake"
+  "/usr/share/cmake/Modules/CheckIncludeFileCXX.cmake"
   "/usr/share/cmake/Modules/CheckLibraryExists.cmake"
   "/usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/usr/share/cmake/Modules/Compiler/GNU-C.cmake"
@@ -43,6 +47,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/ExternalProject/shared_internal_commands.cmake"
   "/usr/share/cmake/Modules/FetchContent.cmake"
   "/usr/share/cmake/Modules/FetchContent/CMakeLists.cmake.in"
+  "/usr/share/cmake/Modules/FindBLAS.cmake"
   "/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake/Modules/FindPackageMessage.cmake"
   "/usr/share/cmake/Modules/FindThreads.cmake"
@@ -89,15 +94,18 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "_deps/googletest-build/googletest/generated/gtest_main.pc"
   "_deps/googletest-build/googletest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "collectors/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "microbenchmarks/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/main_exe.dir/DependInfo.cmake"
   "tests/CMakeFiles/test_machine.dir/DependInfo.cmake"
+  "tests/CMakeFiles/test_CPU.dir/DependInfo.cmake"
   "_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
   "_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake"
   "_deps/googletest-build/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
   "_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
   "collectors/CMakeFiles/collectors.dir/DependInfo.cmake"
+  "microbenchmarks/CMakeFiles/microbenchmarks.dir/DependInfo.cmake"
   )

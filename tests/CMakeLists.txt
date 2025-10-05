@@ -8,8 +8,11 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(test_machine test_machine.cpp)
+add_executable(test_CPU test_CPU.cpp)
 
 target_link_libraries(test_machine PRIVATE gtest_main collectors)
+target_link_libraries(test_CPU PRIVATE gtest_main microbenchmarks)
 
 include(GoogleTest)
 gtest_discover_tests(test_machine)
+gtest_discover_tests(test_CPU)

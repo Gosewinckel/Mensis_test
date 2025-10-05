@@ -7,6 +7,7 @@
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles/install/local.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles/install/strip.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test_machine.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test_CPU.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/edit_cache.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/rebuild_cache.dir
@@ -47,3 +48,11 @@
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/collectors/CMakeFiles/install.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/collectors/CMakeFiles/install/local.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/collectors/CMakeFiles/install/strip.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/CMakeFiles/microbenchmarks.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/CMakeFiles/test.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/CMakeFiles/edit_cache.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/CMakeFiles/rebuild_cache.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/CMakeFiles/list_install_components.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/CMakeFiles/install.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/CMakeFiles/install/local.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/CMakeFiles/install/strip.dir

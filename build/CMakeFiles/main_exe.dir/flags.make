@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors
+CXX_INCLUDES = -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks
 
 CXX_FLAGS = 
 

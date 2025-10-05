@@ -4,6 +4,8 @@ main_exe: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
   CMakeFiles/main_exe.dir/main.cpp.o \
   collectors/libcollectors.a \
+  microbenchmarks/libmicrobenchmarks.a \
+  /usr/lib/libopenblas.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
@@ -30,6 +32,8 @@ main_exe: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o \
+  /usr/lib/libgfortran.so.5 \
+  /usr/lib/libgomp.so.1 \
   /usr/lib/ld-linux-x86-64.so.2
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o:
@@ -41,6 +45,10 @@ main_exe: \
 CMakeFiles/main_exe.dir/main.cpp.o:
 
 collectors/libcollectors.a:
+
+microbenchmarks/libmicrobenchmarks.a:
+
+/usr/lib/libopenblas.so:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so:
 
@@ -93,5 +101,9 @@ collectors/libcollectors.a:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o:
+
+/usr/lib/libgfortran.so.5:
+
+/usr/lib/libgomp.so.1:
 
 /usr/lib/ld-linux-x86-64.so.2:

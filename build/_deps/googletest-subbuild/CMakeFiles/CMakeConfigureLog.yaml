@@ -41,3 +41,14 @@ events:
     message: |
       The system is: Linux - 6.16.4-arch1-1 - x86_64
 ...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:16 (project)"
+    message: |
+      The system is: Linux - 6.16.8-arch3-1 - x86_64
+...

@@ -223,10 +223,14 @@ main_exe: /usr/lib/Scrt1.o \
   /usr/lib/ld-linux-x86-64.so.2 \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
+  /usr/lib/libgfortran.so.5 \
+  /usr/lib/libgomp.so.1 \
   /usr/lib/libm.so.6 \
   /usr/lib/libmvec.so.1 \
+  /usr/lib/libopenblas.so \
   CMakeFiles/main_exe.dir/main.cpp.o \
-  collectors/libcollectors.a
+  collectors/libcollectors.a \
+  microbenchmarks/libmicrobenchmarks.a
 
 
 collectors/libcollectors.a:
@@ -234,6 +238,8 @@ collectors/libcollectors.a:
 CMakeFiles/main_exe.dir/main.cpp.o:
 
 /usr/lib/libm.so.6:
+
+/usr/lib/libgfortran.so.5:
 
 /usr/lib/libc.so.6:
 
@@ -267,6 +273,8 @@ CMakeFiles/main_exe.dir/main.cpp.o:
 
 /usr/include/linux/stddef.h:
 
+/usr/lib/libgomp.so.1:
+
 /usr/include/linux/sched/types.h:
 
 /usr/include/linux/posix_types.h:
@@ -286,6 +294,8 @@ CMakeFiles/main_exe.dir/main.cpp.o:
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/ctype_inline.h:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++locale.h:
+
+/usr/lib/libopenblas.so:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h:
 
@@ -626,6 +636,8 @@ CMakeFiles/main_exe.dir/main.cpp.o:
 /usr/include/c++/15.2.1/bits/stringfwd.h:
 
 /usr/include/c++/15.2.1/bits/nested_exception.h:
+
+microbenchmarks/libmicrobenchmarks.a:
 
 /usr/include/alloca.h:
 

@@ -225,8 +225,12 @@ main_exe
  /usr/lib/ld-linux-x86-64.so.2
  /usr/lib/libc.so.6
  /usr/lib/libc_nonshared.a
+ /usr/lib/libgfortran.so.5
+ /usr/lib/libgomp.so.1
  /usr/lib/libm.so.6
  /usr/lib/libmvec.so.1
+ /usr/lib/libopenblas.so
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles/main_exe.dir/main.cpp.o
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/collectors/libcollectors.a
+ /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/libmicrobenchmarks.a
 
