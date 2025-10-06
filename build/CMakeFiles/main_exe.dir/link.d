@@ -6,6 +6,8 @@ main_exe: \
   collectors/libcollectors.a \
   microbenchmarks/libmicrobenchmarks.a \
   /usr/lib/libopenblas.so \
+  /usr/lib/libgomp.so \
+  /usr/lib/libpthread.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
@@ -33,7 +35,6 @@ main_exe: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o \
   /usr/lib/libgfortran.so.5 \
-  /usr/lib/libgomp.so.1 \
   /usr/lib/ld-linux-x86-64.so.2
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o:
@@ -49,6 +50,10 @@ collectors/libcollectors.a:
 microbenchmarks/libmicrobenchmarks.a:
 
 /usr/lib/libopenblas.so:
+
+/usr/lib/libgomp.so:
+
+/usr/lib/libpthread.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so:
 
@@ -103,7 +108,5 @@ microbenchmarks/libmicrobenchmarks.a:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o:
 
 /usr/lib/libgfortran.so.5:
-
-/usr/lib/libgomp.so.1:
 
 /usr/lib/ld-linux-x86-64.so.2:

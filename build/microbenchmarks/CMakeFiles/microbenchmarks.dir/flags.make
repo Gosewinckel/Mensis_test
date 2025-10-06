@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks
+CXX_INCLUDES = -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks
 
-CXX_FLAGS = 
+CXX_FLAGS = -fopenmp
 

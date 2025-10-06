@@ -250,4 +250,6 @@ tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o: \
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include/gtest/gtest-typed-test.h \
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include/gtest/gtest_pred_impl.h \
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include/gtest/gtest_prod.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/omp.h \
+ /usr/include/openblas/cblas.h /usr/include/openblas/openblas_config.h \
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.h

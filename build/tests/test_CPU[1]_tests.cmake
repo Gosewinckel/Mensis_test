@@ -2,4 +2,6 @@ add_test([=[CPUTest.sizeTest]=]  /home/Mensis/Source-code/github.com/Gosewinckel
 set_tests_properties([=[CPUTest.sizeTest]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
 add_test([=[CPUTest.valTest]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_CPU [==[--gtest_filter=CPUTest.valTest]==] --gtest_also_run_disabled_tests)
 set_tests_properties([=[CPUTest.valTest]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set(  test_CPU_TESTS CPUTest.sizeTest CPUTest.valTest)
+add_test([=[CPUTest.GEMMtest]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_CPU [==[--gtest_filter=CPUTest.GEMMtest]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[CPUTest.GEMMtest]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  test_CPU_TESTS CPUTest.sizeTest CPUTest.valTest CPUTest.GEMMtest)

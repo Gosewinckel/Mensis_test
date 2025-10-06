@@ -224,10 +224,11 @@ main_exe: /usr/lib/Scrt1.o \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
   /usr/lib/libgfortran.so.5 \
-  /usr/lib/libgomp.so.1 \
+  /usr/lib/libgomp.so \
   /usr/lib/libm.so.6 \
   /usr/lib/libmvec.so.1 \
   /usr/lib/libopenblas.so \
+  /usr/lib/libpthread.a \
   CMakeFiles/main_exe.dir/main.cpp.o \
   collectors/libcollectors.a \
   microbenchmarks/libmicrobenchmarks.a
@@ -237,7 +238,11 @@ collectors/libcollectors.a:
 
 CMakeFiles/main_exe.dir/main.cpp.o:
 
+/usr/lib/libpthread.a:
+
 /usr/lib/libm.so.6:
+
+/usr/lib/libgomp.so:
 
 /usr/lib/libgfortran.so.5:
 
@@ -272,8 +277,6 @@ CMakeFiles/main_exe.dir/main.cpp.o:
 /usr/include/pthread.h:
 
 /usr/include/linux/stddef.h:
-
-/usr/lib/libgomp.so.1:
 
 /usr/include/linux/sched/types.h:
 

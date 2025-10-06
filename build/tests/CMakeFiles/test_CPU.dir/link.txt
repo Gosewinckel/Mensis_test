@@ -1,1 +1,1 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/test_CPU.dir/link.d CMakeFiles/test_CPU.dir/test_CPU.cpp.o -o test_CPU  ../lib/libgtest_main.a ../microbenchmarks/libmicrobenchmarks.a ../lib/libgtest.a /usr/lib/libopenblas.so
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/test_CPU.dir/link.d CMakeFiles/test_CPU.dir/test_CPU.cpp.o -o test_CPU  ../lib/libgtest_main.a ../microbenchmarks/libmicrobenchmarks.a ../lib/libgtest.a /usr/lib/libopenblas.so /usr/lib/libgomp.so /usr/lib/libpthread.a

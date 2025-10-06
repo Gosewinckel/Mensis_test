@@ -49,7 +49,7 @@
 },
 {
   "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks",
-  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks  -o CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -fopenmp -o CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
   "output": "microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o"
 }

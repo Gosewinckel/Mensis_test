@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 #include <iostream>
+#include <omp.h>
+#include <openblas/cblas.h>
 #include "cpu_microbenchmarks.h"
 
 TEST(CPUTest, sizeTest) {
@@ -35,4 +37,21 @@ TEST(CPUTest, valTest) {
 	EXPECT_EQ(gemms[0].A.size() - 1, gemms[0].A[gemms[0].A.size() - 1]);
 }
 
+TEST(CPUTest, GEMMtest) {
 
+	openblas_set_num_threads(openblas_get_num_procs());
+	omp_set_num_threads(omp_get_max_threads());
+	std::cout << "max threads: " << omp_get_max_threads() << "\n";
+	std::cout << "\n" << "thread count: " << openblas_get_num_threads() << "\n";
+
+	float multiGFLOPSs = gflop_multi();
+	std::cout << "finished multithread\n"; 
+	float singleGFLOPs = gflop_single();
+	std::cout << "\n";
+	std::cout << "Single thread GFLOP/s: " << singleGFLOPs << "\n";
+	std::cout << "Multi thread GFLOP/s: " << multiGFLOPSs << "\n";
+	std::cout <<"\n";
+	//if(singleGFLOPs >= multiGFLOPSs) {
+	//	EXPECT_TRUE(false);
+	//}
+}

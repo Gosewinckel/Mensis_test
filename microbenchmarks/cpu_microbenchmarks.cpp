@@ -1,7 +1,10 @@
 #include <openblas/cblas.h>
+#include <openblas/openblas_config.h>
+#include <iostream>
 #include <vector>
 #include <chrono>
 #include "cpu_microbenchmarks.h"
+#include <omp.h>
 
 
 void set_gemms(std::vector<gemm_data> *gemms) {
@@ -10,9 +13,9 @@ void set_gemms(std::vector<gemm_data> *gemms) {
 
 	// Test 3 different sizes of approx equal compute
 	// 1st multiple
-	int M = 64;
-	int N = 64;
-	int K = 64;
+	int M = 6400;
+	int N = 6400;
+	int K = 6400;
 	double alpha = 1.0;
 	double beta = 0.5;
 	std::vector<double> A, B, C;
@@ -59,13 +62,17 @@ void set_gemms(std::vector<gemm_data> *gemms) {
 	gemms->push_back(buffer2);
 }
 
-float bench_gemms() {
+float bench_gemms(int thread_count) {
+
 	// Initialise GEMM matrices
 	std::vector<gemm_data> gemms;
 	set_gemms(&gemms);
 	long flops = 0;	//total No of flops computed
 	double time = 0.0;	// total number of nanoseconds for computation
 	
+	// Set thread count (must be done for every call of GEMM)
+	omp_set_num_threads(thread_count);
+
 	// warmup run
 	cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
 			gemms[0].M, gemms[0].N, gemms[0].K, gemms[0].alpha,
@@ -73,7 +80,8 @@ float bench_gemms() {
 			gemms[0].N, gemms[0].beta, gemms[0].C.data(), gemms[0].N);
 
 	// repeat computation 100 times and track time taken
-	for(int i = 0; i < 100; i++) {
+	for(int i = 0; i < 10; i++) {
+		omp_set_num_threads(thread_count);
 		auto start = std::chrono::high_resolution_clock::now();		
 		
 		// run GEMM
@@ -90,13 +98,16 @@ float bench_gemms() {
 	// Checksum so compiler doesn't remove logic
 	++gemms[0].C[0]; 	
 
+	omp_set_num_threads(thread_count);
+
 	//warmup for GEMM 2
 	cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
 			gemms[1].M, gemms[1].N, gemms[1].K, gemms[1].alpha,
 			gemms[1].A.data(), gemms[1].K, gemms[1].B.data(),
 			gemms[1].N, gemms[1].beta, gemms[1].C.data(), gemms[1].N);
 	
-	for(int i = 0; i < 100; i++) {
+	for(int i = 0; i < 10000; i++) {
+		omp_set_num_threads(thread_count);
 		auto start = std::chrono::high_resolution_clock::now();
 
 		cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
@@ -111,12 +122,15 @@ float bench_gemms() {
 
 	++gemms[1].C[0];
 
+	omp_set_num_threads(thread_count);
+
 	cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
 			gemms[2].M, gemms[2].N, gemms[2].K, gemms[2].alpha,
 			gemms[2].A.data(), gemms[2].K, gemms[2].B.data(),
 			gemms[2].N, gemms[2].beta, gemms[2].C.data(), gemms[2].N);
 	
-	for(int i = 0; i < 100; i++) {
+	for(int i = 0; i < 10000; i++) {
+		omp_set_num_threads(thread_count);
 		auto start = std::chrono::high_resolution_clock::now();
 
 		cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
@@ -137,11 +151,9 @@ float bench_gemms() {
 }
 
 float gflop_single() {
-	openblas_set_num_threads(1);
-	return bench_gemms();
+	return bench_gemms(1);
 }
 
 float gflop_multi() {
-	openblas_set_num_threads(openblas_get_num_procs());
-	return bench_gemms();
+	return bench_gemms(openblas_get_num_procs());
 }

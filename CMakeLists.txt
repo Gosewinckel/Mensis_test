@@ -5,12 +5,19 @@ project(Mensis_test LANGUAGES CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
-find_package(BLAS REQUIRED)
+find_path(OpenBLAS_INCLUDE_DIR cblas.h)
+find_library(OpenBLAS_LIB openblas)
 
-if (NOT TARGET BLAS::BLAS)
-	add_library(BLAS::BLAS INTERFACE IMPORTED)
-	set_target_properties(BLAS::BLAS PROPERTIES INTERFACE_LINK_LIBRARIES "${BLAS_LIBRARIES}")
+if (NOT OpenBLAS_LIB)
+	message(FATAL_ERROR "OpenBLAS not found")
 endif()
+
+find_package(OpenMP REQUIRED)
+
+#if (NOT TARGET BLAS::BLAS)
+#	add_library(BLAS::BLAS INTERFACE IMPORTED)
+#	set_target_properties(BLAS::BLAS PROPERTIES INTERFACE_LINK_LIBRARIES "${BLAS_LIBRARIES}")
+#endif()
 
 add_subdirectory(tests)
 add_subdirectory(collectors)

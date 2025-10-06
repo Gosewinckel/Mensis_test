@@ -43,7 +43,7 @@ void set_gemms(std::vector<gemm_data> *gemms);
  * Returns:
  *		- float representing GFLOP/s
 ****************************************************/ 
-float bench_gemms();
+float bench_gemms(int thread_count);
 
 /**************************************************** 
  * gflop_single -- returns the GFLOP/s processed
