@@ -12,8 +12,9 @@ int main() {
 	for(int i = 0; i < m.get_cpu()[0].caches.size(); i++) {
 		std::cout << "cache level: " << m.get_cpu()[0].caches[i].level << ", cache size: " << m.get_cpu()[0].caches[i].memory << "\n";
 	}
+	std::cout << "memory info:" << m.get_memory()[1].size << m.get_memory()[1].speed << "\n";
+	std::cout << "Storage type:" << m.get_storage()[0].type << "\n";
 
 	// memory
-	std::cout << "memory capacity: " << m.get_memory().size << "\n";
 	return 0;
 }

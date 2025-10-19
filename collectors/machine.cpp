@@ -1,4 +1,6 @@
 #include "machine.h"
+#include <memory>
+#include <stdexcept>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -6,6 +8,9 @@
 #include <filesystem>
 #include <set>
 #include <map>
+#include <array>
+#include <stdexcept>
+#include <sstream>
 #include <algorithm>
 
 #if defined(_WIN32) || defined(_WIN64)
@@ -22,12 +27,12 @@ machine::machine() {
 	set_os();
 	set_cpu();
 	set_memory();
+	set_storage();
+	set_network();
 }
 
 //Define member functions for Windows
 #if defined(_WIN32) || defined(_WIN64)
-
-std::cerr << "Mensis test not currently supported on Windows\n";
 
 void machine::set_os() {
 	OSVERSIONINFOEXA version;
@@ -48,6 +53,24 @@ void machine::set_os() {
 
 // Define member functions for Unix
 #elif defined(__linux__) || defined(__unix__)
+
+
+
+// helper function to run system commands and get output as a string
+std::string exec(const char* cmd) {
+	std::array<char, 128> buff;
+	std::string result;
+	std::shared_ptr<FILE> pipe(popen(cmd, "r"), pclose);
+	if(!pipe) {
+		throw std::runtime_error("popen() failed");
+	}
+	while(!feof(pipe.get())) {
+		if(fgets(buff.data(), 128, pipe.get()) != nullptr) {
+			result += buff.data();
+		}
+	}
+	return result;
+}
 
 // OS setter
 void machine::set_os() {
@@ -151,12 +174,29 @@ void machine::set_cpu() {
  *
  ****************************************************/ 
 void machine::set_memory() {
-	std::ifstream m("/proc/meminfo");
+	const char *cmd = "sudo dmidecode --type memory";
+	std::string dmi;
+	dmi = exec(cmd);
+	std::istringstream iss(dmi);
 	std::string line;
-	while(getline(m, line)) {
-		if(line.find("MemTotal") != std::string::npos) {
-			memory.size = std::stoi(line.substr(line.find(":") + 7));
-			return;
+	int sizebuff;
+	int speedbuff;
+
+	// loop through dmidecode output
+	while(std::getline(iss, line)) {
+		if(line.find("Size") != std::string::npos && line.find("No Module Installed") == std::string::npos) {
+			sizebuff = std::stoi(line.substr(line.find(":") + 2));
+		}
+		else if(line.find("Speed") != std::string::npos) {
+			speedbuff = std::stoi(line.substr(line.find(":") + 2));
+			memory.push_back({sizebuff, speedbuff});
+
+			// move to next memory device
+			while(std::getline(iss, line)) {
+				if(line.find("Memory Device") != std::string::npos) {
+					break;
+				}
+			}
 		}
 	}
 }
@@ -169,9 +209,10 @@ void machine::set_memory() {
  ****************************************************/ 
 void machine::set_storage() {
 	for(const auto& entry : std::filesystem::directory_iterator("/sys/block")) {
-		std::ifstream m("queue/rotational");
+		std::ifstream m(entry.path()/"queue/rotational");
 		std::string line;
-		while(getline(m, line)) {
+
+		while(std::getline(m, line)) {
 			if(std::stoi(line) == 0) {
 				storage.push_back({"SSD/NVMe"});
 			}
@@ -179,6 +220,67 @@ void machine::set_storage() {
 				storage.push_back({"HDD"});
 			}
 		}
+	}
+}
+
+/**************************************************** 
+ * set Network
+ *
+ * used in machine constructor to find NIC model
+ * and link speed
+ ****************************************************/ 
+void machine::set_network() {
+	const char *cmd = "ls /sys/class/net";
+	std::string hard_nets;
+	hard_nets = exec(cmd);
+	std::istringstream iss(hard_nets);
+	std::string line;
+	std::vector<std::string> wired_nets;
+	
+	// loop through network links to check for wired interfaces
+	while(std::getline(iss, line)) {
+		if(line == "lo") continue;
+		if(line.rfind("docker", 0) == 0) continue;
+		if(line.rfind("veth", 0) == 0) continue;
+		if(line.rfind("br", 0) == 0) continue;
+		if(line.rfind("virbr", 0) == 0) continue;
+		if(line.rfind("tun", 0) == 0) continue;
+		else {
+			wired_nets.push_back(line);
+		}
+	}
+	 
+	//loop through again to check for active IP link
+	for(int i = 0; i < wired_nets.size(); ++i) {
+		std::string ip_linked = "ip -4 addr show " + wired_nets[i] + " | grep 'inet ' | awk '{print $2}'";
+		std::string ip;
+		ip = exec(ip_linked.data());
+		if(ip.empty()) {
+			wired_nets.erase(wired_nets.begin() + i);
+		}
+		// check if end of vector is found
+		if(wired_nets.size() == i - 1) {
+			break;
+		}
+	}
+
+	int high_speed = 0;
+	if(wired_nets.size() == 1) {
+		std::ifstream m("/sys/class/net/" + wired_nets[0] + "/speed");
+		std::string speed;
+		std::getline(m, speed);
+		network.link_speed = std::stoi(speed);
+	}
+	else {
+		for(int i = 0; i < wired_nets.size(); i++) {
+			std::ifstream m("/sys/class/net/" + wired_nets[0] + "/speed");
+			std::string speed;
+			std::getline(m, speed);
+			if(std::stoi(speed) > high_speed) {
+				high_speed = std::stoi(speed);
+			}
+		}
+		network.link_speed = high_speed;
 	}
 }
 
