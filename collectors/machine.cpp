@@ -111,7 +111,7 @@ void machine::set_cpu() {
 		}
 
 		// Core count for current CPU
-		int coreCount;
+		int coreCount = 0;
 		for(const auto& entry: std::filesystem::directory_iterator("/sys/devices/system/cpu")) {
 			if(entry.path().filename().string().rfind("cpu", 0) == 0 && isdigit(entry.path().filename().string()[3])) {
 				std::ifstream f(entry.path()/"topology/physical_package_id");

@@ -30,3 +30,5 @@ add_executable(main_exe main.cpp)
 # Link libraries
 target_link_libraries(main_exe PRIVATE collectors)
 target_link_libraries(main_exe PRIVATE microbenchmarks)
+
+install(TARGETS Mensis_test DESTINATION /usr/local/bin)
