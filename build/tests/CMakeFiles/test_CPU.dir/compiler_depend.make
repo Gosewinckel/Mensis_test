@@ -350,7 +350,8 @@ tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o: /home/Mensis/Source-code/github.co
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h
 
-tests/test_CPU: lib/libgtest.a \
+tests/test_CPU: collectors/libcollectors.a \
+  lib/libgtest.a \
   lib/libgtest_main.a \
   microbenchmarks/libmicrobenchmarks.a \
   /usr/lib/Scrt1.o \
@@ -407,6 +408,8 @@ tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o:
 microbenchmarks/libmicrobenchmarks.a:
 
 lib/libgtest.a:
+
+collectors/libcollectors.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h:
 

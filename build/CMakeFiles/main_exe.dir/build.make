@@ -98,6 +98,7 @@ main_exe: CMakeFiles/main_exe.dir/build.make
 main_exe: CMakeFiles/main_exe.dir/compiler_depend.ts
 main_exe: collectors/libcollectors.a
 main_exe: microbenchmarks/libmicrobenchmarks.a
+main_exe: collectors/libcollectors.a
 main_exe: /usr/lib/libopenblas.so
 main_exe: /usr/lib/libgomp.so
 main_exe: /usr/lib/libpthread.a

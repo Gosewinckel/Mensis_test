@@ -1,3 +1,4 @@
+#include "machine.h"
 #include <openblas/cblas.h>
 #include <openblas/openblas_config.h>
 #include <iostream>
@@ -10,12 +11,33 @@
 void set_gemms(std::vector<gemm_data> *gemms) {
 	// Clear vector in case of existing data
 	gemms->clear();
+	
+	// set machine to gather machine data
+	machine& m = machine::getMachine();
+
+	// Max throuput will be matrix of max size that can fit on an L3 cache
+	// Compute is memory bound so multiple CPU's would hinder computation until compute becomes massive
+	std::vector<machine::CPU> cpu = m.get_cpu();
+	int max_L3 = 0;
+	for(int i = 0; i < cpu.size(); i++) {
+		for(int j = 0; j < cpu[i].caches.size(); j++) {
+			if(cpu[i].caches[j].level == 3) {
+				if(cpu[i].caches[j].memory > max_L3) {
+					max_L3 = cpu[i].caches[j].memory;
+				}
+				else {
+					break;
+				}
+			}
+		}
+	}
+
 
 	// Test 3 different sizes of approx equal compute
 	// 1st multiple
-	int M = 6400;
-	int N = 6400;
-	int K = 6400;
+	uint64_t M = 300;
+	uint64_t N = 300;
+	uint64_t K = 300;
 	double alpha = 1.0;
 	double beta = 0.5;
 	std::vector<double> A, B, C;
@@ -80,7 +102,7 @@ float bench_gemms(int thread_count) {
 			gemms[0].N, gemms[0].beta, gemms[0].C.data(), gemms[0].N);
 
 	// repeat computation 100 times and track time taken
-	for(int i = 0; i < 10; i++) {
+	for(int i = 0; i < 10000; i++) {
 		omp_set_num_threads(thread_count);
 		auto start = std::chrono::high_resolution_clock::now();		
 		
@@ -117,7 +139,7 @@ float bench_gemms(int thread_count) {
 
 		auto end = std::chrono::high_resolution_clock::now();
 		time += std::chrono::duration<double>(end - start).count();
-		flops += 2 * gemms[1].M * gemms[1].N * gemms[1].K;
+		// flops += 2 * gemms[1].M * gemms[1].N * gemms[1].K;
 	}
 
 	++gemms[1].C[0];
@@ -140,7 +162,7 @@ float bench_gemms(int thread_count) {
 
 		auto end = std::chrono::high_resolution_clock::now();
 		time += std::chrono::duration<double>(end - start).count();
-		flops += 2 * gemms[2].M * gemms[2].N * gemms[2].K;
+		//  flops += 2 * gemms[2].M * gemms[2].N * gemms[2].K;
 	}
 
 	++gemms[2].C[0];

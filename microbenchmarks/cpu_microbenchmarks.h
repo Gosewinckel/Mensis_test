@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 #include <vector>
 
 /**************************************************** 
@@ -7,9 +8,9 @@
  *
  ****************************************************/ 
 struct gemm_data {
-	const int M;	//rows of op(A) and C
-	const int N;	//cold of op(B) and C
-	const int K;	//cols of op(A) / rows of op(B)
+	const uint64_t M;	//rows of op(A) and C
+	const uint64_t N;	//cold of op(B) and C
+	const uint64_t K;	//cols of op(A) / rows of op(B)
 	const double alpha;		//scalar multiple of A*B
 	std::vector<double> A;	// matrix A in vector form
 	std::vector<double> B;	//matrix b in vector form

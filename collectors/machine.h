@@ -13,57 +13,58 @@
 #include <vector>
 
 class machine {
-	// Struct definitions for hardware components
-	struct CPU {
-		std::string model;		// Model of CPU (brand, number)
-		int core_count;			// Number of cores
-		float clocks;			// Clock speed
-		bool AVX_support;		
-		struct cache {
-			int level;
-			size_t memory;
-		};
-		std::vector<cache> caches;
-	};
-	
-	struct GPU {
-		std::string model;
-		int streaming_multiprocessors;
-		int memory_capacity;
-		int memory_bandwidth;
-		std::string driver;
-	};
-
-	struct Memory {
-		int size;		// GB	
-		int speed;		// MT/s
-	};
-
-	struct Storage {
-		std::string type;
-	};
-
-	struct Network {
-		std::string NIC_model;
-		int link_speed;
-	};
-
-	//Struct definitions for software stack
-	struct OS {
-		std::string system;
-		std::string version;
-		std::string kernel;
-	};
-
-	struct tech_stack {
-		std::string python_version;
-		std::string cpp_version;
-		std::string pytorch_version;
-		std::string CUDA_version;
-	};
-
 	public:
-		machine();
+		// Struct definitions for hardware components
+		struct CPU {
+			std::string model;		// Model of CPU (brand, number)
+			int core_count;			// Number of cores
+			float clocks;			// Clock speed
+			bool AVX_support;		
+			struct cache {
+				int level;			// 1,2,3
+				size_t memory;		// KB
+			};
+			std::vector<cache> caches;
+		};
+	
+		struct GPU {
+			std::string model;
+			int streaming_multiprocessors;
+			int memory_capacity;
+			int memory_bandwidth;
+			std::string driver;
+		};
+
+		struct Memory {
+			int size;		// GB	
+			int speed;		// MT/s
+		};
+
+		struct Storage {
+			std::string type;
+		};
+
+		struct Network {
+			std::string NIC_model;
+			int link_speed;
+		};
+
+		//Struct definitions for software stack
+		struct OS {
+			std::string system;
+			std::string version;
+			std::string kernel;
+		};
+
+		struct tech_stack {
+			std::string python_version;
+			std::string cpp_version;
+			std::string pytorch_version;
+			std::string CUDA_version;
+		};
+
+		// set as static (only one machine per program)
+		static machine& getMachine();
 
 		// getters to access computer information
 		int get_cpu_count() {return cpu_count;}
@@ -77,6 +78,8 @@ class machine {
 		int get_power_limit() {return power_limit;}
 
 	private:
+		machine();
+
 		int cpu_count;				//number of CPU's in machine
 		std::vector<CPU> cpu;		// array of CPU's in computer
 		int gpu_count;				//number of GPU's in machine

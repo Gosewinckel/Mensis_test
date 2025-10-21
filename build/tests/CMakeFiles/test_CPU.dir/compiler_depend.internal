@@ -352,6 +352,7 @@ tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h
 
 tests/test_CPU
+ /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/collectors/libcollectors.a
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/lib/libgtest.a
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/lib/libgtest_main.a
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/libmicrobenchmarks.a

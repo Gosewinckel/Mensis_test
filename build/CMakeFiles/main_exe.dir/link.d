@@ -5,6 +5,7 @@ main_exe: \
   CMakeFiles/main_exe.dir/main.cpp.o \
   collectors/libcollectors.a \
   microbenchmarks/libmicrobenchmarks.a \
+  collectors/libcollectors.a \
   /usr/lib/libopenblas.so \
   /usr/lib/libgomp.so \
   /usr/lib/libpthread.a \
@@ -48,6 +49,8 @@ CMakeFiles/main_exe.dir/main.cpp.o:
 collectors/libcollectors.a:
 
 microbenchmarks/libmicrobenchmarks.a:
+
+collectors/libcollectors.a:
 
 /usr/lib/libopenblas.so:
 

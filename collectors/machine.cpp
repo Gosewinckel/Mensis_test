@@ -31,6 +31,11 @@ machine::machine() {
 	set_network();
 }
 
+machine& machine::getMachine() {
+	static machine machine;
+	return machine;
+}
+
 //Define member functions for Windows
 #if defined(_WIN32) || defined(_WIN64)
 

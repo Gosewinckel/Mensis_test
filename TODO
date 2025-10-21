@@ -6,7 +6,11 @@ TODO defined by sectorn
 ~ Write member functions for macOS
 ~ Write member functions for Window
 
-~ ensure all parts of get_cpu work as intended by writing test cases.
-	In particular make sure that sache size works as size_t and if not 
-	correct it.
+~ use lscpu to find max clock speed for each cpu
 
+
+/**************************************************** 
+ * microbenchmarks
+ ***************************************************/ 
+ ~ make set_gems() dynamically create matrices based
+	on size of CPU cache

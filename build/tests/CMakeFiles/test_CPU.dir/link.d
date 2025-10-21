@@ -9,6 +9,7 @@ test_CPU: \
   /usr/lib/libopenblas.so \
   /usr/lib/libgomp.so \
   /usr/lib/libpthread.a \
+  ../collectors/libcollectors.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
@@ -57,6 +58,8 @@ CMakeFiles/test_CPU.dir/test_CPU.cpp.o:
 /usr/lib/libgomp.so:
 
 /usr/lib/libpthread.a:
+
+../collectors/libcollectors.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so:
 

@@ -291,6 +291,7 @@ tests/CMakeFiles/test_machine.dir/clean:
 # All Build rule for target.
 tests/CMakeFiles/test_CPU.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
 tests/CMakeFiles/test_CPU.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
+tests/CMakeFiles/test_CPU.dir/all: collectors/CMakeFiles/collectors.dir/all
 tests/CMakeFiles/test_CPU.dir/all: microbenchmarks/CMakeFiles/microbenchmarks.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_CPU.dir/build.make tests/CMakeFiles/test_CPU.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_CPU.dir/build.make tests/CMakeFiles/test_CPU.dir/build
@@ -299,7 +300,7 @@ tests/CMakeFiles/test_CPU.dir/all: microbenchmarks/CMakeFiles/microbenchmarks.di
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_CPU.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_CPU.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_CPU.dir/rule
@@ -484,7 +485,7 @@ collectors/CMakeFiles/collectors.dir/clean:
 # Target rules for target microbenchmarks/CMakeFiles/microbenchmarks.dir
 
 # All Build rule for target.
-microbenchmarks/CMakeFiles/microbenchmarks.dir/all:
+microbenchmarks/CMakeFiles/microbenchmarks.dir/all: collectors/CMakeFiles/collectors.dir/all
 	$(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/depend
 	$(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=13,14 "Built target microbenchmarks"
@@ -492,7 +493,7 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/all:
 
 # Build rule for subdir invocation for target.
 microbenchmarks/CMakeFiles/microbenchmarks.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 microbenchmarks/CMakeFiles/microbenchmarks.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 0
 .PHONY : microbenchmarks/CMakeFiles/microbenchmarks.dir/rule

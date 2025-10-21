@@ -416,7 +416,7 @@ gtest_force_shared_crt:BOOL=OFF
 gtest_hide_internal_symbols:BOOL=OFF
 
 //Dependencies for the target
-microbenchmarks_LIB_DEPENDS:STATIC=general;/usr/lib/libopenblas.so;
+microbenchmarks_LIB_DEPENDS:STATIC=general;/usr/lib/libopenblas.so;general;collectors;
 
 
 ########################
