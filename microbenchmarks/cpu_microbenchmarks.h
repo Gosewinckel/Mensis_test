@@ -19,6 +19,18 @@ struct gemm_data {
 };
 
 /**************************************************** 
+ * square_gemm -- creates square A,B matrices
+ *		to be used to find peak GFLOP/s
+ *
+ * Params: None
+ *
+ * Usage:
+ *		Returns a gemm_data struct to be used in 
+ *		bench_gemms(see below)
+ ****************************************************/ 
+void square_gemm(std::vector<gemm_data> *gemms);
+
+/**************************************************** 
  * set_gemms -- creates a set of gemm_data structs
  *		to be used for computation in benchmarking 
  *		function
@@ -44,17 +56,17 @@ void set_gemms(std::vector<gemm_data> *gemms);
  * Returns:
  *		- float representing GFLOP/s
 ****************************************************/ 
-float bench_gemms(int thread_count);
+float bench_gemms(int thread_count, std::vector<gemm_data> *gemms);
 
 /**************************************************** 
  * gflop_single -- returns the GFLOP/s processed
  *		by a single CPU thread
  ****************************************************/ 
-float gflop_single();
+float gflop_single(std::vector<gemm_data>* gemms);
 
 /**************************************************** 
  * gflop_multi -- return GFLOP/s processed 
  *		by all available CPU compute on a machine
  ****************************************************/ 
-float gflop_multi();
+float gflop_multi(std::vector<gemm_data>* gemms);
 

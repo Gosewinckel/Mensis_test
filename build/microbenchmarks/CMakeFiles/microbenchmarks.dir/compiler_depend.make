@@ -24,9 +24,19 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
   /usr/include/bits/errno.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/iscanonical.h \
   /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
   /usr/include/bits/locale.h \
   /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthreadtypes-arch.h \
   /usr/include/bits/pthreadtypes.h \
@@ -121,6 +131,7 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
   /usr/include/c++/15.2.1/bits/range_access.h \
   /usr/include/c++/15.2.1/bits/refwrap.h \
   /usr/include/c++/15.2.1/bits/requires_hosted.h \
+  /usr/include/c++/15.2.1/bits/specfun.h \
   /usr/include/c++/15.2.1/bits/std_abs.h \
   /usr/include/c++/15.2.1/bits/stl_algobase.h \
   /usr/include/c++/15.2.1/bits/stl_bvector.h \
@@ -145,6 +156,7 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
   /usr/include/c++/15.2.1/cerrno \
   /usr/include/c++/15.2.1/chrono \
   /usr/include/c++/15.2.1/clocale \
+  /usr/include/c++/15.2.1/cmath \
   /usr/include/c++/15.2.1/concepts \
   /usr/include/c++/15.2.1/cstddef \
   /usr/include/c++/15.2.1/cstdint \
@@ -176,6 +188,18 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
   /usr/include/c++/15.2.1/string \
   /usr/include/c++/15.2.1/string_view \
   /usr/include/c++/15.2.1/system_error \
+  /usr/include/c++/15.2.1/tr1/bessel_function.tcc \
+  /usr/include/c++/15.2.1/tr1/beta_function.tcc \
+  /usr/include/c++/15.2.1/tr1/ell_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/exp_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/gamma.tcc \
+  /usr/include/c++/15.2.1/tr1/hypergeometric.tcc \
+  /usr/include/c++/15.2.1/tr1/legendre_function.tcc \
+  /usr/include/c++/15.2.1/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_hermite.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_laguerre.tcc \
+  /usr/include/c++/15.2.1/tr1/riemann_zeta.tcc \
+  /usr/include/c++/15.2.1/tr1/special_function_util.h \
   /usr/include/c++/15.2.1/tuple \
   /usr/include/c++/15.2.1/type_traits \
   /usr/include/c++/15.2.1/typeinfo \
@@ -204,6 +228,7 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
   /usr/include/linux/stddef.h \
   /usr/include/linux/types.h \
   /usr/include/locale.h \
+  /usr/include/math.h \
   /usr/include/openblas/cblas.h \
   /usr/include/openblas/openblas_config.h \
   /usr/include/pthread.h \
@@ -241,8 +266,6 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/openblas/openblas_config.h:
 
-/usr/include/openblas/cblas.h:
-
 /usr/include/linux/stddef.h:
 
 /usr/include/linux/sched/types.h:
@@ -268,6 +291,20 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 /usr/include/stdlib.h:
 
 /usr/include/c++/15.2.1/typeinfo:
+
+/usr/include/c++/15.2.1/tr1/riemann_zeta.tcc:
+
+/usr/include/c++/15.2.1/tr1/poly_hermite.tcc:
+
+/usr/include/c++/15.2.1/tr1/modified_bessel_func.tcc:
+
+/usr/include/c++/15.2.1/tr1/legendre_function.tcc:
+
+/usr/include/c++/15.2.1/tr1/gamma.tcc:
+
+/usr/include/c++/15.2.1/tr1/exp_integral.tcc:
+
+/usr/include/c++/15.2.1/tr1/bessel_function.tcc:
 
 /usr/include/endian.h:
 
@@ -313,6 +350,10 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/c++/15.2.1/concepts:
 
+/usr/include/openblas/cblas.h:
+
+/usr/include/c++/15.2.1/cmath:
+
 /usr/include/c++/15.2.1/clocale:
 
 /usr/include/c++/15.2.1/bits/version.h:
@@ -324,6 +365,8 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 /usr/include/c++/15.2.1/bits/utility.h:
 
 /usr/include/c++/15.2.1/bits/uses_allocator_args.h:
+
+/usr/include/c++/15.2.1/tr1/hypergeometric.tcc:
 
 /usr/include/c++/15.2.1/bits/uses_allocator.h:
 
@@ -343,27 +386,25 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/c++/15.2.1/bits/stl_iterator_base_types.h:
 
-/usr/include/c++/15.2.1/tuple:
-
-/usr/include/bits/types/clockid_t.h:
-
-/usr/include/bits/atomic_wide_counter.h:
-
-/usr/include/c++/15.2.1/bits/basic_string.h:
-
 /usr/include/c++/15.2.1/bits/stl_iterator.h:
 
-/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/cpu_defines.h:
+/usr/include/gnu/stubs-64.h:
 
-/usr/include/bits/types/__locale_t.h:
+/usr/include/c++/15.2.1/bits/std_abs.h:
+
+/usr/include/c++/15.2.1/bits/specfun.h:
+
+/usr/include/math.h:
+
+/usr/include/c++/15.2.1/bits/streambuf.tcc:
+
+/usr/include/c++/15.2.1/bits/refwrap.h:
+
+/usr/include/c++/15.2.1/bits/range_access.h:
 
 /usr/include/bits/types/__FILE.h:
 
-/usr/include/bits/types/FILE.h:
-
 /usr/include/bits/types.h:
-
-/usr/include/bits/stdint-intn.h:
 
 /usr/include/asm/errno.h:
 
@@ -373,13 +414,11 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/bits/thread-shared-types.h:
 
+/usr/include/bits/mathcalls-helper-functions.h:
+
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++allocator.h:
 
 /usr/include/bits/types/time_t.h:
-
-/usr/include/bits/types/sigset_t.h:
-
-/usr/include/c++/15.2.1/bits/locale_classes.h:
 
 /usr/include/bits/types/struct_timeval.h:
 
@@ -391,9 +430,19 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/bits/stdint-uintn.h:
 
+/usr/include/c++/15.2.1/bits/stl_algobase.h:
+
+/usr/include/bits/sched.h:
+
 /usr/include/bits/types/cookie_io_functions_t.h:
 
 /usr/include/c++/15.2.1/bits/functional_hash.h:
+
+/usr/include/bits/stdint-intn.h:
+
+/usr/include/c++/15.2.1/bits/requires_hosted.h:
+
+/usr/include/bits/types/error_t.h:
 
 /usr/include/bits/setjmp.h:
 
@@ -403,9 +452,19 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/bits/select.h:
 
-/usr/include/bits/floatn.h:
+/usr/include/gnu/stubs.h:
 
-/usr/include/asm-generic/errno.h:
+/usr/include/bits/pthreadtypes-arch.h:
+
+/usr/include/c++/15.2.1/pstl/pstl_config.h:
+
+/usr/include/bits/pthread_stack_min-dynamic.h:
+
+/usr/include/bits/mathcalls-narrow.h:
+
+/usr/include/bits/types/timer_t.h:
+
+/usr/include/bits/floatn.h:
 
 /usr/include/asm-generic/types.h:
 
@@ -413,23 +472,15 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/asm/posix_types_64.h:
 
-/usr/include/bits/types/__mbstate_t.h:
-
-/usr/include/bits/stdio_lim.h:
-
-/usr/include/bits/time.h:
-
 /usr/include/c++/15.2.1/bits/allocator.h:
-
-/usr/include/bits/types/__fpos_t.h:
-
-/usr/include/bits/types/clock_t.h:
 
 /usr/include/c++/15.2.1/bits/basic_ios.h:
 
-/usr/include/c++/15.2.1/pstl/pstl_config.h:
+/usr/include/bits/long-double.h:
 
-/usr/include/bits/pthread_stack_min-dynamic.h:
+/usr/include/asm-generic/errno.h:
+
+/usr/include/bits/fp-logb.h:
 
 /usr/include/bits/stdint-least.h:
 
@@ -437,21 +488,25 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/bits/types/struct_FILE.h:
 
-/usr/include/bits/types/__sigset_t.h:
-
 /usr/include/stdc-predef.h:
+
+/usr/include/c++/15.2.1/tr1/poly_laguerre.tcc:
 
 /usr/include/c++/15.2.1/bits/locale_classes.tcc:
 
 /usr/include/asm-generic/posix_types.h:
 
+/usr/include/bits/types/__sigset_t.h:
+
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.h:
 
-/usr/include/bits/sched.h:
-
-/usr/include/c++/15.2.1/bits/stl_algobase.h:
-
 /usr/include/bits/locale.h:
+
+/usr/include/bits/atomic_wide_counter.h:
+
+/usr/include/c++/15.2.1/tuple:
+
+/usr/include/bits/types/clockid_t.h:
 
 /usr/include/wctype.h:
 
@@ -465,17 +520,21 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors/machine.h:
 
+/usr/include/bits/mathcalls-macros.h:
+
 /usr/include/asm-generic/int-ll64.h:
+
+/usr/include/c++/15.2.1/tr1/beta_function.tcc:
 
 /usr/include/bits/struct_mutex.h:
 
+/usr/include/c++/15.2.1/bits/stl_construct.h:
+
+/usr/include/c++/15.2.1/bits/cpp_type_traits.h:
+
+/usr/include/bits/cpu-set.h:
+
 /usr/include/bits/typesizes.h:
-
-/usr/include/bits/long-double.h:
-
-/usr/include/bits/types/locale_t.h:
-
-/usr/include/c++/15.2.1/bits/parse_numbers.h:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/ctype_base.h:
 
@@ -483,11 +542,19 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/bits/time64.h:
 
+/usr/include/c++/15.2.1/tr1/special_function_util.h:
+
 /usr/include/bits/byteswap.h:
+
+/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/error_constants.h:
+
+/usr/include/c++/15.2.1/bits/ostream.tcc:
 
 /usr/include/features.h:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h:
+
+/usr/include/c++/15.2.1/tr1/ell_integral.tcc:
 
 /usr/include/bits/endianness.h:
 
@@ -497,17 +564,47 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/c++/15.2.1/bits/basic_string.tcc:
 
-/usr/include/bits/types/mbstate_t.h:
-
 /usr/include/bits/floatn-common.h:
+
+/usr/include/bits/types/FILE.h:
+
+/usr/include/bits/flt-eval-method.h:
+
+/usr/include/bits/fp-fast.h:
+
+/usr/include/bits/iscanonical.h:
 
 /usr/include/c++/15.2.1/ostream:
 
 /usr/include/bits/libc-header-start.h:
 
-/usr/include/gnu/stubs.h:
+/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/cpu_defines.h:
 
-/usr/include/bits/pthreadtypes-arch.h:
+/usr/include/bits/types/__locale_t.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/types/__mbstate_t.h:
+
+/usr/include/c++/15.2.1/bits/basic_string.h:
+
+/usr/include/bits/types/__fpos_t.h:
+
+/usr/include/bits/mathcalls.h:
+
+/usr/include/bits/types/clock_t.h:
+
+/usr/include/c++/15.2.1/bits/parse_numbers.h:
+
+/usr/include/bits/types/locale_t.h:
+
+/usr/include/bits/types/mbstate_t.h:
+
+/usr/include/bits/types/sigset_t.h:
+
+/usr/include/c++/15.2.1/bits/locale_classes.h:
 
 /usr/include/bits/struct_rwlock.h:
 
@@ -541,9 +638,9 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/c++/15.2.1/ext/atomicity.h:
 
-/usr/include/c++/15.2.1/bits/char_traits.h:
+/usr/include/bits/math-vector.h:
 
-/usr/include/bits/types/timer_t.h:
+/usr/include/c++/15.2.1/bits/char_traits.h:
 
 /usr/include/c++/15.2.1/backward/binders.h:
 
@@ -577,6 +674,8 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/c++/15.2.1/cerrno:
 
+/usr/include/bits/libm-simd-decl-stubs.h:
+
 /usr/include/c++/15.2.1/bits/basic_ios.tcc:
 
 /usr/include/linux/types.h:
@@ -593,12 +692,6 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/c++/15.2.1/bits/cxxabi_init_exception.h:
 
-/usr/include/bits/cpu-set.h:
-
-/usr/include/c++/15.2.1/bits/cpp_type_traits.h:
-
-/usr/include/c++/15.2.1/bits/stl_construct.h:
-
 /usr/include/bits/wordsize.h:
 
 /usr/include/c++/15.2.1/bits/exception.h:
@@ -606,6 +699,14 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 /usr/include/bits/pthreadtypes.h:
 
 /usr/include/c++/15.2.1/bits/exception_ptr.h:
+
+/usr/include/c++/15.2.1/ios:
+
+/usr/include/c++/15.2.1/bits/stl_function.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/c++/15.2.1/bits/invoke.h:
 
 /usr/include/c++/15.2.1/cstdio:
 
@@ -637,34 +738,8 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o: /home/
 
 /usr/include/c++/15.2.1/bits/ostream.h:
 
-/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/error_constants.h:
-
-/usr/include/c++/15.2.1/bits/ostream.tcc:
-
 /usr/include/c++/15.2.1/bits/ptr_traits.h:
 
 /usr/include/c++/15.2.1/bits/ostream_insert.h:
 
 /usr/include/c++/15.2.1/bits/postypes.h:
-
-/usr/include/c++/15.2.1/bits/streambuf.tcc:
-
-/usr/include/c++/15.2.1/bits/refwrap.h:
-
-/usr/include/c++/15.2.1/bits/range_access.h:
-
-/usr/include/bits/types/error_t.h:
-
-/usr/include/c++/15.2.1/bits/requires_hosted.h:
-
-/usr/include/gnu/stubs-64.h:
-
-/usr/include/c++/15.2.1/bits/std_abs.h:
-
-/usr/include/c++/15.2.1/ios:
-
-/usr/include/bits/endian.h:
-
-/usr/include/c++/15.2.1/bits/invoke.h:
-
-/usr/include/c++/15.2.1/bits/stl_function.h:

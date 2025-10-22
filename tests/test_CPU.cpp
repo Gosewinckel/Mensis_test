@@ -43,11 +43,25 @@ TEST(CPUTest, GEMMtest) {
 	omp_set_num_threads(omp_get_max_threads());
 	std::cout << "max threads: " << omp_get_max_threads() << "\n";
 	std::cout << "\n" << "thread count: " << openblas_get_num_threads() << "\n";
+	
+	std::vector<gemm_data>* gemms = new std::vector<gemm_data>;
+	square_gemm(gemms);
 
-	float multiGFLOPSs = gflop_multi();
+	float multiGFLOPSs = gflop_multi(gemms);
 	std::cout << "finished multithread\n"; 
-	float singleGFLOPs = gflop_single();
+	float singleGFLOPs = gflop_single(gemms);
 	std::cout << "\n";
+	std::cout << "Max GFLOP/s: \n";
+	std::cout << "Single thread GFLOP/s: " << singleGFLOPs << "\n";
+	std::cout << "Multi thread GFLOP/s: " << multiGFLOPSs << "\n";
+	std::cout <<"\n";
+
+	set_gemms(gemms);
+	multiGFLOPSs = gflop_multi(gemms);
+	std::cout << "finished multithread\n"; 
+	singleGFLOPs = gflop_single(gemms);
+	std::cout << "\n";
+	std::cout << "Reqalistic GFLOP/s: \n";
 	std::cout << "Single thread GFLOP/s: " << singleGFLOPs << "\n";
 	std::cout << "Multi thread GFLOP/s: " << multiGFLOPSs << "\n";
 	std::cout <<"\n";
