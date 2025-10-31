@@ -208,5 +208,41 @@ double bandwidth_single(long triad_size) {
 	return bandwidth_GBs;
 }
 
+double bandwidth_multi(long triad_size) {
+	double* a = new double[triad_size];
+	double* b = new double[triad_size];
+	double* c = new double[triad_size];
+	double scalar = 3.0;
+	double best_time = 0.0;
+	for(int i = 0; i < 10; i++) {
+		//set/reset values
+		for(int j = 0; j < triad_size; j++) {
+			a[i] = 1.0;
+			b[i] = 2.0;
+			c[i] = 0.0;
+		}
+		// record time
+		auto start = std::chrono::high_resolution_clock::now();
+		#pragma omp parallel for
+		for(int x = 0; x < triad_size; x++) {
+			c[x] = a[x] + scalar * b[x];
+		}
+		auto end = std::chrono::high_resolution_clock::now();
+		double runtime = std::chrono::duration<double>(end - start).count();
+		if(runtime < best_time || best_time == 0.0) {
+			best_time  = runtime;
+		}
+		c[0] += 1;
+	}
+	c[0] += 1;
+	delete[] a;
+	delete[] b;
+	delete[] c;
+	a = b = c = NULL;
+	// Calculate GB/s
+	double bytes = 3.0 * triad_size * sizeof(double);
+	double bandwidth_GBs = bytes/best_time/1e9;
+	return bandwidth_GBs;
+}
 
 

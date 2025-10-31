@@ -72,6 +72,8 @@ TEST(CPUTest, valTest) {
 
 TEST(CPUTest, triad_test) {
 	long array_size = triad_size();
-	float single_bandwidth = bandwidth_single(500000000);
+	float single_bandwidth = bandwidth_single(array_size);
+	float multi_bandwidth = bandwidth_multi(array_size);
 	std::cout << "Single threaded memory bandwidth: " << single_bandwidth << "\n";
+	std::cout << "Multithreaded memory bandwidth: " << multi_bandwidth << "\n";
 }
