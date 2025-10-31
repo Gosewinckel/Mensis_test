@@ -146,3 +146,66 @@ float gflop_single(std::vector<gemm_data>* gemms) {
 float gflop_multi(std::vector<gemm_data>* gemms) {
 	return bench_gemms(openblas_get_num_procs(), gemms);
 }
+
+long triad_size() {
+	// Determine size of arrays
+	machine& m = machine::getMachine();
+	int cache_capacity = 0;
+	std::vector<machine::CPU> cpu = m.get_cpu();
+	for(int i = 0; i < cpu.size(); i++) {
+		for(int j = 0; j < cpu[i].caches.size(); j++) {
+			cache_capacity += cpu[i].caches[j].memory;
+		}
+	}
+	// Convert to bytes
+	cache_capacity *= 1000;
+	int array_size = 0;
+	if(cache_capacity/8 >= 1000000) {
+		array_size = cache_capacity/8;
+	}
+	else {
+		array_size = 1000000;
+	}
+	return array_size;
+}
+
+double bandwidth_single(long triad_size) {
+	double* a = new double[triad_size] ;
+	double* b = new double[triad_size];
+	double* c = new double[triad_size];
+	double scalar = 3.0;
+
+	// Run triad 10 times and reset values in between
+	double best_time = 0;
+	// set array values
+	for(int i = 0; i < triad_size; i++) {
+		a[i] = 1.0;
+		b[i] = 2.0;
+		c[i] = 0.0;
+	}
+	for(int i = 0; i < 10; i++) {
+		//record time
+		auto start = std::chrono::high_resolution_clock::now();
+		for(int x = 0; x < triad_size; x++) {
+			c[x] = a[x] + scalar * b[x];
+		}
+		auto end = std::chrono::high_resolution_clock::now();
+		double runtime = std::chrono::duration<double>(end - start).count();
+		if(runtime < best_time || best_time == 0) {
+			best_time = runtime;
+		}
+		c[0] += 1;
+	}
+	c[0] += 1;
+
+	delete[] a;
+	delete[] b;
+	delete[] c;
+	a = b = c = NULL;
+	// Calculate top GB/s
+	double bandwidth = (3 * triad_size * sizeof(double)) / (best_time * 10e9);
+	return bandwidth;
+}
+
+
+

@@ -70,3 +70,17 @@ float gflop_single(std::vector<gemm_data>* gemms);
  ****************************************************/ 
 float gflop_multi(std::vector<gemm_data>* gemms);
 
+/**************************************************** 
+ * triad_size -- define the size of the arrays in a STREAM triad
+ ****************************************************/ 
+long triad_size();
+
+/**************************************************** 
+ * bandwidth_ -- returns memory transfer speed in 
+ *		MB/s by calculating a STREAM triad 
+ *
+ * Params: None
+ ****************************************************/ 
+double bandwidth_single(long triad_size);
+
+double bandwidth_multi(long triad_size);

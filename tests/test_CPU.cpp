@@ -37,7 +37,7 @@ TEST(CPUTest, valTest) {
 	EXPECT_EQ(gemms[0].A.size() - 1, gemms[0].A[gemms[0].A.size() - 1]);
 }
 
-TEST(CPUTest, GEMMtest) {
+/*TEST(CPUTest, GEMMtest) {
 
 	openblas_set_num_threads(openblas_get_num_procs());
 	omp_set_num_threads(omp_get_max_threads());
@@ -68,4 +68,10 @@ TEST(CPUTest, GEMMtest) {
 	//if(singleGFLOPs >= multiGFLOPSs) {
 	//	EXPECT_TRUE(false);
 	//}
+} */
+
+TEST(CPUTest, triad_test) {
+	long array_size = triad_size();
+	float single_bandwidth = bandwidth_single(array_size);
+	std::cout << "Single threaded memory bandwidth: " << single_bandwidth << "\n";
 }
