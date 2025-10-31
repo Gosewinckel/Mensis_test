@@ -203,8 +203,9 @@ double bandwidth_single(long triad_size) {
 	delete[] c;
 	a = b = c = NULL;
 	// Calculate top GB/s
-	double bandwidth = (3 * triad_size * sizeof(double)) / (best_time * 10e9);
-	return bandwidth;
+	double bytes = 3.0 * triad_size * sizeof(double);
+	double bandwidth_GBs = bytes/best_time/1e9;
+	return bandwidth_GBs;
 }
 
 
