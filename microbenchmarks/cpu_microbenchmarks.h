@@ -84,3 +84,14 @@ long triad_size();
 double bandwidth_single(long triad_size);
 
 double bandwidth_multi(long triad_size);
+
+/**************************************************** 
+ * thread_wake_latency -- measures how long it takes 
+ *		to spawn and wake threads on CPU
+ *
+ * Params: None
+ *
+ * returns: barrier synchronisation latency in 
+ *		microseconds
+ ****************************************************/ 
+double thread_wake_latency();

@@ -2,6 +2,7 @@
 #include <openblas/cblas.h>
 #include <openblas/openblas_config.h>
 #include <iostream>
+#include <ratio>
 #include <vector>
 #include <chrono>
 #include "cpu_microbenchmarks.h"
@@ -245,4 +246,16 @@ double bandwidth_multi(long triad_size) {
 	return bandwidth_GBs;
 }
 
-
+double thread_wake_latency() {
+	double time = 0.0;
+	#pragma omp parallel
+	{
+		auto start = std::chrono::high_resolution_clock::now();
+		#pragma omp barrier
+		auto end = std::chrono::high_resolution_clock::now();
+		if(omp_get_thread_num() == 0) {
+			time = std::chrono::duration<double, std::micro>(end - start).count();
+		}
+	}
+	return time;
+}

@@ -77,3 +77,8 @@ TEST(CPUTest, triad_test) {
 	std::cout << "Single threaded memory bandwidth: " << single_bandwidth << "\n";
 	std::cout << "Multithreaded memory bandwidth: " << multi_bandwidth << "\n";
 }
+
+TEST(CPUTest, thread_wake_test) {
+	double thread_wake_time = thread_wake_latency();
+	std::cout << "Thread wake latency: " << thread_wake_time << "\n";
+}

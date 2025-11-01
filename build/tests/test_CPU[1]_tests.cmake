@@ -4,4 +4,6 @@ add_test([=[CPUTest.valTest]=]  /home/Mensis/Source-code/github.com/Gosewinckel/
 set_tests_properties([=[CPUTest.valTest]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
 add_test([=[CPUTest.triad_test]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_CPU [==[--gtest_filter=CPUTest.triad_test]==] --gtest_also_run_disabled_tests)
 set_tests_properties([=[CPUTest.triad_test]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set(  test_CPU_TESTS CPUTest.sizeTest CPUTest.valTest CPUTest.triad_test)
+add_test([=[CPUTest.thread_wake_test]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_CPU [==[--gtest_filter=CPUTest.thread_wake_test]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[CPUTest.thread_wake_test]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  test_CPU_TESTS CPUTest.sizeTest CPUTest.valTest CPUTest.triad_test CPUTest.thread_wake_test)
