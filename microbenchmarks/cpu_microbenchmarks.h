@@ -95,3 +95,13 @@ double bandwidth_multi(long triad_size);
  *		microseconds
  ****************************************************/ 
 double thread_wake_latency();
+
+/**************************************************** 
+ * taks_dispatch_throughput -- measures how many 
+ *		tasks CPU can manage per second
+ *
+ * Params: None
+ *
+ * returns: Tasks per second
+ ****************************************************/ 
+double task_dispatch_throughput();

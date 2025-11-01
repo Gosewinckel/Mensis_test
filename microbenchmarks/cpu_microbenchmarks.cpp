@@ -259,3 +259,18 @@ double thread_wake_latency() {
 	}
 	return time;
 }
+
+double task_dispatch_throughput() {
+	int tasks = 1e6;
+	auto start = std::chrono::high_resolution_clock::now();
+
+	#pragma omp parallel for schedule(dynamic)
+	for(int i = 0; i < tasks; i++) {
+		// Lightweght task
+		double x = std::sin(i * 0.001);
+	}
+	
+	auto end = std::chrono::high_resolution_clock::now();
+	double seconds = std::chrono::duration<double>(end - start).count();
+	return tasks/seconds;
+}

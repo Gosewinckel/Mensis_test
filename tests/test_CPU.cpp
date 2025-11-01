@@ -82,3 +82,8 @@ TEST(CPUTest, thread_wake_test) {
 	double thread_wake_time = thread_wake_latency();
 	std::cout << "Thread wake latency: " << thread_wake_time << "\n";
 }
+
+TEST(CPUTest, task_dispatch_test) {
+	double Ts = task_dispatch_throughput();
+	std::cout << "Tasks per second: " << Ts << "\n";
+}
