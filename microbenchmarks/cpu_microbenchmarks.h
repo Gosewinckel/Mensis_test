@@ -105,3 +105,14 @@ double thread_wake_latency();
  * returns: Tasks per second
  ****************************************************/ 
 double task_dispatch_throughput();
+
+/**************************************************** 
+ * synchronisation_overhead -- measures how expensive 
+ *		barriers or mutex locks are 
+ *
+ * Params: None
+ *
+ * returns: barrier time per iteration in microseconds (approx the amount
+ *		of time it takes the lock to close and open)
+ ****************************************************/ 
+double synchronisation_overhead();

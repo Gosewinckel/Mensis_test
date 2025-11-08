@@ -8,4 +8,6 @@ add_test([=[CPUTest.thread_wake_test]=]  /home/Mensis/Source-code/github.com/Gos
 set_tests_properties([=[CPUTest.thread_wake_test]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
 add_test([=[CPUTest.task_dispatch_test]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_CPU [==[--gtest_filter=CPUTest.task_dispatch_test]==] --gtest_also_run_disabled_tests)
 set_tests_properties([=[CPUTest.task_dispatch_test]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set(  test_CPU_TESTS CPUTest.sizeTest CPUTest.valTest CPUTest.triad_test CPUTest.thread_wake_test CPUTest.task_dispatch_test)
+add_test([=[CPUTest.sync_overhead_test]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_CPU [==[--gtest_filter=CPUTest.sync_overhead_test]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[CPUTest.sync_overhead_test]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  test_CPU_TESTS CPUTest.sizeTest CPUTest.valTest CPUTest.triad_test CPUTest.thread_wake_test CPUTest.task_dispatch_test CPUTest.sync_overhead_test)

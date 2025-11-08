@@ -9,6 +9,8 @@
 #include <omp.h>
 #include <cmath>
 
+void merge(std::vector<double> &data, int left, int mid, int right);
+void mergesort(std::vector<double> &data, int start, int end);
 
 void square_gemm(std::vector<gemm_data> *gemms) {
 	machine& m = machine::getMachine();
@@ -247,17 +249,71 @@ double bandwidth_multi(long triad_size) {
 }
 
 double thread_wake_latency() {
-	double time = 0.0;
-	#pragma omp parallel
-	{
-		auto start = std::chrono::high_resolution_clock::now();
-		#pragma omp barrier
-		auto end = std::chrono::high_resolution_clock::now();
-		if(omp_get_thread_num() == 0) {
-			time = std::chrono::duration<double, std::micro>(end - start).count();
+	std::vector<double> times;
+	for(int i = 0; i < 100; ++i) {
+		#pragma omp parallel
+		{
+			auto start = std::chrono::high_resolution_clock::now();
+			#pragma omp barrier
+			auto end = std::chrono::high_resolution_clock::now();
+			if(omp_get_thread_num() == 0) {
+				times.push_back(std::chrono::duration<double, std::micro>(end - start).count());
+			}
 		}
 	}
-	return time;
+	// Use mergesort to sort vector then find median value
+	mergesort(times, 0, times.size() - 1);	
+	return times[times.size()/2];
+}
+
+void mergesort(std::vector<double> &data, int left, int right) {
+	if(left >= right) {
+		return;
+	}
+	int mid = left + (right - left) / 2;
+	mergesort(data, left, mid);
+	mergesort(data, mid + 1, right);
+	merge(data, left, mid, right);
+}
+
+void merge(std::vector<double> &data, int left, int mid, int right) {
+	int s1 = mid - left + 1;
+	int s2 = right - mid;
+
+	std::vector<double> L(s1), R(s2);
+	for(int i = 0; i < s1; ++i) {
+		L[i] = data[left + i];
+	}
+	for(int i = 0; i < s2; ++i) {
+		R[i] = data[mid + i + 1];
+	}
+
+	int i = 0;
+	int j = 0;
+	int k = left;
+
+	while(i < s1 && j < s2) {
+		if(L[i] >= R[j]) {
+			data[k] = L[i];
+			++k;
+			++i;
+		}
+		else if(L[i] < R[j]) {
+			data[k] = R[j];
+			++j;
+			++k;
+		}
+	}
+	while(i < s1) {
+		data[k] = L[i];
+		++k;
+		++i;
+	}
+	while(j < s2) {
+		data[k] = R[j];
+		++k;
+		++j;
+	}
 }
 
 double task_dispatch_throughput() {
@@ -273,4 +329,18 @@ double task_dispatch_throughput() {
 	auto end = std::chrono::high_resolution_clock::now();
 	double seconds = std::chrono::duration<double>(end - start).count();
 	return tasks/seconds;
+}
+
+double synchronisation_overhead() {
+	int iterations = 1e6;
+	auto start = std::chrono::high_resolution_clock::now();
+	#pragma omp parallel 
+	{
+		for(int i = 0; i < iterations; ++i) {
+			#pragma omp barrier
+		}
+	}
+	auto end = std::chrono::high_resolution_clock::now();
+	double seconds = std::chrono::duration<double, std::micro>(end - start).count();
+	return seconds/iterations;
 }

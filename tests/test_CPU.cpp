@@ -87,3 +87,8 @@ TEST(CPUTest, task_dispatch_test) {
 	double Ts = task_dispatch_throughput();
 	std::cout << "Tasks per second: " << Ts << "\n";
 }
+
+ TEST(CPUTest, sync_overhead_test) {
+	 double its_p_s = synchronisation_overhead();
+	 std::cout << "Synchronisation overhead: " << its_p_s << " microseconds per iteration\n";
+ }
