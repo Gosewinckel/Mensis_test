@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o"
   "CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o.d"
+  "CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o"
+  "CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o.d"
   "libmicrobenchmarks.a"
   "libmicrobenchmarks.pdb"
 )

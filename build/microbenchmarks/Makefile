@@ -209,6 +209,30 @@ cpu_microbenchmarks.cpp.s:
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.s
 .PHONY : cpu_microbenchmarks.cpp.s
 
+disk_microbenchmarks.o: disk_microbenchmarks.cpp.o
+.PHONY : disk_microbenchmarks.o
+
+# target to build an object file
+disk_microbenchmarks.cpp.o:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o
+.PHONY : disk_microbenchmarks.cpp.o
+
+disk_microbenchmarks.i: disk_microbenchmarks.cpp.i
+.PHONY : disk_microbenchmarks.i
+
+# target to preprocess a source file
+disk_microbenchmarks.cpp.i:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.i
+.PHONY : disk_microbenchmarks.cpp.i
+
+disk_microbenchmarks.s: disk_microbenchmarks.cpp.s
+.PHONY : disk_microbenchmarks.s
+
+# target to generate assembly for a file
+disk_microbenchmarks.cpp.s:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.s
+.PHONY : disk_microbenchmarks.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -226,6 +250,9 @@ help:
 	@echo "... cpu_microbenchmarks.o"
 	@echo "... cpu_microbenchmarks.i"
 	@echo "... cpu_microbenchmarks.s"
+	@echo "... disk_microbenchmarks.o"
+	@echo "... disk_microbenchmarks.i"
+	@echo "... disk_microbenchmarks.s"
 .PHONY : help
 
 

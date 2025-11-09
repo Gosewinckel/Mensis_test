@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/test_disk.dir/link.d CMakeFiles/test_disk.dir/test_disk.cpp.o -o test_disk

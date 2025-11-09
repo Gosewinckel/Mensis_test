@@ -18,6 +18,12 @@
   "output": "tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o"
 },
 {
+  "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests",
+  "command": "/usr/bin/c++    -o CMakeFiles/test_disk.dir/test_disk.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_disk.cpp",
+  "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_disk.cpp",
+  "output": "tests/CMakeFiles/test_disk.dir/test_disk.cpp.o"
+},
+{
   "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-build/googlemock",
   "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googlemock/include -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googlemock -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
@@ -52,5 +58,11 @@
   "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -fopenmp -o CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
   "output": "microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o"
+},
+{
+  "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -fopenmp -o CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp",
+  "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp",
+  "output": "microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o"
 }
 ]

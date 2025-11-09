@@ -86,17 +86,33 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.s: cmake_
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.s"
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp -o CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.s
 
+microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o: microbenchmarks/CMakeFiles/microbenchmarks.dir/flags.make
+microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o: /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp
+microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o: microbenchmarks/CMakeFiles/microbenchmarks.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o"
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o -MF CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o.d -o CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp
+
+microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.i"
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp > CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.i
+
+microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.s"
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp -o CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.s
+
 # Object files for target microbenchmarks
 microbenchmarks_OBJECTS = \
-"CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o"
+"CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o" \
+"CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o"
 
 # External object files for target microbenchmarks
 microbenchmarks_EXTERNAL_OBJECTS =
 
 microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o
+microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o
 microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make
 microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libmicrobenchmarks.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libmicrobenchmarks.a"
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && $(CMAKE_COMMAND) -P CMakeFiles/microbenchmarks.dir/cmake_clean_target.cmake
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/microbenchmarks.dir/link.txt --verbose=$(VERBOSE)
 

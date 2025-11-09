@@ -1,4 +1,5 @@
 # pragma once
+#include <string>
 
 /**************************************************** 
  * read_write_throughput -- read and write to disk 
@@ -8,4 +9,4 @@
  *
  * Return: GB/s
  ****************************************************/ 
-double disk_write_speed();
+double disk_write_speed(std::string filename);

@@ -1,4 +1,4 @@
-add_library(microbenchmarks cpu_microbenchmarks.cpp cpu_microbenchmarks.h)
+add_library(microbenchmarks cpu_microbenchmarks.cpp cpu_microbenchmarks.h disk_microbenchmarks.cpp disk_microbenchmarks.h)
 
 target_include_directories(microbenchmarks PRIVATE ${OpenBLAS_INCLUDE_DIR})
 target_link_libraries(microbenchmarks PRIVATE ${OpenBLAS_LIB})

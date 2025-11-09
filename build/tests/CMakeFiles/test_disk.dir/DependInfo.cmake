@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp" "microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o" "gcc" "microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o.d"
-  "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp" "microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o" "gcc" "microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o.d"
+  "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_disk.cpp" "tests/CMakeFiles/test_disk.dir/test_disk.cpp.o" "gcc" "tests/CMakeFiles/test_disk.dir/test_disk.cpp.o.d"
+  "" "tests/test_disk" "gcc" "tests/CMakeFiles/test_disk.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

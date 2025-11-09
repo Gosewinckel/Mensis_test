@@ -211,6 +211,19 @@ test_CPU/fast:
 .PHONY : test_CPU/fast
 
 #=============================================================================
+# Target rules for targets named test_disk
+
+# Build rule for target.
+test_disk: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_disk
+.PHONY : test_disk
+
+# fast build rule for target.
+test_disk/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_disk.dir/build.make tests/CMakeFiles/test_disk.dir/build
+.PHONY : test_disk/fast
+
+#=============================================================================
 # Target rules for targets named gmock
 
 # Build rule for target.
@@ -333,6 +346,7 @@ help:
 	@echo "... main_exe"
 	@echo "... microbenchmarks"
 	@echo "... test_CPU"
+	@echo "... test_disk"
 	@echo "... test_machine"
 	@echo "... main.o"
 	@echo "... main.i"

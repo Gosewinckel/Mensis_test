@@ -199,6 +199,20 @@ test_CPU/fast:
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_CPU.dir/build.make tests/CMakeFiles/test_CPU.dir/build
 .PHONY : test_CPU/fast
 
+# Convenience name for target.
+tests/CMakeFiles/test_disk.dir/rule:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_disk.dir/rule
+.PHONY : tests/CMakeFiles/test_disk.dir/rule
+
+# Convenience name for target.
+test_disk: tests/CMakeFiles/test_disk.dir/rule
+.PHONY : test_disk
+
+# fast build rule for target.
+test_disk/fast:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_disk.dir/build.make tests/CMakeFiles/test_disk.dir/build
+.PHONY : test_disk/fast
+
 test_CPU.o: test_CPU.cpp.o
 .PHONY : test_CPU.o
 
@@ -222,6 +236,30 @@ test_CPU.s: test_CPU.cpp.s
 test_CPU.cpp.s:
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_CPU.dir/build.make tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.s
 .PHONY : test_CPU.cpp.s
+
+test_disk.o: test_disk.cpp.o
+.PHONY : test_disk.o
+
+# target to build an object file
+test_disk.cpp.o:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_disk.dir/build.make tests/CMakeFiles/test_disk.dir/test_disk.cpp.o
+.PHONY : test_disk.cpp.o
+
+test_disk.i: test_disk.cpp.i
+.PHONY : test_disk.i
+
+# target to preprocess a source file
+test_disk.cpp.i:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_disk.dir/build.make tests/CMakeFiles/test_disk.dir/test_disk.cpp.i
+.PHONY : test_disk.cpp.i
+
+test_disk.s: test_disk.cpp.s
+.PHONY : test_disk.s
+
+# target to generate assembly for a file
+test_disk.cpp.s:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_disk.dir/build.make tests/CMakeFiles/test_disk.dir/test_disk.cpp.s
+.PHONY : test_disk.cpp.s
 
 test_machine.o: test_machine.cpp.o
 .PHONY : test_machine.o
@@ -261,10 +299,14 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... test_CPU"
+	@echo "... test_disk"
 	@echo "... test_machine"
 	@echo "... test_CPU.o"
 	@echo "... test_CPU.i"
 	@echo "... test_CPU.s"
+	@echo "... test_disk.o"
+	@echo "... test_disk.i"
+	@echo "... test_disk.s"
 	@echo "... test_machine.o"
 	@echo "... test_machine.i"
 	@echo "... test_machine.s"
