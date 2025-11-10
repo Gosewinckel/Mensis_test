@@ -13,7 +13,9 @@ add_executable(test_disk test_disk.cpp)
 
 target_link_libraries(test_machine PRIVATE gtest_main collectors)
 target_link_libraries(test_CPU PRIVATE gtest_main microbenchmarks)
+target_link_libraries(test_disk PRIVATE gtest_main microbenchmarks)
 
 include(GoogleTest)
 gtest_discover_tests(test_machine)
 gtest_discover_tests(test_CPU)
+gtest_discover_tests(test_disk)

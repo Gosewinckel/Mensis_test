@@ -1,0 +1,5 @@
+if(EXISTS "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_disk[1]_tests.cmake")
+  include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_disk[1]_tests.cmake")
+else()
+  add_test(test_disk_NOT_BUILT test_disk_NOT_BUILT)
+endif()

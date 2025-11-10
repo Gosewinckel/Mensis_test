@@ -19,7 +19,7 @@
 },
 {
   "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests",
-  "command": "/usr/bin/c++    -o CMakeFiles/test_disk.dir/test_disk.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_disk.cpp",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest  -o CMakeFiles/test_disk.dir/test_disk.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_disk.cpp",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_disk.cpp",
   "output": "tests/CMakeFiles/test_disk.dir/test_disk.cpp.o"
 },
