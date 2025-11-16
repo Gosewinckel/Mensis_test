@@ -1,0 +1,5 @@
+if(EXISTS "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_GPU[1]_tests.cmake")
+  include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_GPU[1]_tests.cmake")
+else()
+  add_test(test_GPU_NOT_BUILT test_GPU_NOT_BUILT)
+endif()

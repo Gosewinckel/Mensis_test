@@ -7,4 +7,5 @@
 include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_machine[1]_include.cmake")
 include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_CPU[1]_include.cmake")
 include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_disk[1]_include.cmake")
+include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_GPU[1]_include.cmake")
 subdirs("../_deps/googletest-build")

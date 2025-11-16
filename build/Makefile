@@ -224,6 +224,19 @@ test_disk/fast:
 .PHONY : test_disk/fast
 
 #=============================================================================
+# Target rules for targets named test_GPU
+
+# Build rule for target.
+test_GPU: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_GPU
+.PHONY : test_GPU
+
+# fast build rule for target.
+test_GPU/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_GPU.dir/build.make tests/CMakeFiles/test_GPU.dir/build
+.PHONY : test_GPU/fast
+
+#=============================================================================
 # Target rules for targets named gmock
 
 # Build rule for target.
@@ -346,6 +359,7 @@ help:
 	@echo "... main_exe"
 	@echo "... microbenchmarks"
 	@echo "... test_CPU"
+	@echo "... test_GPU"
 	@echo "... test_disk"
 	@echo "... test_machine"
 	@echo "... main.o"

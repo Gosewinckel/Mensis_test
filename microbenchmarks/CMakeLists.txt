@@ -1,4 +1,6 @@
-add_library(microbenchmarks cpu_microbenchmarks.cpp cpu_microbenchmarks.h disk_microbenchmarks.cpp disk_microbenchmarks.h)
+add_library(microbenchmarks cpu_microbenchmarks.cpp cpu_microbenchmarks.h disk_microbenchmarks.cpp disk_microbenchmarks.h gpu_microbenchmarks.h gpu_microbenchmarks.cu)
+
+enable_language(CUDA)
 
 target_include_directories(microbenchmarks PRIVATE ${OpenBLAS_INCLUDE_DIR})
 target_link_libraries(microbenchmarks PRIVATE ${OpenBLAS_LIB})
@@ -6,6 +8,8 @@ target_link_libraries(microbenchmarks PRIVATE ${OpenBLAS_LIB})
 target_link_libraries(microbenchmarks PRIVATE OpenMP::OpenMP_CXX)
 
 target_link_libraries(microbenchmarks PRIVATE collectors)
+
+target_link_libraries(microbenchmarks PRIVATE CUDA::cudart)
 
 target_include_directories(microbenchmarks PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

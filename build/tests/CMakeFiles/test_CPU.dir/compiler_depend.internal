@@ -356,13 +356,19 @@ tests/test_CPU
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/lib/libgtest.a
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/lib/libgtest_main.a
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/libmicrobenchmarks.a
+ /opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a
+ /opt/cuda/targets/x86_64-linux/lib/libcudart.so
+ /opt/cuda/targets/x86_64-linux/lib/libcudart_static.a
  /usr/lib/Scrt1.o
  /usr/lib/crti.o
  /usr/lib/crtn.o
  /usr/lib/libc.so
+ /usr/lib/libdl.a
  /usr/lib/libgcc_s.so
  /usr/lib/libgcc_s.so.1
  /usr/lib/libm.so
+ /usr/lib/libpthread.a
+ /usr/lib/librt.a
  /usr/lib/libstdc++.so
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o
@@ -370,11 +376,15 @@ tests/test_CPU
  /usr/lib/ld-linux-x86-64.so.2
  /usr/lib/libc.so.6
  /usr/lib/libc_nonshared.a
+ /usr/lib/libdl.so.2
  /usr/lib/libgfortran.so.5
  /usr/lib/libgomp.so
  /usr/lib/libm.so.6
  /usr/lib/libmvec.so.1
  /usr/lib/libopenblas.so
  /usr/lib/libpthread.a
+ /usr/lib/libpthread.so.0
+ /usr/lib/librt.a
+ /usr/lib/librt.so.1
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o
 

@@ -213,6 +213,20 @@ test_disk/fast:
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_disk.dir/build.make tests/CMakeFiles/test_disk.dir/build
 .PHONY : test_disk/fast
 
+# Convenience name for target.
+tests/CMakeFiles/test_GPU.dir/rule:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_GPU.dir/rule
+.PHONY : tests/CMakeFiles/test_GPU.dir/rule
+
+# Convenience name for target.
+test_GPU: tests/CMakeFiles/test_GPU.dir/rule
+.PHONY : test_GPU
+
+# fast build rule for target.
+test_GPU/fast:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_GPU.dir/build.make tests/CMakeFiles/test_GPU.dir/build
+.PHONY : test_GPU/fast
+
 test_CPU.o: test_CPU.cpp.o
 .PHONY : test_CPU.o
 
@@ -236,6 +250,30 @@ test_CPU.s: test_CPU.cpp.s
 test_CPU.cpp.s:
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_CPU.dir/build.make tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.s
 .PHONY : test_CPU.cpp.s
+
+test_GPU.o: test_GPU.cpp.o
+.PHONY : test_GPU.o
+
+# target to build an object file
+test_GPU.cpp.o:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_GPU.dir/build.make tests/CMakeFiles/test_GPU.dir/test_GPU.cpp.o
+.PHONY : test_GPU.cpp.o
+
+test_GPU.i: test_GPU.cpp.i
+.PHONY : test_GPU.i
+
+# target to preprocess a source file
+test_GPU.cpp.i:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_GPU.dir/build.make tests/CMakeFiles/test_GPU.dir/test_GPU.cpp.i
+.PHONY : test_GPU.cpp.i
+
+test_GPU.s: test_GPU.cpp.s
+.PHONY : test_GPU.s
+
+# target to generate assembly for a file
+test_GPU.cpp.s:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_GPU.dir/build.make tests/CMakeFiles/test_GPU.dir/test_GPU.cpp.s
+.PHONY : test_GPU.cpp.s
 
 test_disk.o: test_disk.cpp.o
 .PHONY : test_disk.o
@@ -299,11 +337,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... test_CPU"
+	@echo "... test_GPU"
 	@echo "... test_disk"
 	@echo "... test_machine"
 	@echo "... test_CPU.o"
 	@echo "... test_CPU.i"
 	@echo "... test_CPU.s"
+	@echo "... test_GPU.o"
+	@echo "... test_GPU.i"
+	@echo "... test_GPU.s"
 	@echo "... test_disk.o"
 	@echo "... test_disk.i"
 	@echo "... test_disk.s"

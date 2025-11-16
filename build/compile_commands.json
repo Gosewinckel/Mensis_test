@@ -24,6 +24,12 @@
   "output": "tests/CMakeFiles/test_disk.dir/test_disk.cpp.o"
 },
 {
+  "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest  -o CMakeFiles/test_GPU.dir/test_GPU.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_GPU.cpp",
+  "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_GPU.cpp",
+  "output": "tests/CMakeFiles/test_GPU.dir/test_GPU.cpp.o"
+},
+{
   "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-build/googlemock",
   "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googlemock/include -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googlemock -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include -isystem /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
@@ -55,14 +61,20 @@
 },
 {
   "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks",
-  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -fopenmp -o CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -isystem /opt/cuda/targets/x86_64-linux/include -isystem /opt/cuda/targets/x86_64-linux/include/cccl -fopenmp -o CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/cpu_microbenchmarks.cpp",
   "output": "microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o"
 },
 {
   "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks",
-  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -fopenmp -o CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp",
+  "command": "/usr/bin/c++  -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/collectors -isystem /opt/cuda/targets/x86_64-linux/include -isystem /opt/cuda/targets/x86_64-linux/include/cccl -fopenmp -o CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp",
   "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp",
   "output": "microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o"
+},
+{
+  "directory": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks",
+  "command": "/opt/cuda/bin/nvcc -forward-unknown-to-host-compiler  --options-file CMakeFiles/microbenchmarks.dir/includes_CUDA.rsp -std=c++17 -x cu -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/gpu_microbenchmarks.cu -o CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o",
+  "file": "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/gpu_microbenchmarks.cu",
+  "output": "microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o"
 }
 ]

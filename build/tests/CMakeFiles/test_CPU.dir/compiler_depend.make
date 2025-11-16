@@ -354,13 +354,19 @@ tests/test_CPU: collectors/libcollectors.a \
   lib/libgtest.a \
   lib/libgtest_main.a \
   microbenchmarks/libmicrobenchmarks.a \
+  /opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a \
+  /opt/cuda/targets/x86_64-linux/lib/libcudart.so \
+  /opt/cuda/targets/x86_64-linux/lib/libcudart_static.a \
   /usr/lib/Scrt1.o \
   /usr/lib/crti.o \
   /usr/lib/crtn.o \
   /usr/lib/libc.so \
+  /usr/lib/libdl.a \
   /usr/lib/libgcc_s.so \
   /usr/lib/libgcc_s.so.1 \
   /usr/lib/libm.so \
+  /usr/lib/libpthread.a \
+  /usr/lib/librt.a \
   /usr/lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o \
@@ -368,18 +374,20 @@ tests/test_CPU: collectors/libcollectors.a \
   /usr/lib/ld-linux-x86-64.so.2 \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
+  /usr/lib/libdl.so.2 \
   /usr/lib/libgfortran.so.5 \
   /usr/lib/libgomp.so \
   /usr/lib/libm.so.6 \
   /usr/lib/libmvec.so.1 \
   /usr/lib/libopenblas.so \
   /usr/lib/libpthread.a \
+  /usr/lib/libpthread.so.0 \
+  /usr/lib/librt.a \
+  /usr/lib/librt.so.1 \
   tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o
 
 
 tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o:
-
-/usr/lib/libpthread.a:
 
 /usr/lib/libmvec.so.1:
 
@@ -397,11 +405,15 @@ tests/CMakeFiles/test_CPU.dir/test_CPU.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
 
+/usr/lib/libpthread.a:
+
 /usr/lib/libm.so:
 
 /usr/lib/libgcc_s.so.1:
 
 /usr/lib/Scrt1.o:
+
+/opt/cuda/targets/x86_64-linux/lib/libcudart.so:
 
 /usr/lib/ld-linux-x86-64.so.2:
 
@@ -445,7 +457,11 @@ collectors/libcollectors.a:
 
 /usr/include/sched.h:
 
+/usr/lib/libdl.so.2:
+
 /usr/include/regex.h:
+
+/usr/lib/libpthread.so.0:
 
 /usr/lib/libstdc++.so:
 
@@ -524,6 +540,8 @@ collectors/libcollectors.a:
 /usr/include/c++/15.2.1/variant:
 
 /usr/include/c++/15.2.1/initializer_list:
+
+/opt/cuda/targets/x86_64-linux/lib/libcudart_static.a:
 
 /usr/include/bits/types/wint_t.h:
 
@@ -621,6 +639,8 @@ lib/libgtest_main.a:
 
 /usr/include/bits/types/struct_sigstack.h:
 
+/usr/lib/librt.a:
+
 /usr/include/c++/15.2.1/array:
 
 /usr/include/c++/15.2.1/unordered_map:
@@ -682,6 +702,8 @@ _deps/googletest-src/googletest/include/gtest/gtest_prod.h:
 /usr/include/bits/types/sigevent_t.h:
 
 _deps/googletest-src/googletest/include/gtest/gtest-death-test.h:
+
+/usr/lib/librt.so.1:
 
 /usr/include/linux/types.h:
 
@@ -824,6 +846,8 @@ _deps/googletest-src/googletest/include/gtest/gtest-assertion-result.h:
 /usr/include/bits/locale.h:
 
 /usr/include/bits/confname.h:
+
+/usr/lib/libdl.a:
 
 /usr/include/bits/uintn-identity.h:
 
@@ -970,6 +994,8 @@ _deps/googletest-src/googletest/include/gtest/internal/gtest-string.h:
 /usr/include/c++/15.2.1/bits/hashtable.h:
 
 /usr/include/c++/15.2.1/bits/hashtable_policy.h:
+
+/opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a:
 
 /usr/include/c++/15.2.1/bits/ios_base.h:
 

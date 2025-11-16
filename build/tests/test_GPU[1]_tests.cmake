@@ -1,0 +1,3 @@
+add_test([=[GPUTest.global_bandwidth_test]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_GPU [==[--gtest_filter=GPUTest.global_bandwidth_test]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[GPUTest.global_bandwidth_test]=]  PROPERTIES WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  test_GPU_TESTS GPUTest.global_bandwidth_test)

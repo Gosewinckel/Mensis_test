@@ -1,7 +1,7 @@
 enable_testing()
 
 cmake_minimum_required(VERSION 3.10)
-project(Mensis_test LANGUAGES CXX)
+project(Mensis_test LANGUAGES CXX CUDA)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
@@ -13,6 +13,8 @@ if (NOT OpenBLAS_LIB)
 endif()
 
 find_package(OpenMP REQUIRED)
+
+find_package(CUDAToolkit REQUIRED)
 
 #if (NOT TARGET BLAS::BLAS)
 #	add_library(BLAS::BLAS INTERFACE IMPORTED)

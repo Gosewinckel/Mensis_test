@@ -186,6 +186,9 @@ double bandwidth_single(long triad_size) {
 		b[i] = 2.0;
 		c[i] = 0.0;
 	}
+
+	double check;
+
 	for(int i = 0; i < 10; i++) {
 		//record time
 		auto start = std::chrono::high_resolution_clock::now();
@@ -197,7 +200,11 @@ double bandwidth_single(long triad_size) {
 		if(runtime < best_time || best_time == 0) {
 			best_time = runtime;
 		}
-		c[0] += 1;
+		// Complete checksum
+		check = 0.0;
+		for(int j = 0; j < triad_size; ++j) {
+			check += c[j];
+		}
 	}
 	c[0] += 1;
 
@@ -224,6 +231,9 @@ double bandwidth_multi(long triad_size) {
 			b[i] = 2.0;
 			c[i] = 0.0;
 		}
+
+		double check;
+
 		// record time
 		auto start = std::chrono::high_resolution_clock::now();
 		#pragma omp parallel for
@@ -235,7 +245,11 @@ double bandwidth_multi(long triad_size) {
 		if(runtime < best_time || best_time == 0.0) {
 			best_time  = runtime;
 		}
-		c[0] += 1;
+		//checksum
+		check = 0.0;
+		for(int j = 0; j < triad_size; ++j) {
+			check += c[j];
+		}
 	}
 	c[0] += 1;
 	delete[] a;

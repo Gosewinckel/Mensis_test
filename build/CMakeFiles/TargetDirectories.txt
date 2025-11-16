@@ -9,6 +9,7 @@
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test_machine.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test_CPU.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test_disk.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test_GPU.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/test.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/edit_cache.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/CMakeFiles/rebuild_cache.dir

@@ -233,6 +233,30 @@ disk_microbenchmarks.cpp.s:
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.s
 .PHONY : disk_microbenchmarks.cpp.s
 
+gpu_microbenchmarks.o: gpu_microbenchmarks.cu.o
+.PHONY : gpu_microbenchmarks.o
+
+# target to build an object file
+gpu_microbenchmarks.cu.o:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o
+.PHONY : gpu_microbenchmarks.cu.o
+
+gpu_microbenchmarks.i: gpu_microbenchmarks.cu.i
+.PHONY : gpu_microbenchmarks.i
+
+# target to preprocess a source file
+gpu_microbenchmarks.cu.i:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.i
+.PHONY : gpu_microbenchmarks.cu.i
+
+gpu_microbenchmarks.s: gpu_microbenchmarks.cu.s
+.PHONY : gpu_microbenchmarks.s
+
+# target to generate assembly for a file
+gpu_microbenchmarks.cu.s:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.s
+.PHONY : gpu_microbenchmarks.cu.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -253,6 +277,9 @@ help:
 	@echo "... disk_microbenchmarks.o"
 	@echo "... disk_microbenchmarks.i"
 	@echo "... disk_microbenchmarks.s"
+	@echo "... gpu_microbenchmarks.o"
+	@echo "... gpu_microbenchmarks.i"
+	@echo "... gpu_microbenchmarks.s"
 .PHONY : help
 
 

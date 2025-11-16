@@ -100,19 +100,36 @@ microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.s: cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.s"
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/disk_microbenchmarks.cpp -o CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.s
 
+microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o: microbenchmarks/CMakeFiles/microbenchmarks.dir/flags.make
+microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o: microbenchmarks/CMakeFiles/microbenchmarks.dir/includes_CUDA.rsp
+microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o: /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/gpu_microbenchmarks.cu
+microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o: microbenchmarks/CMakeFiles/microbenchmarks.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CUDA object microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o"
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && /opt/cuda/bin/nvcc -forward-unknown-to-host-compiler $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -MD -MT microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o -MF CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o.d -x cu -c /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/gpu_microbenchmarks.cu -o CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o
+
+microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CUDA source to CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.i"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_PREPROCESSED_SOURCE
+
+microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CUDA source to assembly CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.s"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_CUDA_CREATE_ASSEMBLY_SOURCE
+
 # Object files for target microbenchmarks
 microbenchmarks_OBJECTS = \
 "CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o" \
-"CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o"
+"CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o" \
+"CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o"
 
 # External object files for target microbenchmarks
 microbenchmarks_EXTERNAL_OBJECTS =
 
 microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/cpu_microbenchmarks.cpp.o
 microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/disk_microbenchmarks.cpp.o
+microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/gpu_microbenchmarks.cu.o
 microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make
 microbenchmarks/libmicrobenchmarks.a: microbenchmarks/CMakeFiles/microbenchmarks.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libmicrobenchmarks.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libmicrobenchmarks.a"
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && $(CMAKE_COMMAND) -P CMakeFiles/microbenchmarks.dir/cmake_clean_target.cmake
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/microbenchmarks.dir/link.txt --verbose=$(VERBOSE)
 
