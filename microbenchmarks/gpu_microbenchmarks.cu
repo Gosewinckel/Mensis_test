@@ -106,3 +106,19 @@ double global_GPU_mem_bandwidth(int device) {
 	double GBs = (bytes/1e9)/(time/1000.0);
 	return GBs;
 }
+
+double peak_GPU_bandwidth(int device) {
+	// set GPU to run on
+	int num_devices = 0;
+	cudaGetDeviceCount(&num_devices);
+	if(device >= num_devices) {
+		std::cout << "invalid device number for peak bandwidth test\n";
+		return -1;
+	}
+	cudaSetDevice(device);
+}
+
+double cuda_GEMM(int device) {
+	//TODO
+	return -1.0;
+}
