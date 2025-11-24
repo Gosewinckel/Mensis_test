@@ -81,7 +81,8 @@ void set_gemms(std::vector<gemm_data> *gemms) {
 
 	//We want the total computation to take up between 40-60% of the
 	//L3 cache
-	std::vector<uint64_t> edges = {sqrt/4, sqrt/5, sqrt/3,sqrt/2, (sqrt * 3)/4, (sqrt * 4) / 5}; 
+	std::vector<uint64_t> edges = {sqrt/4, sqrt/5, sqrt/3,sqrt/2, (sqrt * 3)/4, (sqrt * 4) / 5,
+									(sqrt * 5)/4, (sqrt * 4) /3, sqrt * 2, sqrt * 3, sqrt * 4, sqrt}; 
 
 	//  Create gemm structs and append to gemms
 	for(int i = 0; i < edges.size(); ++i) {
@@ -122,7 +123,7 @@ float bench_gemms(int thread_count, std::vector<gemm_data>* gemms) {
 			(*gemms)[i].N, (*gemms)[i].beta, (*gemms)[i].C.data(), (*gemms)[i].N);
 
 		// Repeat computation 
-		for(int j = 0; j < 10000; ++j) {
+		for(int j = 0; j < 100; ++j) {
 			auto start = std::chrono::high_resolution_clock::now();
 
 			cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,

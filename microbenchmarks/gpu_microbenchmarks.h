@@ -27,3 +27,13 @@ double global_GPU_mem_bandwidth(int device);
  * Returns: GFLOPS/s
  ****************************************************/ 
 double cuda_GEMM(int device);
+
+/**************************************************** 
+ * tensor_GEMM -- tests peak computation speed on
+ *		tensor cores
+ *
+ * Params: device
+ *
+ * Returns: GFLOP/s
+ ****************************************************/ 
+double tensor_GEMM(int device);

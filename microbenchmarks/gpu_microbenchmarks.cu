@@ -3,6 +3,9 @@
 #include <cuda_runtime_api.h>
 #include <driver_types.h>
 #include <gpu_microbenchmarks.h>
+#include <vector>
+#include <cmath>
+#include <ratio>
 
 // global triad for mem bandwidth
 __global__
@@ -100,6 +103,13 @@ double global_GPU_mem_bandwidth(int device) {
 	cudaFree(d_A);
 	cudaFree(d_B);
 	cudaFree(d_C);
+
+	delete[] h_A;
+	delete[] h_B;
+	delete[] h_C;
+	h_A = NULL;
+	h_B = NULL;
+	h_C = NULL;
 	
 	// return GB/s
 	double bytes = 3.0 * N * sizeof(float);
@@ -107,18 +117,56 @@ double global_GPU_mem_bandwidth(int device) {
 	return GBs;
 }
 
-double peak_GPU_bandwidth(int device) {
-	// set GPU to run on
-	int num_devices = 0;
-	cudaGetDeviceCount(&num_devices);
-	if(device >= num_devices) {
-		std::cout << "invalid device number for peak bandwidth test\n";
+double cuda_GEMM(int device) {
+	int numDevices = 0;
+	cudaGetDeviceCount(&numDevices);
+	if(device >= numDevices) {
 		return -1;
 	}
 	cudaSetDevice(device);
+
+	// find GPU onboard memory
+	size_t free_bytes;
+	size_t total_bytes;
+	cudaMemGetInfo(&free_bytes, &total_bytes);
+
+	// Each matrix = 20% of GPU memory
+	uint64_t matrix_size = 0;
+	matrix_size = (total_bytes * (1/5)) / 4;
+	uint64_t sqrt = std::sqrt(matrix_size);
+
+	float TOPs = 0.0; //trillion operations per second, avg results of each GEMM and return
+
+	// Set of matrix side sizes
+	std::vector<uint64_t> edges = {sqrt/4, sqrt/5, sqrt/3, sqrt/2, (sqrt * 3)/4,
+		(sqrt * 4)/5, (sqrt * 5)/4, (sqrt * 4)/3, sqrt * 2, sqrt * 3,
+		sqrt * 4, sqrt};
+
+	// Calculate TOPS for each GEMM dimensions
+	for(int i = 0; i < edges.size(); ++i) {
+		//dynamically allocated matrices
+		float* d_A = new float[edges[i]];
+		float* d_B = new float[matrix_size/edges[i]];
+		float* d_C = new float[edges[i]];
+		
+		// Fill matrices with mock data
+		for(int j = 0; j < edges[i]; ++j) {
+			d_A[j] = 1.0;
+			d_B[j] = 2.0;
+		}
+		for(int j = 0; j < matrix_size/edges[i]; ++j) {
+			d_C[j] = 0;
+		}
+		// -- continue on with actual GEMM -- //
+	}	
+
+	// Set 
+
+	return TOPs;
+
 }
 
-double cuda_GEMM(int device) {
+double tensor_GEMM(int device) {
 	//TODO
 	return -1.0;
 }

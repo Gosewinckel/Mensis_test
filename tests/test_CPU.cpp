@@ -37,7 +37,7 @@ TEST(CPUTest, valTest) {
 	EXPECT_EQ(gemms[0].A.size() - 1, gemms[0].A[gemms[0].A.size() - 1]);
 }
 
-/*TEST(CPUTest, GEMMtest) {
+TEST(CPUTest, GEMMtest) {
 
 	openblas_set_num_threads(openblas_get_num_procs());
 	omp_set_num_threads(omp_get_max_threads());
@@ -61,14 +61,14 @@ TEST(CPUTest, valTest) {
 	std::cout << "finished multithread\n"; 
 	singleGFLOPs = gflop_single(gemms);
 	std::cout << "\n";
-	std::cout << "Reqalistic GFLOP/s: \n";
+	std::cout << "Realistic GFLOP/s: \n";
 	std::cout << "Single thread GFLOP/s: " << singleGFLOPs << "\n";
 	std::cout << "Multi thread GFLOP/s: " << multiGFLOPSs << "\n";
 	std::cout <<"\n";
 	//if(singleGFLOPs >= multiGFLOPSs) {
 	//	EXPECT_TRUE(false);
 	//}
-} */
+} 
 
 TEST(CPUTest, triad_test) {
 	long array_size = triad_size();
