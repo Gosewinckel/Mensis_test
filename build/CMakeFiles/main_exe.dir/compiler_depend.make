@@ -209,9 +209,12 @@ CMakeFiles/main_exe.dir/main.cpp.o: /home/Mensis/Source-code/github.com/Gosewinc
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
 
-main_exe: /opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a \
+main_exe: /opt/cuda/targets/x86_64-linux/lib/libcublas.so \
+  /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so \
+  /opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a \
   /opt/cuda/targets/x86_64-linux/lib/libcudart.so \
   /opt/cuda/targets/x86_64-linux/lib/libcudart_static.a \
+  /opt/cuda/targets/x86_64-linux/lib/libculibos.a \
   /usr/lib/Scrt1.o \
   /usr/lib/crti.o \
   /usr/lib/crtn.o \
@@ -278,9 +281,15 @@ CMakeFiles/main_exe.dir/main.cpp.o:
 
 /usr/lib/crtn.o:
 
+/opt/cuda/targets/x86_64-linux/lib/libculibos.a:
+
 /opt/cuda/targets/x86_64-linux/lib/libcudart_static.a:
 
 /opt/cuda/targets/x86_64-linux/lib/libcudart.so:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublasLt.so:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublas.so:
 
 /usr/include/sys/single_threaded.h:
 

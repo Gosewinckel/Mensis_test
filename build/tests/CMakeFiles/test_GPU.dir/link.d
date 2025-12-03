@@ -13,6 +13,9 @@ test_GPU: \
   /opt/cuda/targets/x86_64-linux/lib/libcudart.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libdl.a \
   /usr/lib/librt.a \
+  /opt/cuda/targets/x86_64-linux/lib/libcublas.so \
+  /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so \
+  /opt/cuda/targets/x86_64-linux/lib/libculibos.a \
   /opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a \
   /opt/cuda/targets/x86_64-linux/lib/libcudart_static.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/librt.a \
@@ -77,6 +80,12 @@ CMakeFiles/test_GPU.dir/test_GPU.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libdl.a:
 
 /usr/lib/librt.a:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublas.so:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublasLt.so:
+
+/opt/cuda/targets/x86_64-linux/lib/libculibos.a:
 
 /opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a:
 

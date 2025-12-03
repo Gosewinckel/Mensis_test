@@ -356,9 +356,12 @@ tests/test_CPU
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/lib/libgtest.a
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/lib/libgtest_main.a
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/microbenchmarks/libmicrobenchmarks.a
+ /opt/cuda/targets/x86_64-linux/lib/libcublas.so
+ /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so
  /opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a
  /opt/cuda/targets/x86_64-linux/lib/libcudart.so
  /opt/cuda/targets/x86_64-linux/lib/libcudart_static.a
+ /opt/cuda/targets/x86_64-linux/lib/libculibos.a
  /usr/lib/Scrt1.o
  /usr/lib/crti.o
  /usr/lib/crtn.o

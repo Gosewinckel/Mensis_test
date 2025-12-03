@@ -105,6 +105,9 @@ tests/test_CPU: /usr/lib/libpthread.a
 tests/test_CPU: collectors/libcollectors.a
 tests/test_CPU: /opt/cuda/targets/x86_64-linux/lib/libcudart.so
 tests/test_CPU: /usr/lib/librt.a
+tests/test_CPU: /opt/cuda/targets/x86_64-linux/lib/libcublas.so
+tests/test_CPU: /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so
+tests/test_CPU: /opt/cuda/targets/x86_64-linux/lib/libculibos.a
 tests/test_CPU: tests/CMakeFiles/test_CPU.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_CPU"
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_CPU.dir/link.txt --verbose=$(VERBOSE)

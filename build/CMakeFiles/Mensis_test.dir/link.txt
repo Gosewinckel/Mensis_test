@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/Mensis_test.dir/link.d CMakeFiles/Mensis_test.dir/main.cpp.o -o Mensis_test

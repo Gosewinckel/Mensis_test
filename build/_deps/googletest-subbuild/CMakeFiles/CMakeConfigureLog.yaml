@@ -23,6 +23,13 @@ events:
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
       - "/usr/bin/"
+      - "/home/Mensis/go/bin/"
+      - "/opt/cuda/bin/"
+      - "/opt/cuda/nsight_compute/"
+      - "/opt/cuda/nsight_systems/bin/"
+      - "/usr/bin/site_perl/"
+      - "/usr/bin/vendor_perl/"
+      - "/usr/bin/core_perl/"
       - "/bin/"
     searched_directories:
       - "/usr/local/sbin/uname"
@@ -33,22 +40,19 @@ events:
         - "/usr/local/sbin"
         - "/usr/local/bin"
         - "/usr/bin"
+        - "/home/Mensis/go/bin"
+        - "/opt/cuda/bin"
+        - "/opt/cuda/nsight_compute"
+        - "/opt/cuda/nsight_systems/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+        - "/home/Mensis/go/bin"
   -
     kind: "message-v1"
     backtrace:
       - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
       - "CMakeLists.txt:16 (project)"
     message: |
-      The system is: Linux - 6.16.4-arch1-1 - x86_64
-...
-
----
-events:
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
-      - "CMakeLists.txt:16 (project)"
-    message: |
-      The system is: Linux - 6.16.8-arch3-1 - x86_64
+      The system is: Linux - 6.17.3-arch2-1 - x86_64
 ...

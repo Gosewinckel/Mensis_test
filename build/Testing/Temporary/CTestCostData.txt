@@ -1,5 +1,0 @@
-test_machine_NOT_BUILT 0 0
-machineTest.defaultTest 5 0.000394405
-machineTest.cpuCountTest 0 0
-machineTest.cpu_count_test 1 0.00183827
----

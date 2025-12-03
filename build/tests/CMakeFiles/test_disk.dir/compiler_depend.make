@@ -351,9 +351,12 @@ tests/test_disk: collectors/libcollectors.a \
   lib/libgtest.a \
   lib/libgtest_main.a \
   microbenchmarks/libmicrobenchmarks.a \
+  /opt/cuda/targets/x86_64-linux/lib/libcublas.so \
+  /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so \
   /opt/cuda/targets/x86_64-linux/lib/libcudadevrt.a \
   /opt/cuda/targets/x86_64-linux/lib/libcudart.so \
   /opt/cuda/targets/x86_64-linux/lib/libcudart_static.a \
+  /opt/cuda/targets/x86_64-linux/lib/libculibos.a \
   /usr/lib/Scrt1.o \
   /usr/lib/crti.o \
   /usr/lib/crtn.o \
@@ -409,6 +412,8 @@ tests/test_disk: collectors/libcollectors.a \
 /usr/lib/Scrt1.o:
 
 /opt/cuda/targets/x86_64-linux/lib/libcudart.so:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublas.so:
 
 /usr/lib/ld-linux-x86-64.so.2:
 
@@ -605,6 +610,8 @@ lib/libgtest_main.a:
 /usr/include/bits/stdio_lim.h:
 
 /usr/include/bits/types/clock_t.h:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublasLt.so:
 
 /usr/include/bits/types/sig_atomic_t.h:
 
@@ -1045,6 +1052,8 @@ _deps/googletest-src/googletest/include/gtest/internal/gtest-port.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h:
 
 /usr/include/c++/15.2.1/bits/ostream.tcc:
+
+/opt/cuda/targets/x86_64-linux/lib/libculibos.a:
 
 /usr/include/c++/15.2.1/bits/ostream_insert.h:
 
