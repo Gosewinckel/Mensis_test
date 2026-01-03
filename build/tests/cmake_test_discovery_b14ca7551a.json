@@ -1,0 +1,47 @@
+{
+  "tests": 7,
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "CPUTest",
+      "tests": 7,
+      "testsuite": [
+        {
+          "name": "sizeTest",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/tests\/test_CPU.cpp",
+          "line": 7
+        },
+        {
+          "name": "valTest",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/tests\/test_CPU.cpp",
+          "line": 33
+        },
+        {
+          "name": "GEMMtest",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/tests\/test_CPU.cpp",
+          "line": 40
+        },
+        {
+          "name": "triad_test",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/tests\/test_CPU.cpp",
+          "line": 73
+        },
+        {
+          "name": "thread_wake_test",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/tests\/test_CPU.cpp",
+          "line": 81
+        },
+        {
+          "name": "task_dispatch_test",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/tests\/test_CPU.cpp",
+          "line": 86
+        },
+        {
+          "name": "sync_overhead_test",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/tests\/test_CPU.cpp",
+          "line": 91
+        }
+      ]
+    }
+  ]
+}

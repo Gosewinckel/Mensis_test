@@ -1,15 +1,88 @@
+#include <cstdint>
 #include <iostream>
 #include <cublas_v2.h>
+#include <cublasLt.h>
 #include <cuda_runtime.h>
 #include <cuda_runtime_api.h>
 #include <driver_types.h>
 #include <gpu_microbenchmarks.h>
+#include <stdexcept>
 #include <vector>
 #include <cmath>
-#include <ratio>
 #include <cuda_fp16.h>
 #include <cuda_bf16.h>
 
+// Cuda fuction error checking macros
+#define CUDA_CHECK(x)\
+{ \
+	cudaError_t e = x; \
+	if(e != cudaSuccess) { \
+		std::cerr << "CUDA error: " << cudaGetErrorString(e) << "\n"; \
+		cudaDeviceReset(); \
+		return -1.0; \
+	} \
+}
+
+#define CUBLAS_CHECK(x)\
+{ \
+	cublasStatus_t status = (x); \
+	if(status != CUBLAS_STATUS_SUCCESS) { \
+		std::cerr << "cuBLAS error: " << status << "\n"; \
+		return -1.0; \
+	} \
+}
+
+//datatype declarations
+struct gemmDims {
+	int m;
+	int n;
+	int k;
+};
+
+// Function declarations
+std::vector<gemmDims> setGemmSides(size_t globalMem, cudaDataType type, int numSides);
+bool isSupportedAlgo(cublasGemmAlgo_t algo);
+bool isSupportedDataType(cudaDataType type);
+bool isSupportedComputeType(cudaDataType computeType);
+bool isSupportedMathMode(cublasMath_t mathMode);
+bool checkValidGemmConfig(
+	int sm,
+	cublasGemmAlgo_t algo, 
+	cudaDataType type, 
+	cudaDataType computeType,
+	cublasMath_t mathMode
+);
+cudaError_t setMatrices(
+		void** A, 
+		void** B, 
+		void** C, 
+		int m,
+		int n,
+		int k,
+		cudaDataType type
+);
+float computeTOPSSingleGPU(
+		void* A, 
+		void* B, 
+		void* C, 
+		int m, 
+		int n, 
+		int k,
+		cudaDataType type,
+		cudaDataType computeType,
+		cublasGemmAlgo_t algo,
+		cublasHandle_t handle
+);
+float computeTOPSSingleGPUTensor(
+		void* A, 
+		void* B, 
+		void* C, 
+		int m, 
+		int n, 
+		int k,
+		cudaDataType type,
+		cudaDataType computeType
+);
 
 // global triad for mem bandwidth
 __global__
@@ -23,28 +96,25 @@ void global_triad(float* A, float* B, float* C, int n) {
 double global_GPU_mem_bandwidth(int device) {
 	//set GPU to run on
 	int numDevices = 0;
-	cudaGetDeviceCount(&numDevices);
+	CUDA_CHECK(cudaGetDeviceCount(&numDevices));
 	if(device >= numDevices) {
 		return -1;
 	}
-	cudaSetDevice(device);
+	CUDA_CHECK(cudaSetDevice(device));
 
 	// get/set device data
 	cudaDeviceProp prop;
-	cudaGetDeviceProperties(&prop, device);
-	int sm_count = prop.multiProcessorCount;
-	const int max_threads_per_sm = prop.maxThreadsPerMultiProcessor;
+	CUDA_CHECK(cudaGetDeviceProperties(&prop, device));
 	size_t global_mem = prop.totalGlobalMem;
-	size_t shared_mem_per_sm = prop.sharedMemPerMultiprocessor;
-	int N = global_mem/sizeof(float)/4;
+	uint64_t N = (global_mem/sizeof(float)/4);
 	const int threads_per_block = 256;
 	const int num_blocks = (N + threads_per_block - 1) / threads_per_block;
 
 	// initialise events
 	float time = 0.0;
 	cudaEvent_t start, stop;
-	cudaEventCreate(&start);
-	cudaEventCreate(&stop);
+	CUDA_CHECK(cudaEventCreate(&start));
+	CUDA_CHECK(cudaEventCreate(&stop));
 
 	// initialise triad data
 	float* h_A = new float[N];
@@ -57,21 +127,25 @@ double global_GPU_mem_bandwidth(int device) {
 		h_C[i] = 0.0;
 	}
 
+	cudaError_t err;
+
 	//copy vectors to device using cudaMalloc
 	float* d_A;
 	float* d_B;
 	float* d_C;
-	cudaMalloc(&d_A, N * sizeof(float));
-	cudaMalloc(&d_B, N * sizeof(float));
-	cudaMalloc(&d_C, N * sizeof(float));
-	cudaMemcpy(d_A, h_A, N, cudaMemcpyHostToDevice);
-	cudaMemcpy(d_B, h_B, N, cudaMemcpyHostToDevice);
-	cudaMemcpy(d_C, h_C, N, cudaMemcpyHostToDevice);
+	CUDA_CHECK(cudaMalloc(&d_A, N * sizeof(float)));
+	CUDA_CHECK(cudaMalloc(&d_B, N * sizeof(float)));
+	CUDA_CHECK(cudaMalloc(&d_C, N * sizeof(float)));
+
+	CUDA_CHECK(cudaMemcpy(d_A, h_A, N * sizeof(float), cudaMemcpyHostToDevice));
+	CUDA_CHECK(cudaMemcpy(d_B, h_B, N * sizeof(float), cudaMemcpyHostToDevice));
+	CUDA_CHECK(cudaMemcpy(d_C, h_C, N * sizeof(float), cudaMemcpyHostToDevice));
 
 	// warmup runs
 	for(int i = 0; i < 10; ++i) {
 		global_triad<<<num_blocks, threads_per_block>>>(d_A, d_B, d_C, N);
-		cudaDeviceSynchronize();
+		CUDA_CHECK(cudaGetLastError());
+		CUDA_CHECK(cudaDeviceSynchronize());
 	}
 
 	/* -- run triad kernel -- */
@@ -80,6 +154,11 @@ double global_GPU_mem_bandwidth(int device) {
 
 		cudaEventRecord(start);
 		global_triad<<<num_blocks, threads_per_block>>>(d_A, d_B, d_C, N);
+		err = cudaGetLastError();
+		if(err != cudaSuccess) {
+			std::cerr << "Launch error: " << cudaGetErrorString(err) << "\n";
+			return -1;
+		}
 		cudaEventRecord(stop);
 		cudaEventSynchronize(stop);
 		float ms = 0.0f;
@@ -90,18 +169,20 @@ double global_GPU_mem_bandwidth(int device) {
 	//average results
 	time /= runs;
 
-	cudaMemcpy(h_C, d_C, N, cudaMemcpyDeviceToHost);
+	CUDA_CHECK(cudaMemcpy(h_C, d_C, N * sizeof(float), cudaMemcpyDeviceToHost));
 	float checksum = 0.0;
 	for(int i = 0; i < N; ++i) {
 		checksum += h_C[i];
 	}
 
-	cudaEventDestroy(start);
-	cudaEventDestroy(stop);
+	CUDA_CHECK(cudaEventDestroy(start));
+	CUDA_CHECK(cudaEventDestroy(stop));
 
-	cudaFree(d_A);
-	cudaFree(d_B);
-	cudaFree(d_C);
+	CUDA_CHECK(cudaFree(d_A));
+	CUDA_CHECK(cudaFree(d_B));
+	CUDA_CHECK(cudaFree(d_C));
+
+	CUDA_CHECK(cudaDeviceReset());
 
 	delete[] h_A;
 	delete[] h_B;
@@ -116,318 +197,829 @@ double global_GPU_mem_bandwidth(int device) {
 	return GBs;
 }
 
-
-__global__
-void init_fp32(float* A, size_t size) {
-	int idx = blockDim.x * blockIdx.x + threadIdx.x;
-	if(idx < size) {
-		A[idx] = fmodf(idx * 0.01f, 1.0f);
-	}
-}
-
-__global__
-void init_fp16(float* A, size_t size) {
-	int idx = blockDim.x * blockIdx.x + threadIdx.x;
-	if(idx < size) {
-		float val = fmodf(idx * 0.001f, 1.0f);
-		A[idx] = __float2half(val);
-	}
-}
-
-__global__
-void init_bf16(__nv_bfloat16* A, size_t size) {
-	int idx = blockDim.x * blockIdx.x + threadIdx.x;
-	if(idx < size) {
-		float val = fmodf(idx * 0.001f, 1.0f);
-		A[idx] = __float2bfloat16(val);
-	}
-}
-
-__global__
-void init_int8(int8_t* A, size_t size) {
-	int idx = blockDim.x * blockIdx.x + threadIdx.x;
-	if(idx < size) {
-		int val = (idx % 255) - 127;
-		A[idx] = static_cast<int8_t>(val);
-	}
-}
-
-__global__
-void init_fp64(double* A, size_t size) {
-	int idx = blockDim.x * blockIdx.x + threadIdx.x;
-	if(idx < size) {
-		A[idx] = fmodf(idx * 0.001, 1.0);
-	}
-}
-
-double single_GPU_TOPS(
+double single_GPU_TOPS (
 		int device,
 		cublasGemmAlgo_t algo,
-		cudaDataType_t type,
-		cublasComputeType_t computeType,
+		cudaDataType type,
+		cudaDataType computeType,
 		cublasMath_t mathMode
-) {
-	//check andf set device
-	int numDevices = 0;
-	cudaGetDeviceCount(&numDevices);
-	if(device >= numDevices) {
-		return -1;
+		) 
+{
+	// Check input variables
+	cudaDeviceProp prop;
+	CUDA_CHECK(cudaGetDeviceProperties(&prop, device));
+	int sm = prop.major * 10 + prop.minor;
+	if(!checkValidGemmConfig(sm, algo, type, computeType, mathMode)) {
+		std::cerr << "wrong input variables on single_GPU_TOPS\n";
+		return -1.0;
 	}
-	cudaSetDevice(device);
 
-	// Set handle
+	// Check and set device
+	int numDevices = 0;
+	CUDA_CHECK(cudaGetDeviceCount(&numDevices));
+	if(device > numDevices) {
+		return -1.0;
+	}
+	CUDA_CHECK(cudaSetDevice(device));
+
+	// Set cuBlas handle
 	cublasHandle_t handle;
-	cublasCreate(&handle);
-	cublasSetMathMode(handle, mathMode);
+	CUBLAS_CHECK(cublasCreate(&handle));
 
-	// find GPU onboard memory
-	size_t free_bytes;
-	size_t total_bytes;
-	cudaMemGetInfo(&free_bytes, &total_bytes);
+	// Check if tensor
+	bool isTensor;
+	if(algo == CUBLAS_GEMM_DEFAULT_TENSOR_OP) {
+		isTensor = true;
+	}
+	else {
+		isTensor = false;
+	}
 
-	// Each matrix = 20% of GPU memory
-	uint64_t matrix_size = 0;
-	matrix_size = (total_bytes * (1/5)) / 4;
-	uint64_t sqrt = std::sqrt(matrix_size);
+	// Set math mode
+	CUBLAS_CHECK(cublasSetMathMode(handle, mathMode));
 
-	float TOPS = 0.0; //trillion operations per second, avg results of each GEMM and return
+	// Get device memory and define sizes for GEMM calculation
+	size_t globalMem = prop.totalGlobalMem;
 
-	// Set of matrix side sizes in bits
-	std::vector<uint64_t> edges = {sqrt/4, sqrt/5, sqrt/3, sqrt/2, (sqrt * 3)/4,
-		(sqrt * 4)/5, (sqrt * 5)/4, (sqrt * 4)/3, sqrt * 2, sqrt * 3,
-		sqrt * 4, sqrt};
+	// Set struct with sets of matrix side lengths 
+	std::vector<gemmDims> matSides = setGemmSides(globalMem, type, 5);
 
-	int threads = 256;
-	int blocks = (matrix_size + threads - 1) / threads;
+	// set vector of TOPS results to average at the end
+	float TOPS = 0;
 
-	cudaEvent_t start, stop;
-	cudaEventCreate(&start);
-	cudaEventCreate(&stop);
-	// Create a loop that to generate and test GEMM computations
-	// for different sizes of matrix
-	for(int x = 0; x < edges.size(); ++x) {
-		// generate matrices
-		void* A;
-		void* B;
-		void* C;
+	// create timers
+	cudaEvent_t start, end;
+	CUDA_CHECK(cudaEventCreate(&start));
+	CUDA_CHECK(cudaEventCreate(&end));
 
-		// declare matrix sizes
-		uint64_t M;
-		uint64_t N;
-		uint64_t K;
-		uint64_t matrix_volume;
+	// Declare pointers to matrices on device
+	void* A;
+	void* B;
+	void* C;
+	
+	// runs through every possible set of sides defined in matSides
+	for(int i = 0; i < matSides.size(); ++i) {
+		// set matrix values
+		CUDA_CHECK(setMatrices(&A, &B, &C,
+			matSides[i].m, matSides[i].n, matSides[i].k, 
+			type
+		));	
 
-		uint64_t tops = 0; // tops for each GEMM dimension, will average to fine TOPS
-
-		// setup for cuda timers
-		cudaEvent_t start, end;
-		cudaEventCreate(&start);
-		cudaEventCreate(&end);
-
-
-		switch(type) {
-			cudaError_t err;
-			case CUDA_R_32F:
-				// set matrix info
-				matrix_volume = matrix_size/32;
-				M = edges[x]/32;
-				N = matrix_volume/M;
-				K = M;
-
-				//allocate memory on GPU
-				err = cudaMalloc(&A, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&B, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&C, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				
-				// initialise matrix values
-				init_fp32<<<blocks, threads>>>(static_cast<float*>(A), matrix_volume/32);
-				init_fp32<<<blocks, threads>>>(static_cast<float*>(B), matrix_volume/32);
-				init_fp32<<<blocks, threads>>>(static_cast<float*>(C), matrix_volume/32);
-				break;
-			
-			case CUDA_R_16F:
-				matrix_volume = matrix_size/16;
-				M = edges[x]/16;
-				N = matrix_volume/M;
-				K = M;
-
-				err = cudaMalloc(&A, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&B, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&C, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-
-				init_fp16<<<blocks, threads>>>(static_cast<float*>(A), matrix_volume/16);
-				init_fp16<<<blocks, threads>>>(static_cast<float*>(B), matrix_volume/16);
-				init_fp16<<<blocks, threads>>>(static_cast<float*>(C), matrix_volume/16);
-				break;
-
-			case CUDA_R_16BF:
-				matrix_volume = matrix_size/16;
-				M = edges[x]/16;
-				N = matrix_volume/M;
-				K = M;
-
-				err = cudaMalloc(&A, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&B, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&C, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-
-				init_bf16<<<blocks, threads>>>(static_cast<__nv_bfloat16*>(A), matrix_volume/16);	
-				init_bf16<<<blocks, threads>>>(static_cast<__nv_bfloat16*>(B), matrix_volume/16);
-				init_bf16<<<blocks, threads>>>(static_cast<__nv_bfloat16*>(C), matrix_volume/16);
-
-			case CUDA_R_8I:
-				matrix_volume = matrix_size/8;
-				M = edges[x]/8;
-				N = matrix_volume/M;
-				K = M;
-
-				err = cudaMalloc(&A, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&B, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&C, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-
-				init_int8<<<blocks, threads>>>(static_cast<int8_t*>(A), matrix_volume/8);
-				init_int8<<<blocks, threads>>>(static_cast<int8_t*>(B), matrix_volume/8);
-				init_int8<<<blocks, threads>>>(static_cast<int8_t*>(C), matrix_volume/8);
-
-			case CUDA_R_64F:
-				matrix_volume = matrix_size/64;
-				M = edges[x]/64;
-				N = matrix_volume/M;
-				K = M;
-
-				err = cudaMalloc(&A, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&B, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-				err = cudaMalloc(&C, matrix_size);
-				if(err != cudaSuccess) {
-					std::cerr << "cudaMalloc failed\n";
-					return -1.0;
-				}
-
-				init_fp64<<<blocks, threads>>>(static_cast<double*>(A), matrix_volume/64);
-				init_fp64<<<blocks, threads>>>(static_cast<double*>(B), matrix_volume/64);
-				init_fp64<<<blocks, threads>>>(static_cast<double*>(C), matrix_volume/64);
-
-			default:
-				std::cerr << "unsupported CUDA datatype\n";
-				return -1.0;
-		}
-
-		// set remaining GEMM inputs
-		float alpha = 1.0;
-		float beta = 0.5;
-
-		// Run warmup GEMM
-		cublasGemmEx(
-				handle,
-				CUBLAS_OP_N, CUBLAS_OP_N,
-				M, N, K,
-				&alpha,
-				A, type, M,
-				B, type, N,
-				&beta,
-				C, type, K,
+		// Run and record GEMM benchmark
+		float result;
+		if(!isTensor) {
+			result = computeTOPSSingleGPU(
+				A, 
+				B, 
+				C,
+				matSides[i].m,
+				matSides[i].n,
+				matSides[i].k,
+				type,
 				computeType,
-				algo
-		);
-		
-		// Run GEMM multiple times and take average TOPS
-		int runs = 100;
-		for(int i = 0; i < runs; ++i) {
-			cudaEventRecord(start);
-			cublasGemmEx(
-					handle,
-					CUBLAS_OP_N, CUBLAS_OP_N,
-					M, N, K,
-					&alpha,
-					A, type, M,
-					B, type, N,
-					&beta,
-					C, type, K,
-					computeType,
-					algo
+				algo,
+				handle
 			);
-			cudaEventRecord(end);
-			float ms = 0.0f;
-			cudaEventElapsedTime(&ms, start, end);
-			double ops = M * N * K * 2;
-			tops += ops/(ms/1000);
+		}
+		else {
+			result = computeTOPSSingleGPUTensor(
+				A, 
+				B, 
+				C, 
+				matSides[i].m, 
+				matSides[i].n, 
+				matSides[i].k, 
+				type, 
+				computeType
+			);
 		}
 
-		// Add results to output
-		tops /= runs;
-		TOPS += tops;
+		if(result == -1) {
+			return -1;
+		}
+		TOPS += result;
 
-		// clean up memory
-		cudaEventDestroy(start);
-		cudaEventDestroy(stop);
-
+		// free matrix memory
 		cudaFree(A);
 		cudaFree(B);
 		cudaFree(C);
+		cudaDeviceReset();
 	}
+	// calculate average TOPS
+	TOPS /= static_cast<float>(matSides.size());
 
-	cublasDestroy(handle);
-
-	TOPS /= edges.size();
 	return TOPS;
 }
 
-double tensor_GEMM(int device) {
-	//TODO
-	return -1.0;
+// Sets a set of sides for the matrices
+// each side is stored as a vector
+std::vector<gemmDims> setGemmSides(size_t globalMem, cudaDataType type, int numSides) {
+	size_t elementSize;		// size of each element in bytes
+	bool tensor;						// tensor core calculations must be multiples of 8
+	switch(type) {
+		case CUDA_R_32F:
+			tensor = false;
+			elementSize = 4;
+			break;
+		case CUDA_R_16F:
+			tensor = true;
+			elementSize = 2;
+			break;
+		case CUDA_R_8I:
+			tensor = true;
+			elementSize = 1;
+			break;
+		case CUDA_R_64F:
+			tensor = false;
+			elementSize = 8;
+			break;
+		default:
+			throw std::runtime_error("unsupported type\n");
+	}
+
+	// Produce amount of elements to work around
+	size_t calcMem;
+	calcMem = globalMem * 0.7 / elementSize;
+	
+	size_t maxSide = std::sqrt(calcMem/3);	// divide by 3 for three matrices
+	std::vector<gemmDims> dims;
+	int vals = numSides;
+	for(int i = 0; i < vals; ++i) {
+		for(int j = 0; j < vals; ++j) {
+			for(int k = 0; k < vals; ++k) {
+				int x = maxSide / (i + 1);
+				int y = maxSide / (j + 1);
+				int z = maxSide / (k + 1);
+				// Tensor cores muxt be in multiples of 32 on Turing
+				if(tensor) {
+					x = (x / 32) * 32;
+					y = (y / 32) * 32;
+					z = (z / 32) * 32;
+				}
+				gemmDims temp = {x, y, z};
+				dims.push_back(temp);
+			}
+		}
+	}
+	return dims;
+}
+
+bool isSupportedAlgo(cublasGemmAlgo_t algo) {
+	switch(algo){
+		case CUBLAS_GEMM_DEFAULT:
+			return true;
+		case CUBLAS_GEMM_DEFAULT_TENSOR_OP:
+			return true;
+	}
+	return false;
+}
+
+bool isSupportedDataType(cudaDataType type) {
+	switch(type) {
+		case CUDA_R_32F:
+			return true;
+		case CUDA_R_16F:
+			return true;
+		case CUDA_R_8I:
+			return true;
+		case CUDA_R_32I:
+			return true;
+		case CUDA_R_64F:
+			return true;
+	}
+	return false;
+}
+
+bool isSupportedComputeType(cudaDataType computeType) {
+	switch(computeType) {
+		case CUDA_R_32F:
+			return true;
+		case CUDA_R_16F:
+			return true;
+		case CUDA_R_8I:
+			return true;
+		case CUDA_R_32I:
+			return true;
+		case CUDA_R_64F:
+			return true;
+	}
+	return false;
+}
+
+bool isSupportedMathMode(cublasMath_t mathMode) {
+	switch(mathMode) {
+		case CUBLAS_DEFAULT_MATH:
+			return true;
+		case CUBLAS_TENSOR_OP_MATH:
+			return true;
+		case CUBLAS_TF32_TENSOR_OP_MATH:
+			return true;
+	}
+	return false;
+}
+
+bool checkValidGemmConfig(
+		int sm,
+		cublasGemmAlgo_t algo, 
+		cudaDataType type, 
+		cudaDataType computeType,
+		cublasMath_t mathMode
+) {
+	if(!isSupportedAlgo(algo)) {
+		return false;
+	}
+	if(!isSupportedDataType(type)) {
+		return false;
+	}
+	if(!isSupportedComputeType(computeType)) {
+		return false;
+	}
+	if(!isSupportedMathMode(mathMode)) {
+		return false;
+	}
+
+	// Check if Tensor core requested
+	bool isTensor = 
+		(mathMode == CUBLAS_TENSOR_OP_MATH) ||
+		(mathMode == CUBLAS_TF32_TENSOR_OP_MATH) ||
+		(algo == CUBLAS_GEMM_DEFAULT_TENSOR_OP);
+	
+	// FP32 always valid
+	if(type == CUDA_R_32F && computeType == CUDA_R_32F) {
+		return true;
+	}
+
+	// FP16
+	if(type == CUDA_R_16F) {
+		if(!isTensor) {
+			return false;
+		}
+
+		// Volta / Turing
+		if(sm < 80) {
+			return computeType == CUDA_R_32F;
+		}
+
+		// Ampere+
+		if(sm >= 80) {
+			return (computeType == CUDA_R_32F || computeType == CUDA_R_16F);
+		}
+	}
+
+	// TF32
+	if(type == CUDA_R_32F && mathMode == CUBLAS_TF32_TENSOR_OP_MATH) {
+		return sm >= 80;
+	}
+
+	// INT8
+	if(type == CUDA_R_8I) {
+		if(!isTensor) {
+			return false;
+		}
+		return computeType == CUDA_R_32I;
+	}
+
+	// FP64
+	if(type == CUDA_R_64F) {
+		return (computeType == CUDA_R_64F && mathMode == CUBLAS_DEFAULT_MATH);
+	}
+
+	return false;
+}
+
+// Matrix value setter kernels
+// x, y are dimensions of the matrix
+__global__
+void set_matrix_32F(float* A, int x, int y) {
+	int idx = blockIdx.x * blockDim.x + threadIdx.x;
+	if(idx < x * y) {
+		A[idx] = 1.0f;
+	}
+}
+
+__global__
+void set_matrix_16F(__half* A, int x, int y) {
+	int idx = blockIdx.x * blockDim.x + threadIdx.x;
+	if(idx < x * y) {
+		A[idx] = static_cast<__half>(1.0);
+	}
+}
+__global__
+void set_matrix_8I(int8_t* A, int x, int y) {
+	int idx = blockIdx.x * blockDim.x + threadIdx.x;
+	if(idx < x * y) {
+		A[idx] = static_cast<int8_t>(1);
+	}
+}
+
+__global__
+void set_matrix_32I(int32_t* A, int x, int y) {
+	int idx = blockIdx.x * blockDim.x + threadIdx.x;
+	if(idx < x * y) {
+		A[idx] = static_cast<int32_t>(1);
+	}
+}
+
+__global__
+void set_matrix_64F(double* A, int x, int y) {
+	int idx = blockIdx.x * blockDim.x + threadIdx.x;
+	if(idx < x * y) {
+		A[idx] = static_cast<double>(1.0);
+	}
+}
+
+
+// allocate memory and set values for matrices
+cudaError_t setMatrices(void** A, void** B, void** C, int m, int n, int k, cudaDataType type) {
+	int element_size;
+	int threads = 256;
+	int blocksA = 0;
+	int blocksB = 0;
+	int blocksC = 0;
+	cudaError_t err;
+	switch(type) 
+		case CUDA_R_32F: {
+			element_size = 4;
+			err = cudaMalloc(A, m * k * element_size);
+			if(err != cudaSuccess) {
+				return err;
+			}
+			err = cudaMalloc(B, n * k * element_size);
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				return err;
+			}
+			err = cudaMalloc(C, m * n * element_size);
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				return err;
+			}
+
+			// Set thread and block sizes
+			blocksA = ((m * k) + threads - 1) / threads;
+			blocksB = ((k * n) + threads - 1) / threads;
+			blocksC = ((m * n) + threads - 1) / threads;
+
+			// -- investigate cudaMalloc, might be allocating to the wrong place by using &A -- //
+			set_matrix_32F<<<blocksA, threads>>>(static_cast<float*>(*A), m, k);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			
+			set_matrix_32F<<<blocksB, threads>>>(static_cast<float*>(*B), k, n);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			
+			set_matrix_32F<<<blocksC, threads>>>(static_cast<float*>(*C), m, n);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}			
+			cudaDeviceSynchronize();
+			return cudaSuccess;
+				
+
+		case CUDA_R_16F: {
+			element_size = 2;
+			err = cudaMalloc(A, m * k * element_size);
+			if(err != cudaSuccess) {
+				return err;
+			}
+			err = cudaMalloc(B, n * k * element_size);
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				return err;
+			}
+			err = cudaMalloc(C, m * n * element_size);
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				return err;
+			}
+
+			// Set thread and block sizes
+			blocksA = ((m * k) + threads - 1) / threads;
+			blocksB = ((k * n) + threads - 1) / threads;
+			blocksC = ((m * n) + threads - 1) / threads;
+
+			set_matrix_16F<<<blocksA, threads>>>(static_cast<__half*>(*A), m, k);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			set_matrix_16F<<<blocksB, threads>>>(static_cast<__half*>(*B), k, n);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			set_matrix_16F<<<blocksC, threads>>>(static_cast<__half*>(*C), m, n);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			cudaDeviceSynchronize();
+			return cudaSuccess;
+		}
+
+		case CUDA_R_8I: {
+			element_size = 1;
+			err = cudaMalloc(A, m * k * element_size);
+			if(err != cudaSuccess) {
+				return err;
+			}
+			err = cudaMalloc(B, n * k * element_size);
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				return err;
+			}
+			err = cudaMalloc(C, m * n * element_size);
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				return err;
+			}
+
+			// Set thread and block sizes
+			blocksA = ((m * k) + threads - 1) / threads;
+			blocksB = ((k * n) + threads - 1) / threads;
+			blocksC = ((m * n) + threads - 1) / threads;
+
+			set_matrix_8I<<<blocksA, threads>>>(static_cast<int8_t*>(*A), m, k);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B); 
+				cudaFree(C);
+				return err;
+			}
+			set_matrix_8I<<<blocksB, threads>>>(static_cast<int8_t*>(*B), k, n);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			set_matrix_8I<<<blocksC, threads>>>(static_cast<int8_t*>(*C), m, n);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			cudaDeviceSynchronize();
+			return cudaSuccess;
+		}
+
+		case CUDA_R_64F: {
+			element_size = 8;
+			err = cudaMalloc(A, m * k * element_size);
+			if(err != cudaSuccess) {
+				return err;
+			}
+			err = cudaMalloc(B, n * k * element_size);
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				return err;
+			}
+			err = cudaMalloc(C, m * n * element_size);
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				return err;
+			}
+
+			// Set thread and block sizes
+			blocksA = ((m * k) + threads - 1) / threads;
+			blocksB = ((k * n) + threads - 1) / threads;
+			blocksC = ((m * n) + threads - 1) / threads;
+
+			set_matrix_64F<<<blocksA, threads>>>(static_cast<double*>(*A), m, k);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			set_matrix_64F<<<blocksB, threads>>>(static_cast<double*>(*B), k, n);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			set_matrix_64F<<<blocksC, threads>>>(static_cast<double*>(*C), m, n);
+			err = cudaGetLastError();
+			if(err != cudaSuccess) {
+				cudaFree(A);
+				cudaFree(B);
+				cudaFree(C);
+				return err;
+			}
+			cudaDeviceSynchronize();
+			return cudaSuccess;
+		}
+
+		default:
+			throw std::runtime_error("unsupported type\n");
+	}
+	return cudaSuccess;
+}
+
+// runs GEMM benchmark and times performance
+float computeTOPSSingleGPU(
+		void* A, 
+		void* B, 
+		void* C, 
+		int m, 
+		int n, 
+		int k,
+		cudaDataType type,
+		cudaDataType computeType,
+		cublasGemmAlgo_t algo,
+		cublasHandle_t handle
+) {
+	float TOPS = 0;
+
+	cudaEvent_t start, end;
+	CUDA_CHECK(cudaEventCreate(&start));
+	CUDA_CHECK(cudaEventCreate(&end));
+	float time = 0;
+	double FLOPs = 0;
+
+	const int32_t alpha = 2;
+	const int32_t beta = 1;
+
+	// Define C datatype and set up INT8 GEMM
+	cudaDataType typeC = type;
+
+	// run warmup function
+	CUBLAS_CHECK(cublasGemmEx(
+				handle,
+				CUBLAS_OP_N,
+				CUBLAS_OP_T,
+				m, n, k,
+				&alpha,
+				A, type, m,
+				B, type, n,
+				&beta,
+				C, typeC, m,
+				computeType,
+				algo
+				)
+			);
+	cudaDeviceSynchronize();
+
+	// loop x times and measure operations and speed
+	int iterations = 10;
+	for(int i = 0; i < iterations; ++i) {
+		float ms = 0.0f;
+
+		cudaEventRecord(start);
+		CUBLAS_CHECK(cublasGemmEx(
+					handle,
+					CUBLAS_OP_N,
+					CUBLAS_OP_T,
+					m, n, k,
+					&alpha,
+					A, type, m,
+					B, type, n,
+					&beta,
+					C, typeC, m,
+					computeType,
+					algo
+					)
+				);
+		cudaEventRecord(end);
+		cudaEventSynchronize(end);
+
+		FLOPs = 2.0 * m * n * k;
+		cudaEventElapsedTime(&ms, start, end);
+		time = ms * 1e-3;
+		double tflops = FLOPs / time * 1e-12;
+		TOPS += tflops;
+	}
+	TOPS /= static_cast<float>(iterations);
+
+	// Cleanup environment
+	cudaEventDestroy(start);
+	cudaEventDestroy(end);
+
+	return TOPS;
+}
+
+float computeTOPSSingleGPUTensor(
+		void* A, 
+		void* B, 
+		void* C, 
+		int m, 
+		int n, 
+		int k,
+		cudaDataType type,
+		cudaDataType computeType
+) {
+	// Set scalars
+	float alpha = 1.0f;
+	float beta = 0.5f;
+
+	// Create workspace
+	void * workspace;
+	size_t workspaceSize = 64 * 1024 * 1024;
+	CUDA_CHECK(cudaMalloc(&workspace, workspaceSize));
+
+	// Initialise heuristic results
+	cublasLtMatmulDesc_t desc;
+	cublasLtMatrixLayout_t layoutA, layoutB, layoutC;
+	cublasLtMatmulPreference_t preference;
+	int returnedHeuristics = 0;
+	cublasLtMatmulHeuristicResult_t heuristicsResult[10];
+
+	// create handle
+	cublasLtHandle_t handle;
+	cublasLtCreate(&handle);
+
+	// Define op descriptors
+	cublasOperation_t opA, opB;
+
+	switch(type) {
+		case(CUDA_R_8I):
+			// Define matrix operation descriptors
+			opA = CUBLAS_OP_T;
+			opB = CUBLAS_OP_N;
+
+			// Define desc
+			cublasLtMatmulDescCreate(&desc, CUBLAS_COMPUTE_32I, CUDA_R_32F);
+
+			// Define matrix attributes
+			cublasLtMatmulDescSetAttribute(
+				desc,
+				CUBLASLT_MATMUL_DESC_TRANSA,
+				&opA,
+				sizeof(opA)
+			);
+			cublasLtMatmulDescSetAttribute(
+				desc,
+				CUBLASLT_MATMUL_DESC_TRANSB,
+				&opB,
+				sizeof(opB)
+			);
+
+			// Define matrix layouts
+			cublasLtMatrixLayoutCreate(&layoutA, CUDA_R_8I, k, m, k);
+			cublasLtMatrixLayoutCreate(&layoutB, CUDA_R_8I, k, n, k);
+			cublasLtMatrixLayoutCreate(&layoutC, CUDA_R_8I, m, n, m);
+			break;
+
+		case(CUDA_R_16F):
+			opA = CUBLAS_OP_N;
+			opB = CUBLAS_OP_N;
+
+			cublasLtMatmulDescCreate(&desc, CUBLAS_COMPUTE_32F, CUDA_R_32F);
+
+			cublasLtMatmulDescSetAttribute(
+				desc,
+				CUBLASLT_MATMUL_DESC_TRANSA,
+				&opA,
+				sizeof(opA)
+			);
+			cublasLtMatmulDescSetAttribute(
+				desc,
+				CUBLASLT_MATMUL_DESC_TRANSB,
+				&opB,
+				sizeof(opB)
+			);
+
+			cublasLtMatrixLayoutCreate(&layoutA, CUDA_R_16F, m, k, m);
+			cublasLtMatrixLayoutCreate(&layoutB, CUDA_R_16F, k, n, k);
+			cublasLtMatrixLayoutCreate(&layoutC, CUDA_R_16F, m, n, m);
+	}
+
+
+	// Define preference
+	cublasLtMatmulPreferenceCreate(&preference);
+	cublasLtMatmulPreferenceSetAttribute(
+		preference,
+		CUBLASLT_MATMUL_PREF_MAX_WORKSPACE_BYTES,
+		&workspaceSize,
+		sizeof(workspaceSize)
+	);
+
+	// Get heuristic Gemm kernel
+	cublasLtMatmulAlgoGetHeuristic(
+		handle, 
+		desc, 
+		layoutA, 
+		layoutB, 
+		layoutC, 
+		layoutC, 
+		preference, 
+		1, 
+		heuristicsResult, 
+		&returnedHeuristics
+	);
+	if(returnedHeuristics == 0) {
+		std::cout << "0 heuristics found\n";
+		return -1.0;
+	}
+
+	// set stream
+	cudaStream_t stream;
+	CUDA_CHECK(cudaStreamCreate(&stream));
+
+
+	CUBLAS_CHECK(
+		cublasLtMatmul(
+			handle,
+			desc,
+			&alpha,
+			A, layoutA,
+			B, layoutB,
+			&beta,
+			C, layoutC,
+			C, layoutC,
+			&heuristicsResult[0].algo,
+			workspace,
+			workspaceSize,
+			stream
+		)
+	);
+	cudaDeviceSynchronize();
+
+	// setup timers
+	cudaEvent_t start, end;
+	cudaEventCreate(&start);
+	cudaEventCreate(&end);
+
+	// Timed loop
+	const int iterations = 10;
+	double TOPS = 0.0;
+
+	for(int i = 0; i < iterations; ++i) {
+		cudaEventRecord(start);
+
+		CUBLAS_CHECK(
+			cublasLtMatmul(
+				handle,
+				desc,
+				&alpha,
+				A, layoutA,
+				B, layoutB,
+				&beta,
+				C, layoutC,
+				C, layoutC,
+				&heuristicsResult[0].algo,
+				workspace,
+				workspaceSize,
+				stream
+			)
+		);
+		cudaEventRecord(end);
+		cudaEventSynchronize(end);
+
+		// calculate TOPS
+		float ms;
+		cudaEventElapsedTime(&ms, start, end);
+
+		double flops = 2.0 * m * n * k;
+		double tflops = flops / (ms * 1e-3) * 1e-12;
+		TOPS += tflops;
+	}
+
+	TOPS /= iterations;
+
+	// Cleanup environment
+	cublasLtMatmulDescDestroy(desc);
+	cublasLtMatrixLayoutDestroy(layoutA);
+	cublasLtMatrixLayoutDestroy(layoutB);
+	cublasLtMatrixLayoutDestroy(layoutC);
+	cublasLtDestroy(handle);
+	cudaEventDestroy(start);
+	cudaEventDestroy(end);
+
+	return static_cast<float>(TOPS);
 }

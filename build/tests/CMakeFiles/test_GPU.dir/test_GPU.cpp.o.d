@@ -250,8 +250,6 @@ tests/CMakeFiles/test_GPU.dir/test_GPU.cpp.o: \
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include/gtest/gtest-typed-test.h \
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include/gtest/gtest_pred_impl.h \
  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-src/googletest/include/gtest/gtest_prod.h \
- /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/gpu_microbenchmarks.h \
- /opt/cuda/targets/x86_64-linux/include/cublas_v2.h \
  /opt/cuda/targets/x86_64-linux/include/cublas_api.h \
  /opt/cuda/targets/x86_64-linux/include/driver_types.h \
  /opt/cuda/targets/x86_64-linux/include/crt/host_defines.h \
@@ -301,6 +299,9 @@ tests/CMakeFiles/test_GPU.dir/test_GPU.cpp.o: \
  /opt/cuda/targets/x86_64-linux/include/cuda_fp16.h \
  /opt/cuda/targets/x86_64-linux/include/cuda_bf16.hpp \
  /opt/cuda/targets/x86_64-linux/include/library_types.h \
+ /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/microbenchmarks/gpu_microbenchmarks.h \
+ /opt/cuda/targets/x86_64-linux/include/cublas_v2.h \
+ /opt/cuda/targets/x86_64-linux/include/cublas_api.h \
  /opt/cuda/targets/x86_64-linux/include/cuda_runtime.h \
  /opt/cuda/targets/x86_64-linux/include/crt/host_config.h \
  /opt/cuda/targets/x86_64-linux/include/library_types.h \

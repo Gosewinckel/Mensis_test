@@ -48,8 +48,8 @@ double global_GPU_mem_bandwidth(int device);
 double single_GPU_TOPS(
 		int device,
 		cublasGemmAlgo_t algo,
-		cudaDataType_t type,
-		cublasComputeType_t computeType,
+		cudaDataType type,
+		cudaDataType computeType,
 		cublasMath_t mathMode
 );
 
