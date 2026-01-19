@@ -1,0 +1,37 @@
+{
+  "tests": 5,
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "GPUTest",
+      "tests": 5,
+      "testsuite": [
+        {
+          "name": "global_bandwidth_test",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/system_benchmarks\/tests\/test_GPU.cpp",
+          "line": 8
+        },
+        {
+          "name": "TOPS_test",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/system_benchmarks\/tests\/test_GPU.cpp",
+          "line": 14
+        },
+        {
+          "name": "TOPS_test_16F_CUDA",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/system_benchmarks\/tests\/test_GPU.cpp",
+          "line": 21
+        },
+        {
+          "name": "TOPS_test_8I_CUDA",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/system_benchmarks\/tests\/test_GPU.cpp",
+          "line": 28
+        },
+        {
+          "name": "TOPS_test_64F_CUDA",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/system_benchmarks\/tests\/test_GPU.cpp",
+          "line": 35
+        }
+      ]
+    }
+  ]
+}

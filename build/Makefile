@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/b
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/usr/bin/ctest $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -194,7 +184,7 @@ test_machine: cmake_check_build_system
 
 # fast build rule for target.
 test_machine/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_machine.dir/build.make tests/CMakeFiles/test_machine.dir/build
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_machine.dir/build.make system_benchmarks/tests/CMakeFiles/test_machine.dir/build
 .PHONY : test_machine/fast
 
 #=============================================================================
@@ -207,7 +197,7 @@ test_CPU: cmake_check_build_system
 
 # fast build rule for target.
 test_CPU/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_CPU.dir/build.make tests/CMakeFiles/test_CPU.dir/build
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_CPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_CPU.dir/build
 .PHONY : test_CPU/fast
 
 #=============================================================================
@@ -220,7 +210,7 @@ test_disk: cmake_check_build_system
 
 # fast build rule for target.
 test_disk/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_disk.dir/build.make tests/CMakeFiles/test_disk.dir/build
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_disk.dir/build.make system_benchmarks/tests/CMakeFiles/test_disk.dir/build
 .PHONY : test_disk/fast
 
 #=============================================================================
@@ -233,7 +223,7 @@ test_GPU: cmake_check_build_system
 
 # fast build rule for target.
 test_GPU/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_GPU.dir/build.make tests/CMakeFiles/test_GPU.dir/build
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_GPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_GPU.dir/build
 .PHONY : test_GPU/fast
 
 #=============================================================================
@@ -298,7 +288,7 @@ collectors: cmake_check_build_system
 
 # fast build rule for target.
 collectors/fast:
-	$(MAKE) $(MAKESILENT) -f collectors/CMakeFiles/collectors.dir/build.make collectors/CMakeFiles/collectors.dir/build
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/collectors/CMakeFiles/collectors.dir/build.make system_benchmarks/collectors/CMakeFiles/collectors.dir/build
 .PHONY : collectors/fast
 
 #=============================================================================
@@ -311,7 +301,7 @@ microbenchmarks: cmake_check_build_system
 
 # fast build rule for target.
 microbenchmarks/fast:
-	$(MAKE) $(MAKESILENT) -f microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make microbenchmarks/CMakeFiles/microbenchmarks.dir/build
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/build
 .PHONY : microbenchmarks/fast
 
 main.o: main.cpp.o
@@ -350,7 +340,6 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... test"
 	@echo "... collectors"
 	@echo "... gmock"
 	@echo "... gmock_main"

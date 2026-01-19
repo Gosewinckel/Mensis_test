@@ -15,3 +15,7 @@ TODO defined by sectorn
  ***************************************************/ 
  ~ make set_gems() dynamically create matrices based
 	on size of CPU cache
+
+ ~ Make GPU GEMM work with BF32 dtype
+ ~ Make a GEMM function that runs on all available
+   GPUs to test peak machine compute

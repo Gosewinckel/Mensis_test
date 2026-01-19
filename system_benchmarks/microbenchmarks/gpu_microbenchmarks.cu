@@ -203,7 +203,7 @@ double single_GPU_TOPS (
 		cudaDataType type,
 		cudaDataType computeType,
 		cublasMath_t mathMode
-		) 
+	) 
 {
 	// Check input variables
 	cudaDeviceProp prop;

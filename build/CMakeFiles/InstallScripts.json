@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/cmake_install.cmake",
+		"/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/collectors/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

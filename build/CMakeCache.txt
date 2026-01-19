@@ -562,13 +562,13 @@ GTEST_HAS_ABSL:BOOL=OFF
 INSTALL_GTEST:BOOL=ON
 
 //Value Computed by CMake
-Mensis_test_BINARY_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build
+Mensis_test_BINARY_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks
 
 //Value Computed by CMake
-Mensis_test_IS_TOP_LEVEL:STATIC=ON
+Mensis_test_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-Mensis_test_SOURCE_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test
+Mensis_test_SOURCE_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks
 
 //Path to a file.
 OpenBLAS_INCLUDE_DIR:PATH=OpenBLAS_INCLUDE_DIR-NOTFOUND
@@ -798,7 +798,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
