@@ -217,6 +217,20 @@ test_GPU/fast:
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_GPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_GPU.dir/build
 .PHONY : test_GPU/fast
 
+# Convenience name for target.
+system_benchmarks/tests/CMakeFiles/test_runner.dir/rule:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 system_benchmarks/tests/CMakeFiles/test_runner.dir/rule
+.PHONY : system_benchmarks/tests/CMakeFiles/test_runner.dir/rule
+
+# Convenience name for target.
+test_runner: system_benchmarks/tests/CMakeFiles/test_runner.dir/rule
+.PHONY : test_runner
+
+# fast build rule for target.
+test_runner/fast:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/build
+.PHONY : test_runner/fast
+
 test_CPU.o: test_CPU.cpp.o
 .PHONY : test_CPU.o
 
@@ -313,6 +327,30 @@ test_machine.cpp.s:
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_machine.dir/build.make system_benchmarks/tests/CMakeFiles/test_machine.dir/test_machine.cpp.s
 .PHONY : test_machine.cpp.s
 
+test_runner.o: test_runner.cpp.o
+.PHONY : test_runner.o
+
+# target to build an object file
+test_runner.cpp.o:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/test_runner.cpp.o
+.PHONY : test_runner.cpp.o
+
+test_runner.i: test_runner.cpp.i
+.PHONY : test_runner.i
+
+# target to preprocess a source file
+test_runner.cpp.i:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/test_runner.cpp.i
+.PHONY : test_runner.cpp.i
+
+test_runner.s: test_runner.cpp.s
+.PHONY : test_runner.s
+
+# target to generate assembly for a file
+test_runner.cpp.s:
+	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build && $(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/test_runner.cpp.s
+.PHONY : test_runner.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -329,6 +367,7 @@ help:
 	@echo "... test_GPU"
 	@echo "... test_disk"
 	@echo "... test_machine"
+	@echo "... test_runner"
 	@echo "... test_CPU.o"
 	@echo "... test_CPU.i"
 	@echo "... test_CPU.s"
@@ -341,6 +380,9 @@ help:
 	@echo "... test_machine.o"
 	@echo "... test_machine.i"
 	@echo "... test_machine.s"
+	@echo "... test_runner.o"
+	@echo "... test_runner.i"
+	@echo "... test_runner.s"
 .PHONY : help
 
 

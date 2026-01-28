@@ -227,6 +227,19 @@ test_GPU/fast:
 .PHONY : test_GPU/fast
 
 #=============================================================================
+# Target rules for targets named test_runner
+
+# Build rule for target.
+test_runner: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_runner
+.PHONY : test_runner
+
+# fast build rule for target.
+test_runner/fast:
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/build
+.PHONY : test_runner/fast
+
+#=============================================================================
 # Target rules for targets named gmock
 
 # Build rule for target.
@@ -304,6 +317,19 @@ microbenchmarks/fast:
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/build
 .PHONY : microbenchmarks/fast
 
+#=============================================================================
+# Target rules for targets named runner
+
+# Build rule for target.
+runner: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runner
+.PHONY : runner
+
+# fast build rule for target.
+runner/fast:
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/runner/CMakeFiles/runner.dir/build.make system_benchmarks/runner/CMakeFiles/runner.dir/build
+.PHONY : runner/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -347,10 +373,12 @@ help:
 	@echo "... gtest_main"
 	@echo "... main_exe"
 	@echo "... microbenchmarks"
+	@echo "... runner"
 	@echo "... test_CPU"
 	@echo "... test_GPU"
 	@echo "... test_disk"
 	@echo "... test_machine"
+	@echo "... test_runner"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

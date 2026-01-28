@@ -344,9 +344,9 @@ std::vector<gemmDims> setGemmSides(size_t globalMem, cudaDataType type, int numS
 	size_t maxSide = std::sqrt(calcMem/3);	// divide by 3 for three matrices
 	std::vector<gemmDims> dims;
 	int vals = numSides;
-	for(int i = 0; i < vals; ++i) {
-		for(int j = 0; j < vals; ++j) {
-			for(int k = 0; k < vals; ++k) {
+	for(int i = 0; i < vals; i+=2) {
+		for(int j = 0; j < vals; j+=2) {
+			for(int k = 0; k < vals; k+=2) {
 				int x = maxSide / (i + 1);
 				int y = maxSide / (j + 1);
 				int z = maxSide / (k + 1);

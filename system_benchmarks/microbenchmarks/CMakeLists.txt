@@ -2,7 +2,6 @@ add_library(microbenchmarks cpu_microbenchmarks.cpp cpu_microbenchmarks.h disk_m
 
 enable_language(CUDA)
 
-target_include_directories(microbenchmarks PRIVATE ${OpenBLAS_INCLUDE_DIR})
 target_link_libraries(microbenchmarks PRIVATE ${OpenBLAS_LIB})
 
 target_link_libraries(microbenchmarks PRIVATE OpenMP::OpenMP_CXX)

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/third_party -I/opt/cuda/targets/x86_64-linux/include -I/opt/cuda/targets/x86_64-linux/include/cccl -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks/collectors -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks/runner
 
 CXX_FLAGS = 
 

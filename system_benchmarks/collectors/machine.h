@@ -28,11 +28,13 @@ class machine {
 		};
 	
 		struct GPU {
+			int device;
 			std::string model;
 			int streaming_multiprocessors;
 			int memory_capacity;
-			int memory_bandwidth;
-			std::string driver;
+			int computeMajor;
+			int computeMinor;
+			bool hasTensorCores;
 		};
 
 		struct Memory {
@@ -69,6 +71,7 @@ class machine {
 		// getters to access computer information
 		int get_cpu_count() {return cpu_count;}
 		const std::vector<CPU>& get_cpu() const {return cpu;}
+		int get_gpu_count() {return gpu_count;}
 		const std::vector<GPU>& get_gpu() const {return gpu;}
 		const std::vector<Memory>& get_memory() const {return memory;}
 		const std::vector<Storage>& get_storage() const {return storage;}

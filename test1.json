@@ -1,0 +1,80 @@
+{
+  "collectors": {
+    "CPUs": [
+      {
+        "AVX_support": false,
+        "caches": [
+          {
+            "level": 2,
+            "memory": 256
+          },
+          {
+            "level": 1,
+            "memory": 32
+          },
+          {
+            "level": 3,
+            "memory": 9216
+          },
+          {
+            "level": 1,
+            "memory": 32
+          }
+        ],
+        "clocks": 3999.998046875,
+        "core_count": 6,
+        "model": "Intel(R) Core(TM) i5-9400F CPU @ 2.90GHz"
+      }
+    ],
+    "GPUs": [
+      {
+        "computeMajor": 7,
+        "computeMinor": 5,
+        "device": 0,
+        "hasTensorCores": true,
+        "memory_capacity": 1720451072,
+        "model": "NVIDIA GeForce RTX 2060",
+        "streaming_multiprocessors": 30
+      }
+    ],
+    "RAM": [
+      {
+        "size": 8,
+        "speed": 2400
+      },
+      {
+        "size": 8,
+        "speed": 2400
+      }
+    ],
+    "Storage": [],
+    "storage": [
+      {
+        "type": "SSD/NVMe"
+      },
+      {
+        "type": "HDD"
+      }
+    ]
+  },
+  "microbenchmarks": {
+    "CPU": {
+      "bandwidth": 9.5642144325761,
+      "multi_thread_GFLOPs": 212.45370483398438,
+      "single_thread_GFLOPs": 50.182071685791016,
+      "synchronisation_overhead": 0.588752235,
+      "task_dispatch_throughput": 42833334.25425002,
+      "thread_wake_latency": 0.581
+    },
+    "GPUs": [
+      {
+        "TOPS": {
+          "16f": 27.452089309692383,
+          "32F": 6.516618728637695,
+          "8i": 58.862648010253906
+        },
+        "bandwidth": 297.17482982932603
+      }
+    ]
+  }
+}

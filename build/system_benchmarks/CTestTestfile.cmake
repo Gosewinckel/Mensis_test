@@ -7,3 +7,4 @@
 subdirs("tests")
 subdirs("collectors")
 subdirs("microbenchmarks")
+subdirs("runner")

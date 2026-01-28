@@ -154,24 +154,28 @@ _deps/googletest-build/googletest/clean: _deps/googletest-build/googletest/CMake
 system_benchmarks/all: system_benchmarks/tests/all
 system_benchmarks/all: system_benchmarks/collectors/all
 system_benchmarks/all: system_benchmarks/microbenchmarks/all
+system_benchmarks/all: system_benchmarks/runner/all
 .PHONY : system_benchmarks/all
 
 # Recursive "codegen" directory target.
 system_benchmarks/codegen: system_benchmarks/tests/codegen
 system_benchmarks/codegen: system_benchmarks/collectors/codegen
 system_benchmarks/codegen: system_benchmarks/microbenchmarks/codegen
+system_benchmarks/codegen: system_benchmarks/runner/codegen
 .PHONY : system_benchmarks/codegen
 
 # Recursive "preinstall" directory target.
 system_benchmarks/preinstall: system_benchmarks/tests/preinstall
 system_benchmarks/preinstall: system_benchmarks/collectors/preinstall
 system_benchmarks/preinstall: system_benchmarks/microbenchmarks/preinstall
+system_benchmarks/preinstall: system_benchmarks/runner/preinstall
 .PHONY : system_benchmarks/preinstall
 
 # Recursive "clean" directory target.
 system_benchmarks/clean: system_benchmarks/tests/clean
 system_benchmarks/clean: system_benchmarks/collectors/clean
 system_benchmarks/clean: system_benchmarks/microbenchmarks/clean
+system_benchmarks/clean: system_benchmarks/runner/clean
 .PHONY : system_benchmarks/clean
 
 #=============================================================================
@@ -213,6 +217,25 @@ system_benchmarks/microbenchmarks/clean: system_benchmarks/microbenchmarks/CMake
 .PHONY : system_benchmarks/microbenchmarks/clean
 
 #=============================================================================
+# Directory level rules for directory system_benchmarks/runner
+
+# Recursive "all" directory target.
+system_benchmarks/runner/all: system_benchmarks/runner/CMakeFiles/runner.dir/all
+.PHONY : system_benchmarks/runner/all
+
+# Recursive "codegen" directory target.
+system_benchmarks/runner/codegen: system_benchmarks/runner/CMakeFiles/runner.dir/codegen
+.PHONY : system_benchmarks/runner/codegen
+
+# Recursive "preinstall" directory target.
+system_benchmarks/runner/preinstall:
+.PHONY : system_benchmarks/runner/preinstall
+
+# Recursive "clean" directory target.
+system_benchmarks/runner/clean: system_benchmarks/runner/CMakeFiles/runner.dir/clean
+.PHONY : system_benchmarks/runner/clean
+
+#=============================================================================
 # Directory level rules for directory system_benchmarks/tests
 
 # Recursive "all" directory target.
@@ -220,6 +243,7 @@ system_benchmarks/tests/all: system_benchmarks/tests/CMakeFiles/test_machine.dir
 system_benchmarks/tests/all: system_benchmarks/tests/CMakeFiles/test_CPU.dir/all
 system_benchmarks/tests/all: system_benchmarks/tests/CMakeFiles/test_disk.dir/all
 system_benchmarks/tests/all: system_benchmarks/tests/CMakeFiles/test_GPU.dir/all
+system_benchmarks/tests/all: system_benchmarks/tests/CMakeFiles/test_runner.dir/all
 system_benchmarks/tests/all: _deps/googletest-build/all
 .PHONY : system_benchmarks/tests/all
 
@@ -228,6 +252,7 @@ system_benchmarks/tests/codegen: system_benchmarks/tests/CMakeFiles/test_machine
 system_benchmarks/tests/codegen: system_benchmarks/tests/CMakeFiles/test_CPU.dir/codegen
 system_benchmarks/tests/codegen: system_benchmarks/tests/CMakeFiles/test_disk.dir/codegen
 system_benchmarks/tests/codegen: system_benchmarks/tests/CMakeFiles/test_GPU.dir/codegen
+system_benchmarks/tests/codegen: system_benchmarks/tests/CMakeFiles/test_runner.dir/codegen
 system_benchmarks/tests/codegen: _deps/googletest-build/codegen
 .PHONY : system_benchmarks/tests/codegen
 
@@ -240,6 +265,7 @@ system_benchmarks/tests/clean: system_benchmarks/tests/CMakeFiles/test_machine.d
 system_benchmarks/tests/clean: system_benchmarks/tests/CMakeFiles/test_CPU.dir/clean
 system_benchmarks/tests/clean: system_benchmarks/tests/CMakeFiles/test_disk.dir/clean
 system_benchmarks/tests/clean: system_benchmarks/tests/CMakeFiles/test_GPU.dir/clean
+system_benchmarks/tests/clean: system_benchmarks/tests/CMakeFiles/test_runner.dir/clean
 system_benchmarks/tests/clean: _deps/googletest-build/clean
 .PHONY : system_benchmarks/tests/clean
 
@@ -247,7 +273,9 @@ system_benchmarks/tests/clean: _deps/googletest-build/clean
 # Target rules for target CMakeFiles/main_exe.dir
 
 # All Build rule for target.
-CMakeFiles/main_exe.dir/all:
+CMakeFiles/main_exe.dir/all: system_benchmarks/collectors/CMakeFiles/collectors.dir/all
+CMakeFiles/main_exe.dir/all: system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/all
+CMakeFiles/main_exe.dir/all: system_benchmarks/runner/CMakeFiles/runner.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_exe.dir/build.make CMakeFiles/main_exe.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_exe.dir/build.make CMakeFiles/main_exe.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=11,12 "Built target main_exe"
@@ -255,7 +283,7 @@ CMakeFiles/main_exe.dir/all:
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main_exe.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main_exe.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 0
 .PHONY : CMakeFiles/main_exe.dir/rule
@@ -284,7 +312,7 @@ system_benchmarks/tests/CMakeFiles/test_machine.dir/all: _deps/googletest-build/
 system_benchmarks/tests/CMakeFiles/test_machine.dir/all: system_benchmarks/collectors/CMakeFiles/collectors.dir/all
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_machine.dir/build.make system_benchmarks/tests/CMakeFiles/test_machine.dir/depend
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_machine.dir/build.make system_benchmarks/tests/CMakeFiles/test_machine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=23,24 "Built target test_machine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=25,26 "Built target test_machine"
 .PHONY : system_benchmarks/tests/CMakeFiles/test_machine.dir/all
 
 # Build rule for subdir invocation for target.
@@ -301,7 +329,7 @@ test_machine: system_benchmarks/tests/CMakeFiles/test_machine.dir/rule
 # codegen rule for target.
 system_benchmarks/tests/CMakeFiles/test_machine.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_machine.dir/build.make system_benchmarks/tests/CMakeFiles/test_machine.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=23,24 "Finished codegen for target test_machine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=25,26 "Finished codegen for target test_machine"
 .PHONY : system_benchmarks/tests/CMakeFiles/test_machine.dir/codegen
 
 # clean rule for target.
@@ -319,7 +347,7 @@ system_benchmarks/tests/CMakeFiles/test_CPU.dir/all: system_benchmarks/collector
 system_benchmarks/tests/CMakeFiles/test_CPU.dir/all: system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/all
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_CPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_CPU.dir/depend
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_CPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_CPU.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=17,18 "Built target test_CPU"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=19,20 "Built target test_CPU"
 .PHONY : system_benchmarks/tests/CMakeFiles/test_CPU.dir/all
 
 # Build rule for subdir invocation for target.
@@ -336,7 +364,7 @@ test_CPU: system_benchmarks/tests/CMakeFiles/test_CPU.dir/rule
 # codegen rule for target.
 system_benchmarks/tests/CMakeFiles/test_CPU.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_CPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_CPU.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=17,18 "Finished codegen for target test_CPU"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=19,20 "Finished codegen for target test_CPU"
 .PHONY : system_benchmarks/tests/CMakeFiles/test_CPU.dir/codegen
 
 # clean rule for target.
@@ -354,7 +382,7 @@ system_benchmarks/tests/CMakeFiles/test_disk.dir/all: system_benchmarks/collecto
 system_benchmarks/tests/CMakeFiles/test_disk.dir/all: system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/all
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_disk.dir/build.make system_benchmarks/tests/CMakeFiles/test_disk.dir/depend
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_disk.dir/build.make system_benchmarks/tests/CMakeFiles/test_disk.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=21,22 "Built target test_disk"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=23,24 "Built target test_disk"
 .PHONY : system_benchmarks/tests/CMakeFiles/test_disk.dir/all
 
 # Build rule for subdir invocation for target.
@@ -371,7 +399,7 @@ test_disk: system_benchmarks/tests/CMakeFiles/test_disk.dir/rule
 # codegen rule for target.
 system_benchmarks/tests/CMakeFiles/test_disk.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_disk.dir/build.make system_benchmarks/tests/CMakeFiles/test_disk.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=21,22 "Finished codegen for target test_disk"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=23,24 "Finished codegen for target test_disk"
 .PHONY : system_benchmarks/tests/CMakeFiles/test_disk.dir/codegen
 
 # clean rule for target.
@@ -389,7 +417,7 @@ system_benchmarks/tests/CMakeFiles/test_GPU.dir/all: system_benchmarks/collector
 system_benchmarks/tests/CMakeFiles/test_GPU.dir/all: system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/all
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_GPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_GPU.dir/depend
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_GPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_GPU.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=19,20 "Built target test_GPU"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=21,22 "Built target test_GPU"
 .PHONY : system_benchmarks/tests/CMakeFiles/test_GPU.dir/all
 
 # Build rule for subdir invocation for target.
@@ -406,13 +434,49 @@ test_GPU: system_benchmarks/tests/CMakeFiles/test_GPU.dir/rule
 # codegen rule for target.
 system_benchmarks/tests/CMakeFiles/test_GPU.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_GPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_GPU.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=19,20 "Finished codegen for target test_GPU"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=21,22 "Finished codegen for target test_GPU"
 .PHONY : system_benchmarks/tests/CMakeFiles/test_GPU.dir/codegen
 
 # clean rule for target.
 system_benchmarks/tests/CMakeFiles/test_GPU.dir/clean:
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_GPU.dir/build.make system_benchmarks/tests/CMakeFiles/test_GPU.dir/clean
 .PHONY : system_benchmarks/tests/CMakeFiles/test_GPU.dir/clean
+
+#=============================================================================
+# Target rules for target system_benchmarks/tests/CMakeFiles/test_runner.dir
+
+# All Build rule for target.
+system_benchmarks/tests/CMakeFiles/test_runner.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
+system_benchmarks/tests/CMakeFiles/test_runner.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
+system_benchmarks/tests/CMakeFiles/test_runner.dir/all: system_benchmarks/collectors/CMakeFiles/collectors.dir/all
+system_benchmarks/tests/CMakeFiles/test_runner.dir/all: system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/all
+system_benchmarks/tests/CMakeFiles/test_runner.dir/all: system_benchmarks/runner/CMakeFiles/runner.dir/all
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/depend
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=27,28 "Built target test_runner"
+.PHONY : system_benchmarks/tests/CMakeFiles/test_runner.dir/all
+
+# Build rule for subdir invocation for target.
+system_benchmarks/tests/CMakeFiles/test_runner.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 14
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 system_benchmarks/tests/CMakeFiles/test_runner.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 0
+.PHONY : system_benchmarks/tests/CMakeFiles/test_runner.dir/rule
+
+# Convenience name for target.
+test_runner: system_benchmarks/tests/CMakeFiles/test_runner.dir/rule
+.PHONY : test_runner
+
+# codegen rule for target.
+system_benchmarks/tests/CMakeFiles/test_runner.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=27,28 "Finished codegen for target test_runner"
+.PHONY : system_benchmarks/tests/CMakeFiles/test_runner.dir/codegen
+
+# clean rule for target.
+system_benchmarks/tests/CMakeFiles/test_runner.dir/clean:
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/tests/CMakeFiles/test_runner.dir/build.make system_benchmarks/tests/CMakeFiles/test_runner.dir/clean
+.PHONY : system_benchmarks/tests/CMakeFiles/test_runner.dir/clean
 
 #=============================================================================
 # Target rules for target _deps/googletest-build/googlemock/CMakeFiles/gmock.dir
@@ -606,6 +670,39 @@ system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/codegen:
 system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/clean:
 	$(MAKE) $(MAKESILENT) -f system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/build.make system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/clean
 .PHONY : system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/clean
+
+#=============================================================================
+# Target rules for target system_benchmarks/runner/CMakeFiles/runner.dir
+
+# All Build rule for target.
+system_benchmarks/runner/CMakeFiles/runner.dir/all: system_benchmarks/collectors/CMakeFiles/collectors.dir/all
+system_benchmarks/runner/CMakeFiles/runner.dir/all: system_benchmarks/microbenchmarks/CMakeFiles/microbenchmarks.dir/all
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/runner/CMakeFiles/runner.dir/build.make system_benchmarks/runner/CMakeFiles/runner.dir/depend
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/runner/CMakeFiles/runner.dir/build.make system_benchmarks/runner/CMakeFiles/runner.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=17,18 "Built target runner"
+.PHONY : system_benchmarks/runner/CMakeFiles/runner.dir/all
+
+# Build rule for subdir invocation for target.
+system_benchmarks/runner/CMakeFiles/runner.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 system_benchmarks/runner/CMakeFiles/runner.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles 0
+.PHONY : system_benchmarks/runner/CMakeFiles/runner.dir/rule
+
+# Convenience name for target.
+runner: system_benchmarks/runner/CMakeFiles/runner.dir/rule
+.PHONY : runner
+
+# codegen rule for target.
+system_benchmarks/runner/CMakeFiles/runner.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/runner/CMakeFiles/runner.dir/build.make system_benchmarks/runner/CMakeFiles/runner.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=17,18 "Finished codegen for target runner"
+.PHONY : system_benchmarks/runner/CMakeFiles/runner.dir/codegen
+
+# clean rule for target.
+system_benchmarks/runner/CMakeFiles/runner.dir/clean:
+	$(MAKE) $(MAKESILENT) -f system_benchmarks/runner/CMakeFiles/runner.dir/build.make system_benchmarks/runner/CMakeFiles/runner.dir/clean
+.PHONY : system_benchmarks/runner/CMakeFiles/runner.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -19,3 +19,10 @@ TODO defined by sectorn
  ~ Make GPU GEMM work with BF32 dtype
  ~ Make a GEMM function that runs on all available
    GPUs to test peak machine compute
+   
+
+/**************************************************** 
+ * runner
+ ****************************************************/ 
+ ~ get disk microbenchmarks running. Already implemented, 
+	just not included in output. Needs a smarter solution.

@@ -1,0 +1,17 @@
+{
+  "tests": 1,
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "runnerTest",
+      "tests": 1,
+      "testsuite": [
+        {
+          "name": "collectors",
+          "file": "\/home\/Mensis\/Source-code\/github.com\/Gosewinckel\/Mensis_test\/system_benchmarks\/tests\/test_runner.cpp",
+          "line": 6
+        }
+      ]
+    }
+  ]
+}

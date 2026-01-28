@@ -350,10 +350,15 @@ system_benchmarks/tests/CMakeFiles/test_machine.dir/test_machine.cpp.o: /home/Me
 system_benchmarks/tests/test_machine: lib/libgtest.a \
   lib/libgtest_main.a \
   system_benchmarks/collectors/libcollectors.a \
+  /opt/cuda/targets/x86_64-linux/lib/libcublas.so \
+  /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so \
+  /opt/cuda/targets/x86_64-linux/lib/libcudart.so \
+  /opt/cuda/targets/x86_64-linux/lib/libculibos.a \
   /usr/lib/Scrt1.o \
   /usr/lib/crti.o \
   /usr/lib/crtn.o \
   /usr/lib/libc.so \
+  /usr/lib/libdl.a \
   /usr/lib/libgcc_s.so \
   /usr/lib/libgcc_s.so.1 \
   /usr/lib/libm.so \
@@ -364,8 +369,12 @@ system_benchmarks/tests/test_machine: lib/libgtest.a \
   /usr/lib/ld-linux-x86-64.so.2 \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
+  /usr/lib/libdl.so.2 \
   /usr/lib/libm.so.6 \
   /usr/lib/libmvec.so.1 \
+  /usr/lib/libpthread.so.0 \
+  /usr/lib/librt.a \
+  /usr/lib/librt.so.1 \
   system_benchmarks/tests/CMakeFiles/test_machine.dir/test_machine.cpp.o
 
 
@@ -390,6 +399,10 @@ system_benchmarks/tests/CMakeFiles/test_machine.dir/test_machine.cpp.o:
 /usr/lib/libgcc_s.so.1:
 
 /usr/lib/Scrt1.o:
+
+/opt/cuda/targets/x86_64-linux/lib/libcudart.so:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublas.so:
 
 lib/libgtest.a:
 
@@ -425,7 +438,11 @@ lib/libgtest.a:
 
 /usr/include/sched.h:
 
+/usr/lib/libdl.so.2:
+
 /usr/include/regex.h:
+
+/usr/lib/libpthread.so.0:
 
 /usr/lib/libstdc++.so:
 
@@ -575,6 +592,8 @@ lib/libgtest_main.a:
 
 /usr/include/bits/types/clock_t.h:
 
+/opt/cuda/targets/x86_64-linux/lib/libcublasLt.so:
+
 /usr/include/bits/types/sig_atomic_t.h:
 
 /usr/include/bits/types/__fpos_t.h:
@@ -602,6 +621,8 @@ lib/libgtest_main.a:
 /usr/include/bits/signum-generic.h:
 
 /usr/include/bits/types/struct_sigstack.h:
+
+/usr/lib/librt.a:
 
 /usr/include/c++/15.2.1/array:
 
@@ -666,6 +687,8 @@ _deps/googletest-src/googletest/include/gtest/internal/gtest-filepath.h:
 /usr/include/bits/types/sigevent_t.h:
 
 _deps/googletest-src/googletest/include/gtest/gtest-death-test.h:
+
+/usr/lib/librt.so.1:
 
 /usr/include/linux/types.h:
 
@@ -802,6 +825,8 @@ _deps/googletest-src/googletest/include/gtest/gtest-assertion-result.h:
 /usr/include/bits/locale.h:
 
 /usr/include/bits/confname.h:
+
+/usr/lib/libdl.a:
 
 /usr/include/bits/uintn-identity.h:
 
@@ -1004,6 +1029,8 @@ _deps/googletest-src/googletest/include/gtest/internal/gtest-port.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h:
 
 /usr/include/c++/15.2.1/bits/ostream.tcc:
+
+/opt/cuda/targets/x86_64-linux/lib/libculibos.a:
 
 /usr/include/c++/15.2.1/bits/ostream_insert.h:
 

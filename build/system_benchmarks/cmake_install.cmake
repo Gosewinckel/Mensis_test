@@ -47,6 +47,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests/cmake_install.cmake")
   include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/collectors/cmake_install.cmake")
   include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/microbenchmarks/cmake_install.cmake")
+  include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/runner/cmake_install.cmake")
 
 endif()
 

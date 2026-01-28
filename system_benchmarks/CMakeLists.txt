@@ -1,10 +1,5 @@
 enable_testing()
 
-cmake_minimum_required(VERSION 3.10)
-project(Mensis_test LANGUAGES CXX CUDA)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-
 find_path(OpenBLAS_INCLUDE_DIR cblas.h)
 find_library(OpenBLAS_LIB openblas)
 
@@ -24,4 +19,13 @@ find_package(CUDAToolkit REQUIRED)
 add_subdirectory(tests)
 add_subdirectory(collectors)
 add_subdirectory(microbenchmarks)
+add_subdirectory(runner)
 
+add_library(system_benchmarks INTERFACE)
+
+target_link_libraries(system_benchmarks 
+	INTERFACE 
+		collectors
+		microbenchmarks
+		runner
+)

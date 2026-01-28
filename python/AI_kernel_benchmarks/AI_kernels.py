@@ -12,13 +12,16 @@ class Gemm_diagnostics:
         self.time = 0.0     # time taken 
         self.flops = 0.0    # total floating point operations
         self.tops = 0.0     # total throughput per second
+        self.bytes_moved = 0
         self.peak_allocated_mem = 0.0  
         self.times = []     # set of times for Gemm 
 
 class Gemm_perf:
     def __init__(self):
         self.time = 0.0
+        self.flops = 0.0
         self.tops = 0.0
+        self.bytes_moved = 0
         self.efficiency = 0.0
         self.oom = False
         self.paging = False
@@ -27,7 +30,10 @@ class Gemm_perf:
 class Softmax_perf:
     def __init__(self):
         self.time = 0.0
+        self.flops = 0
+        self.tops = 0.0
         self.bandwidth = 0.0
+        self.bytes_moved = 0
 
 class Attention_perf:
     def __init__(self):
@@ -247,6 +253,7 @@ def user_model_custom_Gemm(M, N, K, dtype):
     output.tops = tops
     output.peak_allocated_mem = peak_mem
     output.flops = flops
+    output.bytes_moved = output.size * X.element_size()
     
     return output
 
@@ -300,6 +307,7 @@ def custom_attention_Gemm(B, S, H, head, dtype):
     output.flops = flops
     output.time = avgTime
     output.times = []
+    output.bytes_moved = (B*H) * (2*S*head + S*S) * X.element_size() + (B*H) * (S*S + 2*S*head) * X.element_size()
 
     return output
 
@@ -365,6 +373,9 @@ def check_kernel_behaviour(perf1, perf2):
     efficiency = (perf1.flops/perf2.flops) / (perf1.time/perf2.time)
     results.efficiency = efficiency
 
+    results.bytes_moved = perf1.size * 2
+    results.flops = perf1.flops
+
     results.time = perf1.time
     results.tops = perf1.tops
 
@@ -406,8 +417,11 @@ def custom_softmax(B, H, S, dtype):
     bytes_moved = 2 * embeddings.numel() * embeddings.element_size()
     bandwidth = bytes_moved / avgTime / 1e9     #GB/s
 
+    output.bytes_moved = bytes_moved
     output.time = avgTime
     output.bandwidth = bandwidth
+    output.flops = 8 * B * H * S * S
+    output.tops = output.flops / avgTime / 1e12
 
     return output
 
@@ -503,7 +517,7 @@ def custom_layernorm(B, S, d_model, dtype):
 
     # Construct output values
     flops = 7 * B * S * d_model
-    bytes_moved = 10 * B * S * d_model * X.element_size()
+    bytes_moved = 2 * B * S * d_model * X.element_size()
 
     tops = flops / avgTime / 1e12
     bandwidth = bytes_moved / avgTime / 1e9

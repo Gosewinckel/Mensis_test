@@ -1,5 +1,0 @@
-if(EXISTS "/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_machine[1]_tests.cmake")
-  include("/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_machine[1]_tests.cmake")
-else()
-  add_test(test_machine_NOT_BUILT test_machine_NOT_BUILT)
-endif()

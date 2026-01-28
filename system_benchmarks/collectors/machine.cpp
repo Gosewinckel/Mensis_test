@@ -1,4 +1,6 @@
 #include "machine.h"
+#include <cuda_runtime_api.h>
+#include <driver_types.h>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -11,6 +13,7 @@
 #include <array>
 #include <stdexcept>
 #include <sstream>
+#include <cuda_runtime.h>
 #include <algorithm>
 
 #if defined(_WIN32) || defined(_WIN64)
@@ -26,9 +29,10 @@ machine::machine() {
 	// run setters
 	set_os();
 	set_cpu();
+	set_gpu();
 	set_memory();
 	set_storage();
-	set_network();
+	//set_network();
 }
 
 machine& machine::getMachine() {
@@ -172,6 +176,38 @@ void machine::set_cpu() {
 	cpu.push_back(cpuInfo);
 }
 
+
+/**************************************************** 
+ * set GPU function
+ ****************************************************/ 
+void machine::set_gpu() {
+	std::vector<GPU> gpus;
+	
+	// Get device count
+	int count = 0;
+	cudaError_t err = cudaGetDeviceCount(&count);
+	if(err != cudaSuccess) {
+		return;
+	}
+	gpu_count = count;
+
+	// Get information for each GPU
+	for(int i = 0; i < count; ++i) {
+		cudaDeviceProp prop;
+		cudaGetDeviceProperties(&prop, i);
+		GPU gpu;
+		gpu.device = i;
+		gpu.model = prop.name;
+		gpu.streaming_multiprocessors = prop.multiProcessorCount;
+		gpu.memory_capacity = prop.totalGlobalMem;
+		gpu.computeMajor= prop.major;
+		gpu.computeMinor = prop.minor;
+		gpu.hasTensorCores = (prop.major >= 7);
+
+		gpus.push_back(gpu);
+	}
+	gpu = gpus;
+}
 /**************************************************** 
  * set memory fuction
  *

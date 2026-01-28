@@ -1,4 +1,4 @@
-from AI_kernel_benchmarks import AI_kernels as ai
+from python.AI_kernel_benchmarks import AI_kernels as ai
 import torch
 import json
 
@@ -18,6 +18,7 @@ class Model_params:
         self.d_head = 0         # attention head dimension
         self.d_ff = 0           # Feed-forward (MLP)
         self.dtype = torch.float16
+        self.n_layers = 0
 
     # Define setter functions
     def set_B(self, b):
@@ -88,6 +89,14 @@ def run_kernel_benchmarks(model, output_file):
             model.get_dtype()
     )
 
+    #feed forward nn GEMM
+    ffn_gemm = ai.user_model_custom_Gemm(
+        model.get_B() * model.get_S(),
+        model.get_d_model(),
+        model.get_d_ff(),
+        model.get_dtype()
+    )
+
     # Gemm kernel behaviour
     gemm_behaviour = ai.check_kernel_behaviour(custom_layer_Gemm, vanilla_Gemm)
 
@@ -129,19 +138,32 @@ def run_kernel_benchmarks(model, output_file):
         "AI_kernels": {
             "layer_gemm": {
                 "time": gemm_behaviour.time,
+                "flops": gemm_behaviour.flops,
                 "tops": gemm_behaviour.tops,
+                "bytes_moved": gemm_behaviour.bytes_moved,
                 "efficiency": gemm_behaviour.efficiency,
                 "oom": gemm_behaviour.oom,
                 "paging": gemm_behaviour.paging,
                 "fallback_kernel": gemm_behaviour.fallback_kernel
             },
+            "ffn_gemm": {
+                "time": ffn_gemm.time,
+                "flops": ffn_gemm.flops,
+                "tops": ffn_gemm.tops,
+                "bytes_moved": ffn_gemm.bytes_moved
+            },
             "attention_gemm": {
                 "time": custom_attention_Gemm.time,
-                "tops": custom_attention_Gemm.tops
+                "tops": custom_attention_Gemm.tops,
+                "bytes_moved": custom_attention_Gemm.bytes_moved,
+                "flops": custom_attention_Gemm.flops
             },
             "softmax": {
                 "time": softmax.time,
-                "bandwidth": softmax.bandwidth
+                "bandwidth": softmax.bandwidth,
+                "flops": softmax.flops,
+                "tops": softmax.tops,
+                "bytes_moved": softmax.bytes_moved
             },
             "attention": {
                 "time": attention.time,

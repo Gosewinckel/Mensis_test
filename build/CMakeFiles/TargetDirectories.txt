@@ -15,6 +15,7 @@
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests/CMakeFiles/test_CPU.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests/CMakeFiles/test_disk.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests/CMakeFiles/test_GPU.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests/CMakeFiles/test_runner.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests/CMakeFiles/edit_cache.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests/CMakeFiles/rebuild_cache.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests/CMakeFiles/list_install_components.dir
@@ -57,3 +58,10 @@
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/microbenchmarks/CMakeFiles/install.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/microbenchmarks/CMakeFiles/install/local.dir
 /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/microbenchmarks/CMakeFiles/install/strip.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/runner/CMakeFiles/runner.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/runner/CMakeFiles/edit_cache.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/runner/CMakeFiles/rebuild_cache.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/runner/CMakeFiles/list_install_components.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/runner/CMakeFiles/install.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/runner/CMakeFiles/install/local.dir
+/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/runner/CMakeFiles/install/strip.dir

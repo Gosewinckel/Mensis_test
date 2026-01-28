@@ -11,7 +11,7 @@ CUDA_FLAGS = -std=c++17
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks/microbenchmarks/OpenBLAS_INCLUDE_DIR-NOTFOUND -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks/collectors -isystem /opt/cuda/targets/x86_64-linux/include -isystem /opt/cuda/targets/x86_64-linux/include/cccl
+CXX_INCLUDES = -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks/microbenchmarks -I/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks/collectors -isystem /opt/cuda/targets/x86_64-linux/include -isystem /opt/cuda/targets/x86_64-linux/include/cccl
 
 CXX_FLAGS = -fopenmp
 

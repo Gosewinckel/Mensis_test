@@ -1,5 +1,0 @@
-add_test([=[diskTEST.write_speed_test]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_disk [==[--gtest_filter=diskTEST.write_speed_test]==] --gtest_also_run_disabled_tests)
-set_tests_properties([=[diskTEST.write_speed_test]=]  PROPERTIES DEF_SOURCE_LINE /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_disk.cpp:8 WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-add_test([=[diskTEST.read_speed_test]=]  /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests/test_disk [==[--gtest_filter=diskTEST.read_speed_test]==] --gtest_also_run_disabled_tests)
-set_tests_properties([=[diskTEST.read_speed_test]=]  PROPERTIES DEF_SOURCE_LINE /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/tests/test_disk.cpp:13 WORKING_DIRECTORY /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/tests SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set(  test_disk_TESTS diskTEST.write_speed_test diskTEST.read_speed_test)

@@ -108,7 +108,25 @@ system_benchmarks/collectors/CMakeFiles/collectors.dir/machine.cpp.o: \
  /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
  /usr/include/c++/15.2.1/bits/stl_vector.h \
  /usr/include/c++/15.2.1/bits/stl_bvector.h \
- /usr/include/c++/15.2.1/bits/vector.tcc /usr/include/c++/15.2.1/memory \
+ /usr/include/c++/15.2.1/bits/vector.tcc \
+ /opt/cuda/targets/x86_64-linux/include/cuda_runtime_api.h \
+ /opt/cuda/targets/x86_64-linux/include/crt/host_defines.h \
+ /opt/cuda/targets/x86_64-linux/include/builtin_types.h \
+ /opt/cuda/targets/x86_64-linux/include/device_types.h \
+ /opt/cuda/targets/x86_64-linux/include/driver_types.h \
+ /opt/cuda/targets/x86_64-linux/include/vector_types.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/limits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/pthread_stack_min-dynamic.h \
+ /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+ /usr/include/bits/uio_lim.h \
+ /opt/cuda/targets/x86_64-linux/include/surface_types.h \
+ /opt/cuda/targets/x86_64-linux/include/texture_types.h \
+ /opt/cuda/targets/x86_64-linux/include/cuda_device_runtime_api.h \
+ /opt/cuda/targets/x86_64-linux/include/driver_types.h \
+ /usr/include/c++/15.2.1/memory \
  /usr/include/c++/15.2.1/bits/stl_tempbuf.h \
  /usr/include/c++/15.2.1/bits/stl_raw_storage_iter.h \
  /usr/include/c++/15.2.1/bits/align.h \
@@ -133,7 +151,6 @@ system_benchmarks/collectors/CMakeFiles/collectors.dir/machine.cpp.o: \
  /usr/include/bits/types/struct_tm.h \
  /usr/include/bits/types/struct_itimerspec.h /usr/include/bits/setjmp.h \
  /usr/include/bits/types/struct___jmp_buf_tag.h \
- /usr/include/bits/pthread_stack_min-dynamic.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
  /usr/include/sys/single_threaded.h \
  /usr/include/c++/15.2.1/ext/concurrence.h \
@@ -202,6 +219,16 @@ system_benchmarks/collectors/CMakeFiles/collectors.dir/machine.cpp.o: \
  /usr/include/c++/15.2.1/bits/stl_map.h \
  /usr/include/c++/15.2.1/bits/stl_multimap.h \
  /usr/include/c++/15.2.1/array /usr/include/c++/15.2.1/compare \
+ /opt/cuda/targets/x86_64-linux/include/cuda_runtime.h \
+ /opt/cuda/targets/x86_64-linux/include/crt/host_config.h \
+ /opt/cuda/targets/x86_64-linux/include/library_types.h \
+ /opt/cuda/targets/x86_64-linux/include/channel_descriptor.h \
+ /opt/cuda/targets/x86_64-linux/include/cuda_runtime_api.h \
+ /opt/cuda/targets/x86_64-linux/include/driver_functions.h \
+ /opt/cuda/targets/x86_64-linux/include/vector_functions.h \
+ /opt/cuda/targets/x86_64-linux/include/vector_functions.hpp \
+ /usr/include/c++/15.2.1/utility \
+ /usr/include/c++/15.2.1/bits/stl_relops.h \
  /usr/include/c++/15.2.1/algorithm \
  /usr/include/c++/15.2.1/bits/stl_algo.h \
  /usr/include/c++/15.2.1/bits/algorithmfwd.h \

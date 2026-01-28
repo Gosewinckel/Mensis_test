@@ -6,6 +6,12 @@ test_machine: \
   ../../lib/libgtest_main.a \
   ../collectors/libcollectors.a \
   ../../lib/libgtest.a \
+  /opt/cuda/targets/x86_64-linux/lib/libcudart.so \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libdl.a \
+  /usr/lib/librt.a \
+  /opt/cuda/targets/x86_64-linux/lib/libcublas.so \
+  /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so \
+  /opt/cuda/targets/x86_64-linux/lib/libculibos.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
@@ -32,6 +38,9 @@ test_machine: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o \
+  /usr/lib/libdl.so.2 \
+  /usr/lib/libpthread.so.0 \
+  /usr/lib/librt.so.1 \
   /usr/lib/ld-linux-x86-64.so.2
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o:
@@ -47,6 +56,18 @@ CMakeFiles/test_machine.dir/test_machine.cpp.o:
 ../collectors/libcollectors.a:
 
 ../../lib/libgtest.a:
+
+/opt/cuda/targets/x86_64-linux/lib/libcudart.so:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libdl.a:
+
+/usr/lib/librt.a:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublas.so:
+
+/opt/cuda/targets/x86_64-linux/lib/libcublasLt.so:
+
+/opt/cuda/targets/x86_64-linux/lib/libculibos.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so:
 
@@ -99,5 +120,11 @@ CMakeFiles/test_machine.dir/test_machine.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crtn.o:
+
+/usr/lib/libdl.so.2:
+
+/usr/lib/libpthread.so.0:
+
+/usr/lib/librt.so.1:
 
 /usr/lib/ld-linux-x86-64.so.2:

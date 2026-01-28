@@ -99,6 +99,11 @@ system_benchmarks/tests/test_machine: system_benchmarks/tests/CMakeFiles/test_ma
 system_benchmarks/tests/test_machine: lib/libgtest_main.a
 system_benchmarks/tests/test_machine: system_benchmarks/collectors/libcollectors.a
 system_benchmarks/tests/test_machine: lib/libgtest.a
+system_benchmarks/tests/test_machine: /opt/cuda/targets/x86_64-linux/lib/libcudart.so
+system_benchmarks/tests/test_machine: /usr/lib/librt.a
+system_benchmarks/tests/test_machine: /opt/cuda/targets/x86_64-linux/lib/libcublas.so
+system_benchmarks/tests/test_machine: /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so
+system_benchmarks/tests/test_machine: /opt/cuda/targets/x86_64-linux/lib/libculibos.a
 system_benchmarks/tests/test_machine: system_benchmarks/tests/CMakeFiles/test_machine.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_machine"
 	cd /home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_machine.dir/link.txt --verbose=$(VERBOSE)

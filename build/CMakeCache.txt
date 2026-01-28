@@ -31,7 +31,7 @@ CMAKE_BUILD_TYPE:STRING=
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //CUDA compiler
-CMAKE_CUDA_COMPILER:STRING=/opt/cuda/bin/nvcc
+CMAKE_CUDA_COMPILER:FILEPATH=/opt/cuda/bin/nvcc
 
 //Flags used by the CUDA compiler during all build types.
 CMAKE_CUDA_FLAGS:STRING=
@@ -49,7 +49,7 @@ CMAKE_CUDA_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CUDA_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //CXX compiler
-CMAKE_CXX_COMPILER:STRING=/usr/bin/c++
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -75,7 +75,7 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
-CMAKE_C_COMPILER:STRING=/usr/bin/cc
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -312,7 +312,7 @@ CUDAToolkit_CUPTI_INCLUDE_DIR:PATH=/opt/cuda/targets/x86_64-linux/include
 CUDAToolkit_rt_LIBRARY:FILEPATH=/usr/lib/librt.a
 
 //Path to a library.
-CUDA_CUDART:FILEPATH=/opt/cuda/lib/libcudart.so
+CUDA_CUDART:FILEPATH=/opt/cuda/targets/x86_64-linux/lib/libcudart.so
 
 //Path to a library.
 CUDA_OpenCL_LIBRARY:FILEPATH=/opt/cuda/targets/x86_64-linux/lib/libOpenCL.so
@@ -562,13 +562,13 @@ GTEST_HAS_ABSL:BOOL=OFF
 INSTALL_GTEST:BOOL=ON
 
 //Value Computed by CMake
-Mensis_test_BINARY_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/system_benchmarks
+Mensis_test_BINARY_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build
 
 //Value Computed by CMake
-Mensis_test_IS_TOP_LEVEL:STATIC=OFF
+Mensis_test_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-Mensis_test_SOURCE_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/system_benchmarks
+Mensis_test_SOURCE_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test
 
 //Path to a file.
 OpenBLAS_INCLUDE_DIR:PATH=OpenBLAS_INCLUDE_DIR-NOTFOUND
@@ -593,6 +593,9 @@ OpenMP_gomp_LIBRARY:FILEPATH=/usr/lib/libgomp.so
 
 //Path to the pthread library for OpenMP
 OpenMP_pthread_LIBRARY:FILEPATH=/usr/lib/libpthread.a
+
+//Dependencies for the target
+collectors_LIB_DEPENDS:STATIC=general;CUDA::cudart;general;CUDA::cublas;
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/_deps/googletest-build/googlemock
@@ -642,6 +645,9 @@ gtest_hide_internal_symbols:BOOL=OFF
 
 //Dependencies for the target
 microbenchmarks_LIB_DEPENDS:STATIC=general;/usr/lib/libopenblas.so;general;collectors;general;CUDA::cudart;general;CUDA::cublas;
+
+//Dependencies for the target
+runner_LIB_DEPENDS:STATIC=general;collectors;general;microbenchmarks;general;third_party;
 
 
 ########################
@@ -798,7 +804,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -996,7 +1002,7 @@ CUDA_nvtx3_interop_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_pcsamplingutil_LIBRARY
 CUDA_pcsamplingutil_LIBRARY-ADVANCED:INTERNAL=1
 //Details about finding CUDAToolkit
-FIND_PACKAGE_MESSAGE_DETAILS_CUDAToolkit:INTERNAL=[/opt/cuda/targets/x86_64-linux/include;/opt/cuda/targets/x86_64-linux/include/cccl][/opt/cuda/lib/libcudart.so][/opt/cuda/bin][v13.1.80()]
+FIND_PACKAGE_MESSAGE_DETAILS_CUDAToolkit:INTERNAL=[/opt/cuda/targets/x86_64-linux/include;/opt/cuda/targets/x86_64-linux/include/cccl][/opt/cuda/targets/x86_64-linux/lib/libcudart.so][/opt/cuda/bin][v13.1.115()]
 //Details about finding OpenMP
 FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[TRUE][TRUE][ ][v4.5()]
 //Details about finding OpenMP_CUDA

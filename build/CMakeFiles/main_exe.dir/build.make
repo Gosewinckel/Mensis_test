@@ -96,6 +96,17 @@ main_exe_EXTERNAL_OBJECTS =
 main_exe: CMakeFiles/main_exe.dir/main.cpp.o
 main_exe: CMakeFiles/main_exe.dir/build.make
 main_exe: CMakeFiles/main_exe.dir/compiler_depend.ts
+main_exe: system_benchmarks/runner/librunner.a
+main_exe: system_benchmarks/microbenchmarks/libmicrobenchmarks.a
+main_exe: system_benchmarks/collectors/libcollectors.a
+main_exe: /opt/cuda/targets/x86_64-linux/lib/libcudart.so
+main_exe: /usr/lib/librt.a
+main_exe: /opt/cuda/targets/x86_64-linux/lib/libcublas.so
+main_exe: /opt/cuda/targets/x86_64-linux/lib/libcublasLt.so
+main_exe: /opt/cuda/targets/x86_64-linux/lib/libculibos.a
+main_exe: /usr/lib/libopenblas.so
+main_exe: /usr/lib/libgomp.so
+main_exe: /usr/lib/libpthread.a
 main_exe: CMakeFiles/main_exe.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/Mensis/Source-code/github.com/Gosewinckel/Mensis_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable main_exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main_exe.dir/link.txt --verbose=$(VERBOSE)
