@@ -16,7 +16,7 @@ SUDOERS_FILE="/etc/sudoers.d/${GROUP}"
 BIN_DIR="/usr/local/bin"
 
 # commands to be allowed
-REQUIRED_CMDS=(dmidecode lscpu ethtool)
+REQUIRED_CMDS=(dmidecode lscpu ethtool nvidia nvidia-utils python-pytorch-cuda)
 
 # Set target user or default to sudo user
 TARGET_USER="${TARGET_USER:-${SUDO_USER:-}}"
