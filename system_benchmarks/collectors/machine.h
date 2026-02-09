@@ -31,7 +31,7 @@ class machine {
 			int device;
 			std::string model;
 			int streaming_multiprocessors;
-			int memory_capacity;
+			size_t memory_capacity;
 			int computeMajor;
 			int computeMinor;
 			bool hasTensorCores;

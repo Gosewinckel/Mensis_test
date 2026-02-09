@@ -68,13 +68,20 @@ def run_kernel_benchmarks(model, output_file):
     # Run std midsized Gemm to compare against
     vanilla_Gemm = ai.linear_layer_GEMM_TOPS(model.get_dtype())
 
-    # Custom layer Gemm
+    # QKV_projection
     custom_layer_Gemm = ai.user_model_custom_Gemm(
             model.get_B() * model.get_S(), 
             model.get_d_model(), 
-            model.get_d_ff(),
+            model.get_d_model() * 3,
             model.get_dtype()
 
+    )
+
+    attention_output_projection = ai.user_model_custom_Gemm(
+        model.get_B() * model.get_S(),
+        model.get_d_model(),
+        model.get_d_model(),
+        model.get_dtype()
     )
     
     # std attention Gemm
@@ -145,6 +152,12 @@ def run_kernel_benchmarks(model, output_file):
                 "oom": gemm_behaviour.oom,
                 "paging": gemm_behaviour.paging,
                 "fallback_kernel": gemm_behaviour.fallback_kernel
+            },
+            "attention_output_projection": {
+                "time": attention_output_projection.time,
+                "flops": attention_output_projection.flops,
+                "tops": attention_output_projection.tops,
+                "bytes_moved": attention_output_projection.bytes_moved
             },
             "ffn_gemm": {
                 "time": ffn_gemm.time,

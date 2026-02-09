@@ -342,7 +342,7 @@ double task_dispatch_throughput() {
 	}
 	
 	auto end = std::chrono::high_resolution_clock::now();
-	double seconds = std::chrono::duration<double>(end - start).count();
+	double seconds = std::chrono::duration<double, std::micro>(end - start).count();
 	return tasks/seconds;
 }
 

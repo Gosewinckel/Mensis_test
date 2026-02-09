@@ -1,0 +1,60 @@
+{
+  "AI_kernels": {
+    "layer_gemm": {
+      "time": 0.008168783221626653,
+      "flops": 206158430208,
+      "tops": 25.237348649698603,
+      "bytes_moved": 167772160,
+      "efficiency": 1.0040260180372325,
+      "oom": false,
+      "paging": false,
+      "fallback_kernel": false
+    },
+    "attention_output_projection": {
+      "time": 0.0027935559302568434,
+      "flops": 68719476736,
+      "tops": 24.599284371471963,
+      "bytes_moved": 67108864
+    },
+    "ffn_gemm": {
+      "time": 0.007176992382155732,
+      "flops": 184683593728,
+      "tops": 25.732728125388803,
+      "bytes_moved": 152043520
+    },
+    "attention_gemm": {
+      "time": 0.0024328876205254348,
+      "tops": 14.123027335138179,
+      "bytes_moved": 603979776,
+      "flops": 34359738368
+    },
+    "softmax": {
+      "time": 0.002071438640123233,
+      "bandwidth": 259.1778011672413,
+      "flops": 1073741824,
+      "tops": 0.5183556023344825,
+      "bytes_moved": 536870912
+    },
+    "attention": {
+      "time": 0.004598042749566957,
+      "flops": 68719476736,
+      "tops": 14.945375778089923,
+      "bytes_moved": 67108864,
+      "bandwidth": 14.59509353329094
+    },
+    "layernorm": {
+      "time": 0.00018155350931920111,
+      "bytes_moved": 33554432,
+      "data_throughput": 184.8184159360189,
+      "flops": 58720256,
+      "tops": 0.32343222788803316
+    },
+    "activation": {
+      "time": 0.0004575649998150766,
+      "flops": 125829120,
+      "tops": 0.27499725733142494,
+      "bytes_moved": 33554432,
+      "data_throughput": 73.33260195504664
+    }
+  }
+}

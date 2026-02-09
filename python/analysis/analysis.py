@@ -152,21 +152,30 @@ def analyse_results(model, sys_file, kernel_file, out_file):
 
 
     results["kernel_performance"] = {
-        "layer_gemm": {
+        "QKV_projection": {
             "flops": kernel["layer_gemm"]["flops"],
             "bytes": kernel["layer_gemm"]["bytes_moved"],
             "time(s)": kernel["layer_gemm"]["time"],
             "tops": kernel["layer_gemm"]["tops"],
-            "bandwidth(GB/s)": kernel["layer_gemm"]["bytes_moved"]/kernel["layer_gemm"]["time"],
+            "bandwidth(GB/s)": kernel["layer_gemm"]["bytes_moved"]/kernel["layer_gemm"]["time"]/1e9,
             "compute_efficiency": kernel["layer_gemm"]["tops"]/peak_comp,
             "memory_efficiency": (kernel["layer_gemm"]["bytes_moved"]/kernel["layer_gemm"]["time"])/peak_bw/1e9
+        },
+        "attention_output_projection": {
+            "flops": kernel["attention_output_projection"]["flops"],
+            "bytes": kernel["attention_output_projection"]["bytes_moved"],
+            "time(s)": kernel["attention_output_projection"]["time"],
+            "tops": kernel["attention_output_projection"]["tops"],
+            "bandwidth(GB/s)": kernel["attention_output_projection"]["bytes_moved"]/kernel["attention_output_projection"]["time"]/1e9,
+            "compute_efficiency": kernel["attention_output_projection"]["tops"]/peak_comp,
+            "memory_efficiency": (kernel["attention_output_projection"]["bytes_moved"]/kernel["attention_output_projection"]["time"])/peak_bw/1e9
         },
         "fnn_gemm": {
             "flops": kernel["ffn_gemm"]["flops"],
             "bytes": kernel["ffn_gemm"]["bytes_moved"],
             "time(s)": kernel["ffn_gemm"]["time"],
             "tops": kernel["ffn_gemm"]["tops"],
-            "bandwidth(GB/s)": kernel["ffn_gemm"]["bytes_moved"]/kernel["ffn_gemm"]["time"],
+            "bandwidth(GB/s)": kernel["ffn_gemm"]["bytes_moved"]/kernel["ffn_gemm"]["time"]/1e9,
             "compute_efficiency": kernel["ffn_gemm"]["tops"]/peak_comp,
             "memory_efficiency": (kernel["ffn_gemm"]["bytes_moved"]/kernel["ffn_gemm"]["time"])/peak_bw/1e9
         },
@@ -175,7 +184,7 @@ def analyse_results(model, sys_file, kernel_file, out_file):
             "bytes": kernel["attention_gemm"]["bytes_moved"],
             "time(s)": kernel["attention_gemm"]["time"],
             "tops": kernel["attention_gemm"]["tops"],
-            "bandwidth(GB/s)": kernel["attention_gemm"]["bytes_moved"]/kernel["attention_gemm"]["time"],
+            "bandwidth(GB/s)": kernel["attention_gemm"]["bytes_moved"]/kernel["attention_gemm"]["time"]/1e9,
             "compute_efficiency": kernel["attention_gemm"]["tops"]/peak_comp,
             "memory_efficiency": (kernel["attention_gemm"]["bytes_moved"]/kernel["attention_gemm"]["time"])/peak_bw/1e9
         },
@@ -184,7 +193,7 @@ def analyse_results(model, sys_file, kernel_file, out_file):
             "bytes": kernel["softmax"]["bytes_moved"],
             "time(s)": kernel["softmax"]["time"],
             "tops": kernel["softmax"]["tops"],
-            "bandwidth(GB/s)": kernel["softmax"]["bytes_moved"]/kernel["softmax"]["time"],
+            "bandwidth(GB/s)": kernel["softmax"]["bytes_moved"]/kernel["softmax"]["time"]/1e9,
             "compute_efficiency": kernel["softmax"]["tops"]/peak_comp,
             "memory_efficiency": (kernel["softmax"]["bytes_moved"]/kernel["softmax"]["time"])/peak_bw/1e9
         },
@@ -193,7 +202,7 @@ def analyse_results(model, sys_file, kernel_file, out_file):
             "bytes": kernel["attention"]["bytes_moved"],
             "time(s)": kernel["attention"]["time"],
             "tops": kernel["attention"]["tops"],
-            "bandwidth(GB/s)": kernel["attention"]["bytes_moved"]/kernel["attention"]["time"],
+            "bandwidth(GB/s)": kernel["attention"]["bytes_moved"]/kernel["attention"]["time"]/1e9,
             "compute_efficiency": kernel["attention"]["tops"]/peak_comp,
             "memory_efficiency": (kernel["attention"]["bytes_moved"]/kernel["attention"]["time"])/peak_bw/1e9
         },
@@ -202,7 +211,7 @@ def analyse_results(model, sys_file, kernel_file, out_file):
             "bytes": kernel["layernorm"]["bytes_moved"],
             "time(s)": kernel["layernorm"]["time"],
             "tops": kernel["layernorm"]["tops"],
-            "bandwidth(GB/s)": kernel["layernorm"]["bytes_moved"]/kernel["layernorm"]["time"],
+            "bandwidth(GB/s)": kernel["layernorm"]["bytes_moved"]/kernel["layernorm"]["time"]/1e9,
             "compute_efficiency": kernel["layernorm"]["tops"]/peak_comp,
             "memory_efficiency": (kernel["layernorm"]["bytes_moved"]/kernel["layernorm"]["time"])/peak_bw/1e9
         },
@@ -211,26 +220,28 @@ def analyse_results(model, sys_file, kernel_file, out_file):
             "bytes": kernel["activation"]["bytes_moved"],
             "time(s)": kernel["activation"]["time"],
             "tops": kernel["activation"]["tops"],
-            "bandwidth(GB/s)": kernel["activation"]["bytes_moved"]/kernel["activation"]["time"],
+            "bandwidth(GB/s)": kernel["activation"]["bytes_moved"]/kernel["activation"]["time"]/1e9,
             "compute_efficiency": kernel["activation"]["tops"]/peak_comp,
             "memory_efficiency": (kernel["activation"]["bytes_moved"]/kernel["activation"]["time"])/peak_bw/1e9
         }
     }
 
     # transformer estimate
-    linear_gemm_time = 3 * kernel["layer_gemm"]["time"]
+    QKV_projection_time = kernel["layer_gemm"]["time"]
+    attention_output_projection_time = kernel["attention_output_projection"]["time"]
     attention_time = kernel["attention"]["time"]
-    ffn_time = 2 * kernel["ffn_gemm"]["time"]
+    ffn_time = 2 * kernel["ffn_gemm"]["time"]   # some models have a multiple of 3
     layernorm_time = 2 * kernel["layernorm"]["time"]
     activation_time = 3 * kernel["activation"]["time"]
 
-    transformer_layer_time = linear_gemm_time + attention_time + ffn_time + layernorm_time + activation_time
+    transformer_layer_time = QKV_projection_time + attention_output_projection_time + attention_time + ffn_time + layernorm_time + activation_time
     
     # output transformer estimates
     results["transformer_estimate"] = {
-            "model_time": transformer_layer_time * model.n_layers,
+            "model_time(s)": transformer_layer_time * model.n_layers,
             "component_percentages": {
-                "linear_Gemms": (linear_gemm_time/transformer_layer_time)*100,
+                "QKV_projection": (QKV_projection_time/transformer_layer_time)*100,
+                "Attention_output_projection": (attention_output_projection_time/transformer_layer_time)*100,
                 "Attention": (attention_time/transformer_layer_time)*100,
                 "FFN": (ffn_time/transformer_layer_time)*100,
                 "Layernorm": (layernorm_time/transformer_layer_time)*100,

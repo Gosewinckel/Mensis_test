@@ -90,10 +90,10 @@ void runMicrobenchmarks(json& outFile) {
 	cpuOut["single_thread_GFLOPs"] = gflop_single(&gemms);
 	cpuOut["multi_thread_GFLOPs"] = gflop_multi(&gemms);
 	long triad = triad_size();
-	cpuOut["bandwidth"] = bandwidth_single(triad);
-	cpuOut["thread_wake_latency"] = thread_wake_latency();
-	cpuOut["task_dispatch_throughput"] = task_dispatch_throughput();
-	cpuOut["synchronisation_overhead"] = synchronisation_overhead();
+	cpuOut["bandwidth(GB/s)"] = bandwidth_single(triad);
+	cpuOut["thread_wake_latency(threads/microsecond)"] = thread_wake_latency();
+	cpuOut["task_dispatch_throughput(tasks/microsecond)"] = task_dispatch_throughput();
+	cpuOut["synchronisation_overhead(microseconds)"] = synchronisation_overhead();
 	microbenchmarks["CPU"] = cpuOut;
 
 	// GPU microbenchmarks

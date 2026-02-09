@@ -21,7 +21,7 @@
             "memory": 32
           }
         ],
-        "clocks": 3999.998046875,
+        "clocks": 3962.118896484375,
         "core_count": 6,
         "model": "Intel(R) Core(TM) i5-9400F CPU @ 2.90GHz"
       }
@@ -32,7 +32,7 @@
         "computeMinor": 5,
         "device": 0,
         "hasTensorCores": true,
-        "memory_capacity": 1720451072,
+        "memory_capacity": 6015418368,
         "model": "NVIDIA GeForce RTX 2060",
         "streaming_multiprocessors": 30
       }
@@ -47,7 +47,6 @@
         "speed": 2400
       }
     ],
-    "Storage": [],
     "storage": [
       {
         "type": "SSD/NVMe"
@@ -59,21 +58,22 @@
   },
   "microbenchmarks": {
     "CPU": {
-      "bandwidth": 9.5642144325761,
-      "multi_thread_GFLOPs": 212.45370483398438,
-      "single_thread_GFLOPs": 50.182071685791016,
-      "synchronisation_overhead": 0.588752235,
-      "task_dispatch_throughput": 42833334.25425002,
-      "thread_wake_latency": 0.581
+      "bandwidth(GB/s)": 9.534868528934567,
+      "multi_thread_GFLOPs": 213.20870971679688,
+      "single_thread_GFLOPs": 50.40638732910156,
+      "synchronisation_overhead(microseconds)": 0.572838318,
+      "task_dispatch_throughput(tasks/microsecond)": 42.122264590668046,
+      "thread_wake_latency(threads/microsecond)": 0.608
     },
     "GPUs": [
       {
         "TOPS": {
-          "16f": 27.452089309692383,
-          "32F": 6.516618728637695,
-          "8i": 58.862648010253906
+          "16f": 26.971389770507813,
+          "32F": 6.624858379364014,
+          "8i": 60.296382904052734
         },
-        "bandwidth": 297.17482982932603
+        "bandwidth": 297.1730003797946,
+        "device": 0
       }
     ]
   }
