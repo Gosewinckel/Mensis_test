@@ -93,7 +93,7 @@ Dtype = float16\
 Number of transformer blocks = 32\
 
 ## Results
-All benchmark results are recorded in a JSON file that will be located in the results folder. The JSON output is separated into four sections, System for the machines hardware information, microbenchmarks for the hardware performance results, AI-kernels for the PyTorch transformer kernel results and transformer_estimate for an estimate of model time and the proportion of total computation each component of the transformer took. An example of the output file can be found in the example.JSON file.
+All benchmark results are recorded in a JSON file that will be located in the results folder. The JSON output is separated into four sections, System for the machines hardware information, microbenchmarks for the hardware performance results, AI-kernels for the PyTorch transformer kernel results and transformer_estimate for an estimate of model time and the proportion of total computation each component of the transformer took. An example of the output file can be found in the example.json file.
 
 ## Analysing LLaMA-7B Model Performance
 The following is an analysis of the performance of the LLaMA-7B model (parameters defined above) on my personal computer. The machine has an intel i5 CPU and an NVIDIA 2060 and is in no way designed to perform AI workloads effectively, therefore it was appropriate to measure performance on a smaller model.  The following analysis offers a look into raw hardware performance, AI-kernel performance and potential bottlenecks and optimisation targets within the model.
