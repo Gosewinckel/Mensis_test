@@ -58,7 +58,7 @@ def get_model_parameters():
     
     # compute dtype
     while True:
-        dtypes = ["float32", "float16", "int8", "uint8"]
+        dtypes = ["float32", "float16"]
         print(f"dtype must be one of the following: {dtypes}")
         model.dtype = input("data type used for computation (int the form float16, bfloat16...): ")
         if not isinstance(model.dtype, str):
@@ -72,10 +72,6 @@ def get_model_parameters():
         model.dtype = torch.float32
     elif model.dtype == "float16":
         model.dtype = torch.float16
-    elif model.dtype == "int8":
-        model.dtype = torch.int8
-    elif model.dtype == "uint8":
-        model.dtype = torch.uint8
 
     while True:
         try:
