@@ -139,7 +139,7 @@ def analyse_results(model, sys_file, kernel_file, out_file):
             peak_bw = i["bandwidth"]
 
     peak_comp = 0
-    if model.dtype == torch.float16:
+    if model.dtype == torch.float32:
         peak_comp = peak_32f
     if model.dtype == torch.float16:
         peak_comp = peak_16f

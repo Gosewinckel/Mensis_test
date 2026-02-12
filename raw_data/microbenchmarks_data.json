@@ -21,7 +21,7 @@
             "memory": 32
           }
         ],
-        "clocks": 3962.118896484375,
+        "clocks": 3999.9541015625,
         "core_count": 6,
         "model": "Intel(R) Core(TM) i5-9400F CPU @ 2.90GHz"
       }
@@ -58,21 +58,21 @@
   },
   "microbenchmarks": {
     "CPU": {
-      "bandwidth(GB/s)": 9.534868528934567,
-      "multi_thread_GFLOPs": 213.20870971679688,
-      "single_thread_GFLOPs": 50.40638732910156,
-      "synchronisation_overhead(microseconds)": 0.572838318,
-      "task_dispatch_throughput(tasks/microsecond)": 42.122264590668046,
-      "thread_wake_latency(threads/microsecond)": 0.608
+      "bandwidth(GB/s)": 9.62482753330487,
+      "multi_thread_GFLOPs": 213.2831573486328,
+      "single_thread_GFLOPs": 50.93761444091797,
+      "synchronisation_overhead(microseconds)": 0.585425618,
+      "task_dispatch_throughput(tasks/microsecond)": 41.46882581019718,
+      "thread_wake_latency(threads/microsecond)": 0.587
     },
     "GPUs": [
       {
         "TOPS": {
-          "16f": 26.971389770507813,
-          "32F": 6.624858379364014,
-          "8i": 60.296382904052734
+          "16f": 27.887889862060547,
+          "32F": 6.861420154571533,
+          "8i": 63.166748046875
         },
-        "bandwidth": 297.1730003797946,
+        "bandwidth": 297.0167029907354,
         "device": 0
       }
     ]

@@ -21,7 +21,7 @@
             "memory": 32
           }
         ],
-        "clocks": 3962.118896484375,
+        "clocks": 3999.9541015625,
         "core_count": 6,
         "model": "Intel(R) Core(TM) i5-9400F CPU @ 2.90GHz"
       }
@@ -58,21 +58,21 @@
   },
   "microbenchmarks": {
     "CPU": {
-      "bandwidth(GB/s)": 9.534868528934567,
-      "multi_thread_GFLOPs": 213.20870971679688,
-      "single_thread_GFLOPs": 50.40638732910156,
-      "synchronisation_overhead(microseconds)": 0.572838318,
-      "task_dispatch_throughput(tasks/microsecond)": 42.122264590668046,
-      "thread_wake_latency(threads/microsecond)": 0.608
+      "bandwidth(GB/s)": 9.62482753330487,
+      "multi_thread_GFLOPs": 213.2831573486328,
+      "single_thread_GFLOPs": 50.93761444091797,
+      "synchronisation_overhead(microseconds)": 0.585425618,
+      "task_dispatch_throughput(tasks/microsecond)": 41.46882581019718,
+      "thread_wake_latency(threads/microsecond)": 0.587
     },
     "GPUs": [
       {
         "TOPS": {
-          "16f": 26.971389770507812,
-          "32F": 6.624858379364014,
-          "8i": 60.296382904052734
+          "16f": 27.887889862060547,
+          "32F": 6.861420154571533,
+          "8i": 63.166748046875
         },
-        "bandwidth": 297.1730003797946,
+        "bandwidth": 297.0167029907354,
         "device": 0
       }
     ]
@@ -81,85 +81,85 @@
     "QKV_projection": {
       "flops": 206158430208,
       "bytes": 167772160,
-      "time(s)": 0.008168783221626653,
-      "tops": 25.237348649698603,
-      "bandwidth(GB/s)": 20.538206908934406,
-      "compute_efficiency": 0.9357081286665726,
-      "memory_efficiency": 0.06911195459441491
+      "time(s)": 0.007852095009984622,
+      "tops": 26.255213410669587,
+      "bandwidth(GB/s)": 21.36654737196418,
+      "compute_efficiency": 0.941455719329554,
+      "memory_efficiency": 0.07193719126506717
     },
     "attention_output_projection": {
       "flops": 68719476736,
       "bytes": 67108864,
-      "time(s)": 0.0027935559302568434,
-      "tops": 24.599284371471963,
-      "bandwidth(GB/s)": 24.02273864401559,
-      "compute_efficiency": 0.9120510504197431,
-      "memory_efficiency": 0.08083755460056574
+      "time(s)": 0.002692320580017622,
+      "tops": 25.52425489224252,
+      "bandwidth(GB/s)": 24.926030168205585,
+      "compute_efficiency": 0.9152451124301957,
+      "memory_efficiency": 0.0839213078497578
     },
     "fnn_gemm": {
       "flops": 184683593728,
       "bytes": 152043520,
-      "time(s)": 0.007176992382155732,
-      "tops": 25.732728125388803,
-      "bandwidth(GB/s)": 21.184851801992735,
-      "compute_efficiency": 0.9540749788698898,
-      "memory_efficiency": 0.07128794262910144
+      "time(s)": 0.006962994470013655,
+      "tops": 26.523587591997302,
+      "bandwidth(GB/s)": 21.83593864030483,
+      "compute_efficiency": 0.9510790426664988,
+      "memory_efficiency": 0.07351754436849277
     },
     "attention_gemm": {
       "flops": 34359738368,
       "bytes": 603979776,
-      "time(s)": 0.0024328876205254348,
-      "tops": 14.123027335138179,
-      "bandwidth(GB/s)": 248.25633987547582,
-      "compute_efficiency": 0.5236299447417119,
-      "memory_efficiency": 0.8353933215944853
+      "time(s)": 0.0023654079300013107,
+      "tops": 14.52592507710962,
+      "bandwidth(GB/s)": 255.33852674606757,
+      "compute_efficiency": 0.5208685615497604,
+      "memory_efficiency": 0.8596773318638318
     },
     "softmax": {
       "flops": 1073741824,
       "bytes": 536870912,
-      "time(s)": 0.002071438640123233,
-      "tops": 0.5183556023344825,
-      "bandwidth(GB/s)": 259.1778011672413,
-      "compute_efficiency": 0.01921872053108975,
-      "memory_efficiency": 0.8721445112308505
+      "time(s)": 0.0020706316599989807,
+      "tops": 0.5185576192728206,
+      "bandwidth(GB/s)": 259.2788096364103,
+      "compute_efficiency": 0.01859436557723504,
+      "memory_efficiency": 0.8729435315444122
     },
     "attention": {
       "flops": 68719476736,
       "bytes": 67108864,
-      "time(s)": 0.004598042749566957,
-      "tops": 14.945375778089923,
-      "bandwidth(GB/s)": 14.59509353329094,
-      "compute_efficiency": 0.5541196024845603,
-      "memory_efficiency": 0.049113121025927804
+      "time(s)": 0.004587686730001223,
+      "tops": 14.979112738149336,
+      "bandwidth(GB/s)": 14.62803978334896,
+      "compute_efficiency": 0.5371189004345336,
+      "memory_efficiency": 0.049249889437380366
     },
     "layernorm": {
       "flops": 58720256,
       "bytes": 33554432,
-      "time(s)": 0.00018155350931920111,
-      "tops": 0.32343222788803316,
-      "bandwidth(GB/s)": 184.8184159360189,
-      "compute_efficiency": 0.011991678242761298,
-      "memory_efficiency": 0.6219219636367245
+      "time(s)": 0.0001801636999971379,
+      "tops": 0.3259272317394283,
+      "bandwidth(GB/s)": 186.24413242253047,
+      "compute_efficiency": 0.011687052457232653,
+      "memory_efficiency": 0.6270493563062002
     },
     "activation(GELU)": {
       "flops": 125829120,
       "bytes": 33554432,
-      "time(s)": 0.0004575649998150766,
-      "tops": 0.27499725733142494,
-      "bandwidth(GB/s)": 73.33260195504664,
-      "compute_efficiency": 0.010195887556084483,
-      "memory_efficiency": 0.24676737745799832
+      "time(s)": 0.0004560966999997618,
+      "tops": 0.2758825485912652,
+      "bandwidth(GB/s)": 73.56867962433739,
+      "compute_efficiency": 0.009892557305548721,
+      "memory_efficiency": 0.24769206204080774
     }
   },
   "transformer_estimate": {
-    "model_time(s)": 1.0128053978830576,
+    "model_time(s)": 0.9851746803207787,
     "component_percentages": {
-      "QKV_projection": 25.809604060012653,
-      "Attention_output_projection": 8.826354001969957,
-      "Attention": 14.527703771493098,
-      "FFN": 45.352000830371026,
-      "Layernorm": 1.147251448374537,
-      "Elementwise": 4.337085887778735
+      "QKV_projection": 25.50482115899425,
+      "Attention_output_projection": 8.745074379348804,
+      "Attention": 14.901517293586783,
+      "FFN": 45.23376970424916,
+      "Layernorm": 1.1703992226091757,
+      "Elementwise": 4.444418241211841
     }
   }
 }
